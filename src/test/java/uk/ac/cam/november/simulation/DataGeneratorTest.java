@@ -48,6 +48,8 @@ public class DataGeneratorTest {
 		JsonObject packet = DataGenerator.generateVesselHeadingPacket(100.0, 1.0, -1.0);
 		JsonObject fields = packet.getAsJsonObject("fields");
 		
+		assertEquals(packet.get("pgn").getAsInt(), 127250);
+		
 		assertEquals(fields.get("Heading").getAsDouble(), 100.0, 0.01);
 		assertEquals(fields.get("Deviation").getAsDouble(), 1.0, 0.01);
 		assertEquals(fields.get("Variation").getAsDouble(), -1.0, 0.01);
@@ -64,6 +66,8 @@ public class DataGeneratorTest {
 	public void waterDepthPacketShouldContainCorrectFields() {
 		JsonObject packet = DataGenerator.generateWaterDepthPacket(100.0, 1.0);
 		JsonObject fields = packet.getAsJsonObject("fields");
+		
+		assertEquals(packet.get("pgn").getAsInt(), 128267);
 		
 		assertEquals(fields.get("Depth").getAsDouble(), 100.0, 0.01);
 		assertEquals(fields.get("Offset").getAsDouble(), 1.0, 0.01);
