@@ -148,4 +148,28 @@ public class DataGenerator {
 		return packet;
 	}
 	
+	/**
+	 * Creates and returns a speed packet with the specified speed <b>relative to water</b>.
+	 * @param vesselSpeed  Speed of vessel relative to water (meters per second)
+	 * @return             A {@code JsonObject} containing the packet
+	 */
+	public static JsonObject generateSpeedPacket(double vesselSpeed){
+		if ( vesselSpeed < 0.0 ) {
+			throw new IllegalArgumentException("Vessel speed value must be >= 0 m/s");
+		}
+		
+		JsonObject packet = createDefaultPacket();
+		
+		packet.addProperty("pgn", 128259);
+		packet.addProperty("description", "Speed");
+		
+		JsonObject fields = packet.getAsJsonObject("fields");
+		
+		fields.addProperty("SID", 0);
+		fields.addProperty("Speed Water Referenced", vesselSpeed);
+		fields.addProperty("Speed Water Referenced Type", "Paddle wheel");
+		
+		return packet;
+	}
+	
 }

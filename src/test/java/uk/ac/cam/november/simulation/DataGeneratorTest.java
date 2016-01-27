@@ -94,4 +94,21 @@ public class DataGeneratorTest {
 		assertEquals(fields.get("Reference").getAsString(), "Apparent");
 	}
 	
+	/* generateSpeedPacket */
+	
+	@Test
+	public void speedPacketShouldCheckInputRange() {
+		try{ DataGenerator.generateSpeedPacket(-1.0); fail("Vessel speed value did not catch <0"); } catch(IllegalArgumentException e) {}
+	}
+	
+	@Test
+	public void speedPacketShouldContainCorrectFields(){
+		JsonObject packet = DataGenerator.generateSpeedPacket(100.0);
+		JsonObject fields = packet.getAsJsonObject("fields");
+		
+		assertEquals(packet.get("pgn").getAsInt(), 128259);
+		
+		assertEquals(fields.get("Speed Water Referenced").getAsDouble(), 100.0, 0.01);
+	}
+	
 }
