@@ -73,4 +73,25 @@ public class DataGeneratorTest {
 		assertEquals(fields.get("Offset").getAsDouble(), 1.0, 0.01);
 	}
 	
+	/* generateWindDataPacket */
+	
+	@Test
+	public void windDepthPacketShouldCheckInputRange() {
+		try{ DataGenerator.generateWindDataPacket(-1.0, 0); fail("Wind Speed did not catch <0"); } catch(IllegalArgumentException e) {}
+		try{ DataGenerator.generateWindDataPacket(1.0, -10.0); fail("Wind Angle did not catch <0"); } catch(IllegalArgumentException e) {}
+		try{ DataGenerator.generateWindDataPacket(1.0, 370.0); fail("Wind Angle did not catch >360"); } catch(IllegalArgumentException e) {}
+	}
+	
+	@Test
+	public void windDataPacketShouldContainCorrectFields() {
+		JsonObject packet = DataGenerator.generateWindDataPacket(100.0, 1.0);
+		JsonObject fields = packet.getAsJsonObject("fields");
+		
+		assertEquals(packet.get("pgn").getAsInt(), 130306);
+		
+		assertEquals(fields.get("Wind Speed").getAsDouble(), 100.0, 0.01);
+		assertEquals(fields.get("Wind Angle").getAsDouble(), 1.0, 0.01);
+		assertEquals(fields.get("Reference").getAsString(), "Apparent");
+	}
+	
 }

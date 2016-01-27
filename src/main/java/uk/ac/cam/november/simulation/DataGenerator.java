@@ -119,4 +119,33 @@ public class DataGenerator {
 		return packet;
 	}
 	
+	/**
+	 * Creates and returns a windData packet with the specified wind speed and wind angle.
+	 * @param windSpeed  Speed of wind (meters per second)
+	 * @param windAngle  Angle of wind (degrees, clockwise from bow)
+	 * @return           A {@code JsonObject} containing the packet
+	 */
+	public static JsonObject generateWindDataPacket(double windSpeed, double windAngle){
+		if ( windSpeed < 0.0 ) {
+			throw new IllegalArgumentException("Wind speed value must be >= 0 m/s");
+		}
+		if ( windAngle < 0.0 || windAngle > 360.0) {
+			throw new IllegalArgumentException("Wind angle value must be between 0 and 360 degrees");
+		}
+		
+		JsonObject packet = createDefaultPacket();
+		
+		packet.addProperty("pgn", 130306);
+		packet.addProperty("description", "Wind Data");
+		
+		JsonObject fields = packet.getAsJsonObject("fields");
+		
+		fields.addProperty("SID", 0);
+		fields.addProperty("Wind Speed", windSpeed);
+		fields.addProperty("Wind Angle", windAngle);
+		fields.addProperty("Reference", "Apparent");
+		
+		return packet;
+	}
+	
 }
