@@ -1,9 +1,12 @@
 package uk.ac.cam.november.simulation;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.google.gson.JsonObject;
+import uk.ac.cam.november.message.BoatHeadingFields;
+import uk.ac.cam.november.message.BoatSpeedFields;
+import uk.ac.cam.november.message.Message;
+import uk.ac.cam.november.message.WaterDepthFields;
+import uk.ac.cam.november.message.WindDataFields;
 
 public class DataGenerator {
 
@@ -32,19 +35,14 @@ public class DataGenerator {
      * <li>destination: 255 (broadcast)</li>
      * </ol>
      * Also creates the {@code fields} array ready to be populated with data.
-     * @return  {@code JsonObject} containing the packet
+     * @return  {@code Message} containing the packet
      */
-    public static JsonObject createDefaultPacket() {
-        JsonObject packet = new JsonObject();
-        
-        SimpleDateFormat timestampFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss.SSS");
-        
-        packet.addProperty("timestamp", timestampFormat.format(new Date()));
-        packet.addProperty("prio", DEFAULT_PRIORITY);
-        packet.addProperty("src", DEFAULT_SRC);
-        packet.addProperty("dst", DEFAULT_DEST);
-        
-        packet.add("fields", new JsonObject());
+    public static Message createDefaultPacket() {
+        Message packet = new Message();
+        packet.setTimestamp(new Date());
+        packet.setPrio(DEFAULT_PRIORITY);
+        packet.setSrc(DEFAULT_SRC);
+        packet.setDst(DEFAULT_DEST);
         
         return packet;
     }
@@ -52,11 +50,11 @@ public class DataGenerator {
     /**
      * Creates and returns a vesselHeading packet with the specified heading, 0 degrees deviation, 0 degrees variation.
      * @param heading  compass heading in degrees from North
-     * @return         A {@code JsonObject} containing the packet
+     * @return         A {@code Message} containing the packet
      * @see            {@link #generateVesselHeadingPacket(double, double, double)}
      */
-    public static JsonObject generateVesselHeadingPacket(double heading) {
-        return generateVesselHeadingPacket(heading, 0.0, 0.0);
+    public static Message generateVesselHeadingPacket(float heading) {
+        return generateVesselHeadingPacket(heading, 0.0f, 0.0f);
     }
     
     /**
@@ -65,9 +63,9 @@ public class DataGenerator {
      * @param heading    Compass heading from North (degrees)    
      * @param deviation  Magnetic deviation from true value caused by ferrous metal on vessel (degrees)
      * @param variation  Difference from Magnetic North to True North (degrees)
-     * @return           A {@code JsonObject} containing the packet
+     * @return           A {@code Message} containing the packet
      */
-    public static JsonObject generateVesselHeadingPacket(double heading, double deviation, double variation) {
+    public static Message generateVesselHeadingPacket(float heading, float deviation, float variation) {
         if ( heading < 0.0 || heading > 360.0) {
             throw new IllegalArgumentException("Heading value must be between 0 and 360 degrees");
         }
@@ -78,18 +76,20 @@ public class DataGenerator {
             throw new IllegalArgumentException("Variation value must be between -180 and 180 degrees");
         }
         
-        JsonObject packet = createDefaultPacket();
+        Message packet = createDefaultPacket();
         
-        packet.addProperty("pgn", 127250);
-        packet.addProperty("description", "Vessel Heading");
+        packet.setPgn(127250);
+        packet.setDescription("Vessel Heading");
         
-        JsonObject fields = packet.getAsJsonObject("fields");
+        BoatHeadingFields fields = new BoatHeadingFields();
         
-        fields.addProperty("SID", 0);
-        fields.addProperty("Heading", heading);
-        fields.addProperty("Deviation", deviation);
-        fields.addProperty("Variation", variation);
-        fields.addProperty("Reference", "Magnetic");
+        fields.setSID(0);
+        fields.setHeading(heading);
+        fields.setDeviation(deviation);
+        fields.setVariation(variation);
+        fields.setReference("Magnetic");
+        
+        packet.setFields(fields);
         
         return packet;
     }
@@ -98,23 +98,25 @@ public class DataGenerator {
      * Creates and returns a waterDepth packet with the specified water depth and zero offset.
      * @param waterDepth  Depth of water below the sensor (meters)
      * @param offset      Distance from sensor to surface (positive) or keel (negative)
-     * @return            A {@code JsonObject} containing the packet
+     * @return            A {@code Message} containing the packet
      */
-    public static JsonObject generateWaterDepthPacket(double waterDepth, double offset) {
+    public static Message generateWaterDepthPacket(float waterDepth, float offset) {
         if ( waterDepth < 0.0 ) {
             throw new IllegalArgumentException("Water depth value must be >= 0 meters");
         }
         
-        JsonObject packet = createDefaultPacket();
+        Message packet = createDefaultPacket();
         
-        packet.addProperty("pgn", 128267);
-        packet.addProperty("description", "Water Depth");
+        packet.setPgn(128267);
+        packet.setDescription("Water Depth");
         
-        JsonObject fields = packet.getAsJsonObject("fields");
+        WaterDepthFields fields = new WaterDepthFields();
         
-        fields.addProperty("SID", 0);
-        fields.addProperty("Depth", waterDepth);
-        fields.addProperty("Offset", offset);
+        fields.setSID(0);
+        fields.setDepth(waterDepth);
+        fields.setOffset(offset);
+        
+        packet.setFields(fields);
         
         return packet;
     }
@@ -123,9 +125,9 @@ public class DataGenerator {
      * Creates and returns a windData packet with the specified wind speed and wind angle.
      * @param windSpeed  Speed of wind (meters per second)
      * @param windAngle  Angle of wind (degrees, clockwise from bow)
-     * @return           A {@code JsonObject} containing the packet
+     * @return           A {@code Message} containing the packet
      */
-    public static JsonObject generateWindDataPacket(double windSpeed, double windAngle){
+    public static Message generateWindDataPacket(float windSpeed, float windAngle){
         if ( windSpeed < 0.0 ) {
             throw new IllegalArgumentException("Wind speed value must be >= 0 m/s");
         }
@@ -133,17 +135,19 @@ public class DataGenerator {
             throw new IllegalArgumentException("Wind angle value must be between 0 and 360 degrees");
         }
         
-        JsonObject packet = createDefaultPacket();
+        Message packet = createDefaultPacket();
         
-        packet.addProperty("pgn", 130306);
-        packet.addProperty("description", "Wind Data");
+        packet.setPgn(130306);
+        packet.setDescription("Wind Data");
         
-        JsonObject fields = packet.getAsJsonObject("fields");
+        WindDataFields fields = new WindDataFields();
         
-        fields.addProperty("SID", 0);
-        fields.addProperty("Wind Speed", windSpeed);
-        fields.addProperty("Wind Angle", windAngle);
-        fields.addProperty("Reference", "Apparent");
+        fields.setSID(0);
+        fields.setWindSpeed(windSpeed);
+        fields.setWindAngle(windAngle);
+        fields.setReference("Apparent");
+        
+        packet.setFields(fields);
         
         return packet;
     }
@@ -151,23 +155,25 @@ public class DataGenerator {
     /**
      * Creates and returns a speed packet with the specified speed <b>relative to water</b>.
      * @param vesselSpeed  Speed of vessel relative to water (meters per second)
-     * @return             A {@code JsonObject} containing the packet
+     * @return             A {@code Message} containing the packet
      */
-    public static JsonObject generateSpeedPacket(double vesselSpeed){
+    public static Message generateSpeedPacket(float vesselSpeed){
         if ( vesselSpeed < 0.0 ) {
             throw new IllegalArgumentException("Vessel speed value must be >= 0 m/s");
         }
         
-        JsonObject packet = createDefaultPacket();
+        Message packet = createDefaultPacket();
         
-        packet.addProperty("pgn", 128259);
-        packet.addProperty("description", "Speed");
+        packet.setPgn(128259);
+        packet.setDescription("Speed");
         
-        JsonObject fields = packet.getAsJsonObject("fields");
+        BoatSpeedFields fields = new BoatSpeedFields();
         
-        fields.addProperty("SID", 0);
-        fields.addProperty("Speed Water Referenced", vesselSpeed);
-        fields.addProperty("Speed Water Referenced Type", "Paddle wheel");
+        fields.setSID(0);
+        fields.setSpeedWaterReferenced(vesselSpeed);
+        fields.setSpeedWaterReferencedType("Paddle wheel");
+        
+        packet.setFields(fields);
         
         return packet;
     }

@@ -1,33 +1,58 @@
 package uk.ac.cam.november.message;
 
-public class Message<T> { 
-    private String timestamp;
-    private String prio;
-    private String src;
-    private String dst;
-    private String pgn;
+import java.util.Date;
+
+public class Message { 
+    private Date timestamp;
+    private int prio;
+    private int src;
+    private int dst;
+    private int pgn;
     private String description;
-    private T fields;
+    private Fields fields;
     
-    public String getTimestamp() {
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+    public void setPrio(int prio) {
+        this.prio = prio;
+    }
+    public void setSrc(int src) {
+        this.src = src;
+    }
+    public void setDst(int dst) {
+        this.dst = dst;
+    }
+    public void setPgn(int pgn) {
+        this.pgn = pgn;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setFields(Fields fields) {
+        this.fields = fields;
+    }
+    
+    public Date getTimestamp() {
         return timestamp;
     }
-    public String getPrio() {
+    public int getPrio() {
         return prio;
     }
-    public String getSrc() {
+    public int getSrc() {
         return src;
     }
-    public String getDst() {
+    public int getDst() {
         return dst;
     }
-    public String getPgn() {
+    public int getPgn() {
         return pgn;
     }
+    
     public String getDescription() {
         return description;
     }
-    public T getFields() {
+    public Fields getFields() {
         return fields;
     }
 }

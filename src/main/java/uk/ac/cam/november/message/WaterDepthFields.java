@@ -10,4 +10,11 @@ public class WaterDepthFields extends Fields{
     public float getOffset() {
         return Offset;
     }
+    
+    public void setDepth(float depth){
+        this.Depth = depth;
+    }
+    public void setOffset(float offset){
+        this.Offset = offset;
+    }
 }
