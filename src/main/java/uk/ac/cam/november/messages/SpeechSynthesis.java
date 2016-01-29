@@ -4,28 +4,27 @@ import java.io.IOException;
 
 public class SpeechSynthesis {
 
-    private static String command = "espeak -ven+f3 -k5 -s150 ";
+    private static Process curr_speech = null;
 
     // Methods
     public static void play(String text) {
         try {
-            // This currently has a bug: only the first word is read.
-            // This will most likely be changed and not use Process,
-            // or at the very least use different methods.
-            String script = command + "\"" + text + "\"";
-            Process p = Runtime.getRuntime().exec(script);
-            p.waitFor(); // TODO: change this to something sensible
-            // please please please don't pass anything with quotes!
+            ProcessBuilder pb = new ProcessBuilder("espeak", "-ven+f3", "-k5",
+                                                   "-s150", text);
+            /* Nothing here? */
+            /* TODO: consider using pico2wave & then playing */
+            curr_speech = pb.start();
+            // TODO: change this to something sensible
         } catch (IOException e) {
-            System.out.println("naughty naughty naughty IO");
-            // TODO: write something useful
-        } catch (InterruptedException e) {
-            System.out.println("interrupted exception, should not happen now");
+            System.out.println("I/O exception: malformed script?");
             // TODO: write something useful
         }
     }
     public static void stop() {
-        // TODO: actually do something
+        if (curr_speech != null) {
+            curr_speech.destroy();
+        }
+        // TODO: consider a better way to do this?
     }
 
 }
