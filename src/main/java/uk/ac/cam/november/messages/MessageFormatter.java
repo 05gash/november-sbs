@@ -15,19 +15,17 @@ import uk.ac.cam.november.buttons.ButtonNames;
  */
 public class MessageFormatter {
     
-    private static MessageFormatter formatterSingleton = null;
-    
-    private StateDecoder mDecoder;
+    private static StateDecoder mDecoder;
     
     private MessageFormatter()
     {
         mDecoder = new StateDecoder();
     }
     
-    /**
+    /*
      * Returns a reference to the MessageFormatter Singleton, and initializes one if one does not exist.
      * @return a reference to the MessageFormatter Singleton
-     */
+     *
     public static MessageFormatter getInstance()
     {
         if(formatterSingleton == null)
@@ -36,10 +34,11 @@ public class MessageFormatter {
         }
         return formatterSingleton;
     }
+    */
     
     /**
      * 
-     * @param buttonName
+     * @param buttonName The name of the button that was pressed.
      */
     public void handleButtonPress(String buttonName)
     {
@@ -47,11 +46,11 @@ public class MessageFormatter {
         //poll StateDecoder
         String sensorData = pollStateDecoder(buttonName);
         
-        //
-        String formattedMessage = formatMessage(sensorData, buttonName);
+        // format the sensor data into a string;
+        String formattedString = formatMessage(sensorData, buttonName);
         
         // assign priority and wrap in Message Object
-        Message m = new Message(formattedMessage, 1);
+        Message m = new Message(formattedString, 1);
         
         // call MessageHandler
         MessageHandler.receiveMessage(m);
@@ -64,13 +63,13 @@ public class MessageFormatter {
         return this.mDecoder.getRecent(buttonName);
     }
     
-    /**
+    /*
      * Given a data value and the field that it corresponds with, this creates a formatted string
      * that can be read by the MessageHandler
      * 
      * @param data the value of the data
      * @param buttonName the data field
-     * @return
+     * @return the formatted string 
      */
     private String formatMessage(String data, String buttonName)
     {
@@ -79,6 +78,12 @@ public class MessageFormatter {
         case ButtonNames.WATER_DEPTH:
             return data + " meters deep";
         case ButtonNames.WIND_SPEED:
+            return data + " meters per second";
+        case ButtonNames.WIND_DIRECTION:
+            return data + " degrees";
+        case ButtonNames.COMPASS_HEADING:
+            return data + " degrees";
+        case ButtonNames.BOAT_SPEED:
             return data + " meters per second";
         
         default:
