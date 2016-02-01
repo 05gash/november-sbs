@@ -39,8 +39,9 @@ public class MessageFormatter {
     /**
      * 
      * @param buttonName The name of the button that was pressed.
+     * @return 
      */
-    public void handleButtonPress(String buttonName)
+    public static void handleButtonPress(String buttonName)
     {
         
         //poll StateDecoder
@@ -50,6 +51,7 @@ public class MessageFormatter {
         String formattedString = formatMessage(sensorData, buttonName);
         
         // assign priority and wrap in Message Object
+        //TODO: Come up with a sensible priority scheme.
         Message m = new Message(formattedString, 1);
         
         // call MessageHandler
@@ -58,9 +60,9 @@ public class MessageFormatter {
   
     
     //TODO: determine format of polling from the state decoder.
-    private String pollStateDecoder(String buttonName)
+    private static String pollStateDecoder(String buttonName)
     {
-        return this.mDecoder.getRecent(buttonName);
+        return mDecoder.getRecent(buttonName);
     }
     
     /*
@@ -71,7 +73,7 @@ public class MessageFormatter {
      * @param buttonName the data field
      * @return the formatted string 
      */
-    private String formatMessage(String data, String buttonName)
+    private static String formatMessage(String data, String buttonName)
     {
         switch(buttonName)
         {
@@ -80,9 +82,9 @@ public class MessageFormatter {
         case ButtonNames.WIND_SPEED:
             return data + " meters per second";
         case ButtonNames.WIND_DIRECTION:
-            return data + " degrees";
+            return data + " degrees from head";
         case ButtonNames.COMPASS_HEADING:
-            return data + " degrees";
+            return data + " degrees from north";
         case ButtonNames.BOAT_SPEED:
             return data + " meters per second";
         

@@ -9,6 +9,7 @@
 
 package uk.ac.cam.november.buttons;
 
+import uk.ac.cam.november.messages.MessageFormatter;
 import uk.ac.cam.november.messages.SpeechSynthesis;
 
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
@@ -33,7 +34,8 @@ public class PinListener implements GpioPinListenerDigital {
 
 			// TODO(ml693): figure out the method to be invoked
 			// and invoke it.
-			SpeechSynthesis.play(buttonName);
+			MessageFormatter.handleButtonPress(buttonName);
+			
 		}
 
 	}

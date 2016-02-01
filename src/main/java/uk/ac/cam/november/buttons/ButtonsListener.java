@@ -12,7 +12,7 @@ import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.RaspiPin;
 
-class ButtonsListener {
+public class ButtonsListener {
 
 	private final static int NUMBER_OF_BUTTONS = 50;  // The actual number is much smaller
 	private final GpioPinDigitalInput buttons[] = new GpioPinDigitalInput[NUMBER_OF_BUTTONS];
