@@ -1,3 +1,8 @@
+
+// This is a file that contains the name of every button.
+// Classes relying on button names should import them from 
+// this file rather than to use custom names.
+
 package uk.ac.cam.november.buttons;
 
 public class ButtonNames {
@@ -8,3 +13,4 @@ public class ButtonNames {
     public final static String BOAT_SPEED = "BoatSpeed";
     public final static String COMPASS_HEADING = "COMPASS_HEADING";
 }
+
