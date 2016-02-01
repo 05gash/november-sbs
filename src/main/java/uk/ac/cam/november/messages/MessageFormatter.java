@@ -1,6 +1,7 @@
 package uk.ac.cam.november.messages;
 
 import uk.ac.cam.november.StateDecoder;
+import uk.ac.cam.november.alerts.Alert;
 import uk.ac.cam.november.buttons.ButtonNames;
 
 /**
@@ -53,6 +54,21 @@ public class MessageFormatter {
         // assign priority and wrap in Message Object
         //TODO: Come up with a sensible priority scheme.
         Message m = new Message(formattedString, 1);
+        
+        // call MessageHandler
+        MessageHandler.receiveMessage(m);
+    }
+    
+    public static void handleAlert(Alert alert)
+    {
+        
+        // TODO: poll StateDecoder
+        
+        // TODO: format the sensor data into a string;
+        
+        // assign priority and wrap in Message Object
+        // TODO: Come up with a sensible priority scheme.
+        Message m = new Message("Emergency Bartok", 1);
         
         // call MessageHandler
         MessageHandler.receiveMessage(m);
