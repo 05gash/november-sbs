@@ -11,6 +11,9 @@ public class WorldModel {
     private float windSpeed = 0f;
     private float windAngle = 0f;
     private float waterDepth = 0f;
+    
+    private float boatX;
+    private float boatY;
 
     /**
      * Set the heading of the boat in the world model.
@@ -121,5 +124,19 @@ public class WorldModel {
     public float getWaterDepth(){
         return waterDepth;
     }
+    
+    public float getBoatX(){
+        return boatX;
+    }
+    
+    public float getBoatY(){
+        return boatY;
+    }
 
+    public void step(float dt){
+        double ang = Math.toRadians(heading);
+        boatX += Math.cos(ang) * boatSpeed;
+        boatY += Math.sin(ang) * boatSpeed;
+    }
+    
 }
