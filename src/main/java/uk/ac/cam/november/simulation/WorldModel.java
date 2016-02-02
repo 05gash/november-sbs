@@ -135,8 +135,8 @@ public class WorldModel {
 
     public void step(float dt){
         double ang = Math.toRadians(heading);
-        boatX += Math.cos(ang) * boatSpeed;
-        boatY += Math.sin(ang) * boatSpeed;
+        boatX += Math.cos(ang) * boatSpeed * (10 * dt);
+        boatY += Math.sin(ang) * boatSpeed * (10 * dt);
     }
     
 }
