@@ -1,6 +1,6 @@
 package uk.ac.cam.november.simulation.ui;
 
-import java.awt.Dimension;
+import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -15,6 +15,7 @@ public class SimulatorUI extends JFrame {
     private static final long serialVersionUID = -3171613750699870243L;
 
     public static BufferedImage boatImage;
+    public static BufferedImage compassImage;
 
     private Simulator simulator;
 
@@ -24,10 +25,24 @@ public class SimulatorUI extends JFrame {
 
         loadImages();
 
-        final RenderPanel panel = new RenderPanel(simulator.getWorldModel());
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
-        panel.setFocusable(true);
-        panel.addKeyListener(new KeyListener() {
+        RenderPanel renderPanel = createRenderPanel();
+        InstrumentPanel instrumentPanel = createInstrumentPanel();
+
+        add(renderPanel, BorderLayout.CENTER);
+        add(instrumentPanel, BorderLayout.EAST);
+
+        revalidate();
+    }
+
+    private RenderPanel createRenderPanel() {
+        RenderPanel renderPanel = new RenderPanel(simulator.getWorldModel());
+
+        renderPanel.setFocusable(true);
+        renderPanel.addKeyListener(new KeyListener() {
             public void keyTyped(KeyEvent e) {
             }
 
@@ -51,21 +66,21 @@ public class SimulatorUI extends JFrame {
             public void keyReleased(KeyEvent e) {
             }
         });
-
-        setPreferredSize(new Dimension(800, 600));
-        setContentPane(panel);
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        pack();
+        return renderPanel;
     }
 
+    private InstrumentPanel createInstrumentPanel(){
+        InstrumentPanel instrumentPanel = new InstrumentPanel(simulator.getWorldModel());
+        return instrumentPanel;
+    }
+    
     /**
      * Loads the images needed to render the user interface.
      */
     private void loadImages() {
         try {
             boatImage = ImageIO.read(getClass().getResource("/ui/boat.png"));
+            compassImage = ImageIO.read(getClass().getResource("/ui/compass.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

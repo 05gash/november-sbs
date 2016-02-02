@@ -36,8 +36,11 @@ public class Simulator {
     public static void main(String[] args) {
         Simulator sim = new Simulator();
         sim.showUI();
+        long oTime = System.currentTimeMillis();
         while(true){
-            sim.step(0.1f);
+            long nTime = System.currentTimeMillis();
+            sim.step((nTime-oTime) / 1000f);
+            oTime = nTime;
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
