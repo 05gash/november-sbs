@@ -5,26 +5,27 @@ import java.io.IOException;
 public class SpeechSynthesis {
 
     private static Process curr_speech = null;
+    private static String wavdir =
+        "uk/ac/cam/november/messages/speech.wav";
+    private static String scriptdir =
+        "uk/ac/cam/november/messages/play_sound.sh";
 
     // Methods
     public static void play(String text) {
         try {
-            ProcessBuilder pb = new ProcessBuilder("espeak", "-ven+f3", "-k5",
-                                                   "-s150", text);
-            /* Nothing here? */
-            /* TODO: consider using pico2wave & then playing */
-            curr_speech = pb.start();
-            // TODO: change this to something sensible
+            curr_speech =
+                (new ProcessBuilder(scriptdir, wavdir, text)).start();
         } catch (IOException e) {
             System.out.println("I/O exception: malformed script?");
-            // TODO: write something useful
         }
     }
+    // This method stops the current sound being played.
+    // Keep in mind that it has to be played within the same application!
     public static void stop() {
         if (curr_speech != null) {
             curr_speech.destroy();
+            curr_speech = null;
         }
-        // TODO: consider a better way to do this?
     }
 
 }
