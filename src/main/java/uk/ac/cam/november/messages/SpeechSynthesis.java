@@ -15,6 +15,7 @@ public class SpeechSynthesis {
         try {
             curr_speech =
                 (new ProcessBuilder(scriptdir, wavdir, text)).start();
+
         } catch (IOException e) {
             System.out.println("I/O exception: malformed script?");
         }
