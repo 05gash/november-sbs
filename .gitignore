@@ -3,3 +3,6 @@
 .classpath
 .project
 .settings
+src/main/java/pi4j
+*.jar
+*.class
