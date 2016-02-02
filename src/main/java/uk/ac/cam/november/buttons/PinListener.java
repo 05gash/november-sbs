@@ -1,11 +1,10 @@
-// This class is an event listener of one button
+// This class is an event listener of ONE button
 // Exactly when button state transitions from "not pressed" to "pressed",
 // this class will call the message generator method.
-
-// TODO(ml693): figure out the method NAME to be invoked. 
-
 // The method call will be supplied by
 // the name of the button that was just pressed.
+
+// TODO(ml693): figure out the message generator method NAME to be invoked.
 
 package uk.ac.cam.november.buttons;
 

@@ -12,7 +12,7 @@ import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.RaspiPin;
 
-class ButtonsListener {
+public class ButtonsListener implements Runnable {
 
 	private final static int NUMBER_OF_BUTTONS = 50;  // The actual number is much smaller
 	private final GpioPinDigitalInput buttons[] = new GpioPinDigitalInput[NUMBER_OF_BUTTONS];
@@ -27,15 +27,8 @@ class ButtonsListener {
 			PinPullResistance.PULL_DOWN);
 		buttons[0].addListener(new PinListener(ButtonNames.WIND_SPEED));
 	}
-	
-	// TODO(ml693): main function is just for debugging,
-	// need to remove later
-	public static void main(String args[]) throws InterruptedException {
-		System.out.println("Started listen to the buttons");
-		ButtonsListener buttonsListener = new ButtonsListener();        	
-		for (;;) {
-            		Thread.sleep(500);
-        	}
-	}
+
+	@Override
+	public void run() {}
 
 }
