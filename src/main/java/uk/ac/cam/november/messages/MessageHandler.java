@@ -23,7 +23,8 @@ public class MessageHandler {
      * @see             Message
      */
     public static void receiveMessage(Message message) {
-        if (message.getPriority() >= currMessage.getPriority()) {
+  	// TODO(group): initialise currMessage
+        if (currMessage == null || message.getPriority() >= currMessage.getPriority()) {
             currMessage = message;
             SpeechSynthesis.stop();
             SpeechSynthesis.play(currMessage.getText());

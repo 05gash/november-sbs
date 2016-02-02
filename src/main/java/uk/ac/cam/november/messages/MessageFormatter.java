@@ -16,7 +16,7 @@ import uk.ac.cam.november.buttons.ButtonNames;
  */
 public class MessageFormatter {
     
-    private static StateDecoder mDecoder;
+    private static StateDecoder mDecoder = new StateDecoder();
     
     private MessageFormatter()
     {

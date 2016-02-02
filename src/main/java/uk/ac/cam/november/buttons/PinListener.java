@@ -31,8 +31,6 @@ public class PinListener implements GpioPinListenerDigital {
 			// Remove after the system is fully tested.
 			System.out.println(buttonName + " button has just been pressed.");
 
-			// TODO(ml693): figure out the method to be invoked
-			// and invoke it.
 			MessageFormatter.handleButtonPress(buttonName);
 			
 		}
