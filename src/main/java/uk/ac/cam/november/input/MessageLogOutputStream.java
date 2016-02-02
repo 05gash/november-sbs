@@ -13,12 +13,12 @@ public class MessageLogOutputStream extends LogOutputStream{
     EvictingQueue<Message> messageQueue = EvictingQueue.create(300);
     
     @Override
-    protected void processLine(String arg0, int level) {
+    public void processLine(String arg0, int level) {
         Message message = gson.fromJson(arg0, Message.class);
         messageQueue.add(message);
     }
     
-    EvictingQueue<Message> getMessageQueue(){
+    public EvictingQueue<Message> getMessageQueue(){
         return messageQueue;
     }
 }
