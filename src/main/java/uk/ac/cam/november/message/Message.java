@@ -1,33 +1,45 @@
 package uk.ac.cam.november.message;
 
-public class Message<T> { 
+public class Message { 
     private String timestamp;
-    private String prio;
-    private String src;
-    private String dst;
-    private String pgn;
+    private int prio;
+    private int src;
+    private int dst;
+    private int pgn;
     private String description;
-    private T fields;
+    private Fields fields;
     
     public String getTimestamp() {
         return timestamp;
     }
-    public String getPrio() {
-        return prio;
-    }
-    public String getSrc() {
-        return src;
-    }
-    public String getDst() {
-        return dst;
-    }
-    public String getPgn() {
-        return pgn;
-    }
+    
     public String getDescription() {
         return description;
     }
-    public T getFields() {
+    
+    public Fields getFields() {
         return fields;
     }
+
+    public int getPrio() {
+        return prio;
+    }
+
+    public int getSrc() {
+        return src;
+    }
+
+    public int getDst() {
+        return dst;
+    }
+
+    public int getPgn() {
+        return pgn;
+    }
+    
+    @Override
+    public String toString(){
+        return timestamp + " Description: " + description + " Prio: " + prio + " dst: " + dst + " src: " + src + " pgn " + pgn + " fields:" + fields;
+    }
+     
 }

@@ -15,5 +15,9 @@ public class BoatHeadingFields {
         return Variation;
     }
     
+    @Override
+    public String toString(){
+        return "Heading: " + Heading + " Deviation " + Deviation + " Variation " + Variation;
+    }
 
 }
