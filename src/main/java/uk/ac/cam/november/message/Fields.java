@@ -1,5 +1,4 @@
 package uk.ac.cam.november.message;
-
 import com.google.gson.annotations.SerializedName;
 
 public class Fields {
@@ -21,6 +20,7 @@ public class Fields {
     private float Heading;
     private float Deviation;
     private float Variation;
+
     
     public int getSID() {
         return SID;

@@ -4,12 +4,13 @@ import org.apache.commons.exec.LogOutputStream;
 
 import com.google.common.collect.EvictingQueue;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import uk.ac.cam.november.message.Message;
 
 public class MessageLogOutputStream extends LogOutputStream{
     
-    Gson gson = new Gson();
+    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd-HH:mm:ss.SSSSS").create();
     EvictingQueue<Message> messageQueue = EvictingQueue.create(300);
     
     @Override
