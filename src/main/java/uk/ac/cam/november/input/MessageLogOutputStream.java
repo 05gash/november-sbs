@@ -17,7 +17,6 @@ public class MessageLogOutputStream extends LogOutputStream{
         Message message = gson.fromJson(arg0, Message.class);
         messageQueue.add(message);
     }
-
     
     EvictingQueue<Message> getMessageQueue(){
         return messageQueue;

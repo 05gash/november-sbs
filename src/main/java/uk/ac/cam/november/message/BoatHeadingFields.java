@@ -1,12 +1,13 @@
 package uk.ac.cam.november.message;
 
-public class BoatHeadingFields {
+public class BoatHeadingFields extends Fields{
     private float Heading;
     private float Deviation;
     private float Variation;
+ 
     
     public float getHeading() {
-        return Heading;
+       return Heading;
     }
     public float getDeviation() {
         return Deviation;

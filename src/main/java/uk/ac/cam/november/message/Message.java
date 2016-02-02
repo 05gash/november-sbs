@@ -9,6 +9,9 @@ public class Message {
     private String description;
     private Fields fields;
     
+    public void setFields(Fields field){
+        fields = field;
+    }
     public String getTimestamp() {
         return timestamp;
     }
@@ -39,7 +42,7 @@ public class Message {
     
     @Override
     public String toString(){
-        return timestamp + " Description: " + description + " Prio: " + prio + " dst: " + dst + " src: " + src + " pgn " + pgn + " fields:" + fields;
+        return timestamp + " Description: " + description + " Prio: " + prio + " dst: " + dst + " src: " + src + " pgn " + pgn + " fields:" + fields.getSID();
     }
      
 }
