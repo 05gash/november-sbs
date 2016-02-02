@@ -4,7 +4,9 @@ package uk.ac.cam.november.alerts;
  * 
  * @author Alan Tang
  * 
- * My proposal for an alert system
+ * My proposal for an alert system. Contains a type, a value, as well as possible addition fields.
+ * The Alert Generator will produce something of this type when it detects an issue with the measurements.
+ * It will then send it to the MessageFormatter.
  *
  */
 public class Alert {
@@ -17,7 +19,6 @@ public class Alert {
         mAlertType = alertType;
         mValue = value;
     }
-    
 
     public String getAlertType() {
         return mAlertType;
