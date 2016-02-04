@@ -21,7 +21,7 @@ public class SpeechSynthesis {
     private static String playdir =
         "uk/ac/cam/november/messages/play_sound.sh";
     private static String stopdir =
-        "uk/ac/cam/november/messages/play_sound.sh";
+        "uk/ac/cam/november/messages/stop_sound.sh";
 
     // METHODS
 
@@ -51,7 +51,7 @@ public class SpeechSynthesis {
     public static void stop() {
         if (curr_speech != null) {
             try {
-                (new ProcessBuilder(stopdir, wavdir)).start();
+                (new ProcessBuilder(stopdir, playdir)).start();
             } catch (IOException e) {
                 System.err.println("I/O exception raised from stop()");
             }
