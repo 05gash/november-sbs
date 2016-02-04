@@ -18,7 +18,9 @@ public class SpeechSynthesis {
     private static Process curr_speech = null;
     private static String wavdir =
         "uk/ac/cam/november/messages/speech.wav";
-    private static String scriptdir =
+    private static String playdir =
+        "uk/ac/cam/november/messages/play_sound.sh";
+    private static String stopdir =
         "uk/ac/cam/november/messages/play_sound.sh";
 
     // METHODS
@@ -34,10 +36,10 @@ public class SpeechSynthesis {
     public static void play(String text) {
         try {
             curr_speech =
-                (new ProcessBuilder(scriptdir, wavdir, text)).start();
+                (new ProcessBuilder(playdir, wavdir, text)).start();
 
         } catch (IOException e) {
-            System.err.println("I/O exception: malformed script?");
+            System.err.println("I/O exception: malformed play script?");
         }
     }
     
@@ -48,7 +50,11 @@ public class SpeechSynthesis {
      */
     public static void stop() {
         if (curr_speech != null) {
-            curr_speech.destroy();
+            try {
+                (new ProcessBuilder(stopdir, wavdir)).start();
+            } catch (IOException e) {
+                System.err.println("I/O exception raised from stop()");
+            }
             curr_speech = null;
         }
     }

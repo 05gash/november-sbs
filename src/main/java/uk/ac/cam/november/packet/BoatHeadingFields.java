@@ -1,4 +1,4 @@
-package uk.ac.cam.november.message;
+package uk.ac.cam.november.packet;
 
 public class BoatHeadingFields extends Fields {
     private float Heading;

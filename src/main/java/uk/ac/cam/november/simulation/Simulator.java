@@ -1,6 +1,6 @@
 package uk.ac.cam.november.simulation;
 
-import uk.ac.cam.november.message.Message;
+import uk.ac.cam.november.packet.Packet;
 import uk.ac.cam.november.simulation.ui.SimulatorUI;
 
 /**
@@ -14,6 +14,7 @@ public class Simulator {
 
     private SimulatorUI ui;
     private WorldModel worldModel;
+    private BoatDataOutputter dataOutput;
 
     /**
      * Constructs the simulator. Creates the
@@ -22,6 +23,7 @@ public class Simulator {
      */
     public Simulator() {
         worldModel = new WorldModel();
+        dataOutput = new BoatDataOutputter(this);
         ui = new SimulatorUI(this);
     }
 
@@ -41,6 +43,7 @@ public class Simulator {
      */
     public void step(float dt) {
         worldModel.step(dt);
+        dataOutput.update();
         ui.revalidate();
         ui.repaint();
     }
@@ -60,7 +63,7 @@ public class Simulator {
      * @param m
      *            The message to add.
      */
-    public void queueMessage(Message m) {
+    public void queueMessage(Packet m) {
         System.out.println("Queueing a " + m.getDescription() + " packet at " + m.getTimestamp());
     }
 

@@ -10,7 +10,7 @@ import org.apache.commons.exec.PumpStreamHandler;
 
 import com.google.common.collect.EvictingQueue;
 
-import uk.ac.cam.november.message.Message;
+import uk.ac.cam.november.packet.Packet;
 
 public class CanBoatFacade {
 
@@ -20,6 +20,9 @@ public class CanBoatFacade {
     private PumpStreamHandler canPump; 
     private DefaultExecuteResultHandler resultHandler;
     private static final String CANBOAT_COMMAND = "src/main/bash/canScript.sh";
+    public static final String DEFAULT_OPTION = "-b";
+//    public static final String SIMULATOR_OPTION = "-s";
+    public static final String DATAGEN_OPTION = "-d";
     
     /**
      * Creates an interface to CANboat
@@ -27,8 +30,13 @@ public class CanBoatFacade {
      * @throws IOException
      */
 
-    public CanBoatFacade() throws ExecuteException, IOException {
+    public CanBoatFacade(String option) throws ExecuteException, IOException {
         canBoatCommandLine = CommandLine.parse(CANBOAT_COMMAND);
+        if(option != null){
+            canBoatCommandLine.addArgument(option);
+        }else{
+            canBoatCommandLine.addArgument(DEFAULT_OPTION);
+        }
         canboatOut = new MessageLogOutputStream();
         canPump = new PumpStreamHandler(canboatOut,System.err);
         resultHandler = new DefaultExecuteResultHandler();
@@ -50,7 +58,7 @@ public class CanBoatFacade {
      * returns an evicting queue of Messages size 300 
      * @return
      */
-    public EvictingQueue<Message> getMessageQueue(){
+    public EvictingQueue<Packet> getMessageQueue(){
         return canboatOut.getMessageQueue();
     }
 }

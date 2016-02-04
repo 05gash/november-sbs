@@ -17,7 +17,9 @@ public class MessageTest {
             m = new Message("Sorry for interrupting you", 1);
             MessageHandler.receiveMessage(m);
             Thread.sleep(1300);
-            m = new Message("No, I'm not!", 1);
+            for (int i = 0; i < 5; i++) {
+                m = new Message("No, I'm not!", 1);
+            }
             MessageHandler.receiveMessage(m);
         } catch (InterruptedException e) {
             System.out.println("InterruptedException thrown");

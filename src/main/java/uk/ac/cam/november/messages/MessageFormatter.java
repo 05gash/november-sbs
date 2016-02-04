@@ -1,7 +1,6 @@
 package uk.ac.cam.november.messages;
 
 import uk.ac.cam.november.StateDecoder;
-import uk.ac.cam.november.alerts.Alert;
 import uk.ac.cam.november.buttons.ButtonNames;
 
 /**
@@ -27,6 +26,7 @@ public class MessageFormatter {
     }
     
     /**
+     * Gets data which corresponds with input button, formats it, and sends it to the Messagehandler
      * 
      * @param buttonName The name of the button that was pressed.
      */
@@ -46,8 +46,9 @@ public class MessageFormatter {
         // call MessageHandler
         MessageHandler.receiveMessage(m);
     }
-    
-    public static void handleAlert(Alert alert)
+
+ /*   
+    public static void handleAlert(AlertMessage alert)
     {
         
         // TODO: poll StateDecoder
@@ -61,7 +62,7 @@ public class MessageFormatter {
         // call MessageHandler
         MessageHandler.receiveMessage(m);
     }
-  
+*/
     
     //TODO: determine format of polling from the state decoder.
     private static String pollStateDecoder(String buttonName)
