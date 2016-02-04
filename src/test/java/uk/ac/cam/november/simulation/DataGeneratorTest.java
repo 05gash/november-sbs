@@ -5,11 +5,11 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import uk.ac.cam.november.message.BoatHeadingFields;
-import uk.ac.cam.november.message.BoatSpeedFields;
-import uk.ac.cam.november.message.Message;
-import uk.ac.cam.november.message.WaterDepthFields;
-import uk.ac.cam.november.message.WindDataFields;
+import uk.ac.cam.november.packet.BoatHeadingFields;
+import uk.ac.cam.november.packet.BoatSpeedFields;
+import uk.ac.cam.november.packet.Packet;
+import uk.ac.cam.november.packet.WaterDepthFields;
+import uk.ac.cam.november.packet.WindDataFields;
 
 public class DataGeneratorTest {
     
@@ -17,7 +17,7 @@ public class DataGeneratorTest {
     
     @Test
     public void defaultPacketShouldHaveCorrectDefaultValues(){
-        Message packet = DataGenerator.createDefaultPacket();
+        Packet packet = DataGenerator.createDefaultPacket();
         assertEquals(DataGenerator.DEFAULT_PRIORITY, packet.getPrio());
         assertEquals(DataGenerator.DEFAULT_SRC, packet.getSrc());
         assertEquals(DataGenerator.DEFAULT_DEST, packet.getDst());
@@ -37,7 +37,7 @@ public class DataGeneratorTest {
     
     @Test
     public void vesselHeadingPacketShouldContainCorrectFields() {
-        Message packet = DataGenerator.generateVesselHeadingPacket(100f, 1f, -1f);
+        Packet packet = DataGenerator.generateVesselHeadingPacket(100f, 1f, -1f);
         BoatHeadingFields fields = (BoatHeadingFields)packet.getFields();
         
         assertEquals(packet.getPgn(), 127250);
@@ -56,7 +56,7 @@ public class DataGeneratorTest {
     
     @Test
     public void waterDepthPacketShouldContainCorrectFields() {
-        Message packet = DataGenerator.generateWaterDepthPacket(100f, 1f);
+        Packet packet = DataGenerator.generateWaterDepthPacket(100f, 1f);
         WaterDepthFields fields = (WaterDepthFields) packet.getFields();
         
         assertEquals(packet.getPgn(), 128267);
@@ -76,7 +76,7 @@ public class DataGeneratorTest {
     
     @Test
     public void windDataPacketShouldContainCorrectFields() {
-        Message packet = DataGenerator.generateWindDataPacket(100f, 1f);
+        Packet packet = DataGenerator.generateWindDataPacket(100f, 1f);
         WindDataFields fields = (WindDataFields) packet.getFields();
         
         assertEquals(packet.getPgn(), 130306);
@@ -95,7 +95,7 @@ public class DataGeneratorTest {
     
     @Test
     public void speedPacketShouldContainCorrectFields(){
-        Message packet = DataGenerator.generateSpeedPacket(100f);
+        Packet packet = DataGenerator.generateSpeedPacket(100f);
         BoatSpeedFields fields = (BoatSpeedFields) packet.getFields();
         
         assertEquals(packet.getPgn(), 128259);

@@ -1,6 +1,6 @@
 package uk.ac.cam.november.simulation;
 
-import uk.ac.cam.november.message.Message;
+import uk.ac.cam.november.packet.Packet;
 
 /**
  * This class controls the rate at which messages are output from the simulator.
@@ -54,7 +54,7 @@ public class BoatDataOutputter {
      */
     private void outputCompassPacket(){
         WorldModel worldModel = simulator.getWorldModel();
-        Message m = DataGenerator.generateVesselHeadingPacket(worldModel.getHeading());
+        Packet m = DataGenerator.generateVesselHeadingPacket(worldModel.getHeading());
         simulator.queueMessage(m);
     }
     
@@ -64,7 +64,7 @@ public class BoatDataOutputter {
     private void outputWindPacket(){
         WorldModel worldModel = simulator.getWorldModel();
         float ang = worldModel.getWindAngle() - 180;
-        Message m = DataGenerator.generateWindDataPacket(worldModel.getWindSpeed(), ang);
+        Packet m = DataGenerator.generateWindDataPacket(worldModel.getWindSpeed(), worldModel.getWindAngle());
         simulator.queueMessage(m);
     }
     
@@ -73,7 +73,7 @@ public class BoatDataOutputter {
      */
     private void outputDepthPacket(){
         WorldModel worldModel = simulator.getWorldModel();
-        Message m = DataGenerator.generateWaterDepthPacket(worldModel.getWaterDepth(), 0f);
+        Packet m = DataGenerator.generateWaterDepthPacket(worldModel.getWaterDepth(), 0f);
         simulator.queueMessage(m);
     }
     
@@ -82,7 +82,7 @@ public class BoatDataOutputter {
      */
     private void outputSpeedPacket(){
         WorldModel worldModel = simulator.getWorldModel();
-        Message m = DataGenerator.generateSpeedPacket(worldModel.getBoatSpeed());
+        Packet m = DataGenerator.generateSpeedPacket(worldModel.getBoatSpeed());
         simulator.queueMessage(m);
     }
 

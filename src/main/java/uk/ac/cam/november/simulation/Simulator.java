@@ -2,6 +2,10 @@ package uk.ac.cam.november.simulation;
 
 import java.util.Queue;
 
+import com.google.common.collect.EvictingQueue;
+import com.google.common.collect.Queues;
+
+import uk.ac.cam.november.packet.Packet;
 import uk.ac.cam.november.simulation.ui.SimulatorUI;
 
 /**
