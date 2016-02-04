@@ -25,7 +25,7 @@ public class CompassPanel extends JPanel {
     public void paint(Graphics g) {
         Graphics2D gr = (Graphics2D) g;
         
-        gr.setColor(Color.BLACK);
+        gr.setColor(Color.GRAY);
         int w = this.getWidth();
         int h = this.getHeight();
         gr.fillRect(0, 0, w, h);

@@ -115,5 +115,12 @@ public class Simulator {
     public Thread getThread() {
         return runThread;
     }
+    
+    public static void main(String[] args){
+        Simulator sim = new Simulator();
+        sim.showUI();
+        sim.getThread().run();
+    }
+    
 
 }
