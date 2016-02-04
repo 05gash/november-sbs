@@ -16,6 +16,9 @@ import uk.ac.cam.november.buttons.ButtonNames;
  */
 public class MessageFormatter {
     
+    private static final int MESSAGE_PRIORITY = 1;
+    private static final int ALERT_PRIORITY = 2;
+    
     private static StateDecoder mDecoder = new StateDecoder();
     
     private MessageFormatter()
@@ -23,24 +26,9 @@ public class MessageFormatter {
         mDecoder = new StateDecoder();
     }
     
-    /*
-     * Returns a reference to the MessageFormatter Singleton, and initializes one if one does not exist.
-     * @return a reference to the MessageFormatter Singleton
-     *
-    public static MessageFormatter getInstance()
-    {
-        if(formatterSingleton == null)
-        {
-            formatterSingleton = new MessageFormatter();
-        }
-        return formatterSingleton;
-    }
-    */
-    
     /**
      * 
      * @param buttonName The name of the button that was pressed.
-     * @return 
      */
     public static void handleButtonPress(String buttonName)
     {
@@ -53,7 +41,7 @@ public class MessageFormatter {
         
         // assign priority and wrap in Message Object
         //TODO: Come up with a sensible priority scheme.
-        Message m = new Message(formattedString, 1);
+        Message m = new Message(formattedString, MESSAGE_PRIORITY);
         
         // call MessageHandler
         MessageHandler.receiveMessage(m);
@@ -68,7 +56,7 @@ public class MessageFormatter {
         
         // assign priority and wrap in Message Object
         // TODO: Come up with a sensible priority scheme.
-        Message m = new Message("Emergency Bartok", 1);
+        Message m = new Message("Emergency Bartok", ALERT_PRIORITY);
         
         // call MessageHandler
         MessageHandler.receiveMessage(m);
@@ -106,6 +94,7 @@ public class MessageFormatter {
         
         default:
             // Should not reach here
+            System.err.println("Format error: " + data + " " + buttonName);
             return "Cannot format Message: " + data + " " + buttonName;
         }
         
