@@ -28,6 +28,12 @@ public class Fields {
     public void setSID(int sID) {
         SID = sID;
     }
+    
+    /** 
+     * requires pgn of container message to be 128267
+     * @return
+     */
+    
     public float getDepth() {
         return Depth;
     }
@@ -35,6 +41,10 @@ public class Fields {
         Depth = depth;
     }
     
+    /** 
+     * requires pgn of container message to be 128267
+     * @return
+     */
     
     public float getOffset() {
         return Offset;
@@ -66,7 +76,7 @@ public class Fields {
     }
     
     /** 
-     * will return a non-null value in the case container pgn is 
+     * will return a non-null value in the case container pgn is 128259
      * @return
      */
     public float getSpeedWaterReferenced() {
