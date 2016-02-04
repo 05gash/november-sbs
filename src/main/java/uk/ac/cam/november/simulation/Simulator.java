@@ -1,11 +1,12 @@
 package uk.ac.cam.november.simulation;
 
-import uk.ac.cam.november.message.Message;
+import java.util.Queue;
+
 import uk.ac.cam.november.simulation.ui.SimulatorUI;
 
 /**
  * This class represents the entry point to the boat simulator which can be used
- * for testing and demonstration of the system.`
+ * for testing and demonstration of the system.
  * 
  * @author Jamie Wood
  *
@@ -14,6 +15,10 @@ public class Simulator {
 
     private SimulatorUI ui;
     private WorldModel worldModel;
+    private BoatDataOutputter dataOutput;
+    private Queue<Packet> messageQueue;
+
+    private Thread runThread;
 
     /**
      * Constructs the simulator. Creates the
@@ -22,7 +27,28 @@ public class Simulator {
      */
     public Simulator() {
         worldModel = new WorldModel();
+        dataOutput = new BoatDataOutputter(this);
         ui = new SimulatorUI(this);
+        EvictingQueue<Packet> pq = EvictingQueue.create(300);
+        messageQueue = Queues.synchronizedQueue(pq);
+
+        runThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                long oTime = System.currentTimeMillis();
+                while (true) {
+                    long nTime = System.currentTimeMillis();
+                    step((nTime - oTime) / 1000f);
+
+                    oTime = nTime;
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -41,6 +67,7 @@ public class Simulator {
      */
     public void step(float dt) {
         worldModel.step(dt);
+        dataOutput.update();
         ui.revalidate();
         ui.repaint();
     }
@@ -55,30 +82,34 @@ public class Simulator {
     }
 
     /**
-     * Adds a message to the output queue.
+     * Returns the message queue used to retrieve messages.
      * 
-     * @param m
-     *            The message to add.
+     * The returned queue is a thread-safe circular buffer of size 300.
+     * 
+     * @return Queue<Packet> the message queue.
      */
-    public void queueMessage(Message m) {
-        System.out.println("Queueing a " + m.getDescription() + " packet at " + m.getTimestamp());
+    public Queue<Packet> getMessageQueue() {
+        return messageQueue;
     }
 
-    public static void main(String[] args) {
-        Simulator sim = new Simulator();
-        sim.showUI();
-        long oTime = System.currentTimeMillis();
-        while (true) {
-            long nTime = System.currentTimeMillis();
-            sim.step((nTime - oTime) / 1000f);
+    /**
+     * Adds a message to the output queue.
+     * 
+     * @param p
+     *            The message to add.
+     */
+    public void queueMessage(Packet p) {
+        System.out.println("Queueing a " + p.getDescription() + " packet at " + p.getTimestamp());
+        messageQueue.add(p);
+    }
 
-            oTime = nTime;
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+    /**
+     * Returns the thread used to run the simulation.
+     * 
+     * @return Thread The thread which should be run by the invoking process.
+     */
+    public Thread getThread() {
+        return runThread;
     }
 
 }
