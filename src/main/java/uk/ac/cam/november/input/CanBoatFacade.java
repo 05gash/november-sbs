@@ -1,5 +1,6 @@
 package uk.ac.cam.november.input;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Queue;
 
@@ -20,10 +21,10 @@ public class CanBoatFacade {
     private MessageLogOutputStream canboatOut;
     private PumpStreamHandler canPump; 
     private DefaultExecuteResultHandler resultHandler;
-    private static final String CANBOAT_DIRECTORY = "src/main/bash/";
-    private static final String CANBOAT_COMMAND = "src/main/bash/canScript.sh";
+    private static final String CANBOAT_DIRECTORY = "/src/main/bash/";
+    private static final String CANBOAT_COMMAND = "./canScript.sh";
     public static final String DEFAULT_OPTION = "-b";
-//    public static final String SIMULATOR_OPTION = "-s";
+    public static final String SIMULATOR_OPTION = "-s";
     public static final String DATAGEN_OPTION = "-d";
     public static final String MOCKBOAT_OPTION = "-m";
     
@@ -54,7 +55,7 @@ public class CanBoatFacade {
     
     public void startCanBoat() throws ExecuteException, IOException {
         canBoatExecutor = new DefaultExecutor();
-//        canBoatExecutor.setWorkingDirectory(new File(CANBOAT_DIRECTORY));
+        canBoatExecutor.setWorkingDirectory(new File(canBoatExecutor.getWorkingDirectory().getCanonicalPath() + CANBOAT_DIRECTORY));
         canBoatExecutor.setStreamHandler(canPump);
         canBoatExecutor.execute(canBoatCommandLine, resultHandler);
     }
