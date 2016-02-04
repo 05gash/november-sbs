@@ -1,114 +1,107 @@
 package uk.ac.cam.november.simulation;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.google.gson.JsonObject;
+import uk.ac.cam.november.packet.BoatHeadingFields;
+import uk.ac.cam.november.packet.BoatSpeedFields;
+import uk.ac.cam.november.packet.Packet;
+import uk.ac.cam.november.packet.WaterDepthFields;
+import uk.ac.cam.november.packet.WindDataFields;
 
 public class DataGeneratorTest {
     
     /* createDefaultPacket */
     
     @Test
-    public void defaultPacketShouldContainAllFields(){
-        JsonObject packet = DataGenerator.createDefaultPacket();
-        assertTrue(packet.has("timestamp"));
-        assertTrue(packet.has("prio"));
-        assertTrue(packet.has("src"));
-        assertTrue(packet.has("dst"));
-        assertTrue(packet.has("fields"));
-    }
-    
-    @Test
     public void defaultPacketShouldHaveCorrectDefaultValues(){
-        JsonObject packet = DataGenerator.createDefaultPacket();
-        assertEquals(DataGenerator.DEFAULT_PRIORITY, packet.get("prio").getAsInt());
-        assertEquals(DataGenerator.DEFAULT_SRC, packet.get("src").getAsInt());
-        assertEquals(DataGenerator.DEFAULT_DEST, packet.get("dst").getAsInt());
-        assertEquals(23, packet.get("timestamp").getAsString().length());
+        Packet packet = DataGenerator.createDefaultPacket();
+        assertEquals(DataGenerator.DEFAULT_PRIORITY, packet.getPrio());
+        assertEquals(DataGenerator.DEFAULT_SRC, packet.getSrc());
+        assertEquals(DataGenerator.DEFAULT_DEST, packet.getDst());
     }
     
     /* generateVesselHeadingPacket */
     
     @Test
     public void vesselHeadingPacketsShouldCheckInputRange() {
-        try{ DataGenerator.generateVesselHeadingPacket(-1.0, 0, 0); fail("Heading did not catch <0"); } catch(IllegalArgumentException e) {}
-        try{ DataGenerator.generateVesselHeadingPacket(370, 0, 0); fail("Heading did not catch >360"); } catch(IllegalArgumentException e) {}
-        try{ DataGenerator.generateVesselHeadingPacket(0, -200, 0); fail("Deviation did not catch <-180"); } catch(IllegalArgumentException e) {}
-        try{ DataGenerator.generateVesselHeadingPacket(0, 200, 0); fail("Deviation did not catch >180"); } catch(IllegalArgumentException e) {}
-        try{ DataGenerator.generateVesselHeadingPacket(0, 0, -200); fail("Variation did not catch <-180"); } catch(IllegalArgumentException e) {}
-        try{ DataGenerator.generateVesselHeadingPacket(0, 0, 200); fail("Variation did not catch >180"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateVesselHeadingPacket(-1f, 0f, 0f); fail("Heading did not catch <0"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateVesselHeadingPacket(370f, 0f, 0f); fail("Heading did not catch >360"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateVesselHeadingPacket(0f, -200f, 0f); fail("Deviation did not catch <-180"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateVesselHeadingPacket(0f, 200f, 0f); fail("Deviation did not catch >180"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateVesselHeadingPacket(0f, 0f, -200f); fail("Variation did not catch <-180"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateVesselHeadingPacket(0f, 0f, 200f); fail("Variation did not catch >180"); } catch(IllegalArgumentException e) {}
     }
     
     @Test
     public void vesselHeadingPacketShouldContainCorrectFields() {
-        JsonObject packet = DataGenerator.generateVesselHeadingPacket(100.0, 1.0, -1.0);
-        JsonObject fields = packet.getAsJsonObject("fields");
+        Packet packet = DataGenerator.generateVesselHeadingPacket(100f, 1f, -1f);
+        BoatHeadingFields fields = (BoatHeadingFields)packet.getFields();
         
-        assertEquals(packet.get("pgn").getAsInt(), 127250);
+        assertEquals(packet.getPgn(), 127250);
         
-        assertEquals(fields.get("Heading").getAsDouble(), 100.0, 0.01);
-        assertEquals(fields.get("Deviation").getAsDouble(), 1.0, 0.01);
-        assertEquals(fields.get("Variation").getAsDouble(), -1.0, 0.01);
+        assertEquals(fields.getHeading(), 100.0, 0.01);
+        assertEquals(fields.getDeviation(), 1.0, 0.01);
+        assertEquals(fields.getVariation(), -1.0, 0.01);
     }
     
     /* generateWaterDepthPacket */
     
     @Test
     public void waterDepthPacketShouldCheckInputRange() {
-        try{ DataGenerator.generateWaterDepthPacket(-1.0, 0); fail("Water Depth did not catch <0"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateWaterDepthPacket(-1f, 0); fail("Water Depth did not catch <0"); } catch(IllegalArgumentException e) {}
     }
     
     @Test
     public void waterDepthPacketShouldContainCorrectFields() {
-        JsonObject packet = DataGenerator.generateWaterDepthPacket(100.0, 1.0);
-        JsonObject fields = packet.getAsJsonObject("fields");
+        Packet packet = DataGenerator.generateWaterDepthPacket(100f, 1f);
+        WaterDepthFields fields = (WaterDepthFields) packet.getFields();
         
-        assertEquals(packet.get("pgn").getAsInt(), 128267);
+        assertEquals(packet.getPgn(), 128267);
         
-        assertEquals(fields.get("Depth").getAsDouble(), 100.0, 0.01);
-        assertEquals(fields.get("Offset").getAsDouble(), 1.0, 0.01);
+        assertEquals(fields.getDepth(), 100.0, 0.01);
+        assertEquals(fields.getOffset(), 1.0, 0.01);
     }
     
     /* generateWindDataPacket */
     
     @Test
     public void windDepthPacketShouldCheckInputRange() {
-        try{ DataGenerator.generateWindDataPacket(-1.0, 0); fail("Wind Speed did not catch <0"); } catch(IllegalArgumentException e) {}
-        try{ DataGenerator.generateWindDataPacket(1.0, -10.0); fail("Wind Angle did not catch <0"); } catch(IllegalArgumentException e) {}
-        try{ DataGenerator.generateWindDataPacket(1.0, 370.0); fail("Wind Angle did not catch >360"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateWindDataPacket(-1f, 0f); fail("Wind Speed did not catch <0"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateWindDataPacket(1f, -10f); fail("Wind Angle did not catch <0"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateWindDataPacket(1f, 370f); fail("Wind Angle did not catch >360"); } catch(IllegalArgumentException e) {}
     }
     
     @Test
     public void windDataPacketShouldContainCorrectFields() {
-        JsonObject packet = DataGenerator.generateWindDataPacket(100.0, 1.0);
-        JsonObject fields = packet.getAsJsonObject("fields");
+        Packet packet = DataGenerator.generateWindDataPacket(100f, 1f);
+        WindDataFields fields = (WindDataFields) packet.getFields();
         
-        assertEquals(packet.get("pgn").getAsInt(), 130306);
+        assertEquals(packet.getPgn(), 130306);
         
-        assertEquals(fields.get("Wind Speed").getAsDouble(), 100.0, 0.01);
-        assertEquals(fields.get("Wind Angle").getAsDouble(), 1.0, 0.01);
-        assertEquals(fields.get("Reference").getAsString(), "Apparent");
+        assertEquals(fields.getWindSpeed(), 100.0, 0.01);
+        assertEquals(fields.getWindAngle(), 1.0, 0.01);
+        assertEquals(fields.getReference(), "Apparent");
     }
     
     /* generateSpeedPacket */
     
     @Test
     public void speedPacketShouldCheckInputRange() {
-        try{ DataGenerator.generateSpeedPacket(-1.0); fail("Vessel speed value did not catch <0"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateSpeedPacket(-1f); fail("Vessel speed value did not catch <0"); } catch(IllegalArgumentException e) {}
     }
     
     @Test
     public void speedPacketShouldContainCorrectFields(){
-        JsonObject packet = DataGenerator.generateSpeedPacket(100.0);
-        JsonObject fields = packet.getAsJsonObject("fields");
+        Packet packet = DataGenerator.generateSpeedPacket(100f);
+        BoatSpeedFields fields = (BoatSpeedFields) packet.getFields();
         
-        assertEquals(packet.get("pgn").getAsInt(), 128259);
+        assertEquals(packet.getPgn(), 128259);
         
-        assertEquals(fields.get("Speed Water Referenced").getAsDouble(), 100.0, 0.01);
+        assertEquals(fields.getSpeedWaterReferenced(), 100.0, 0.01);
+        assertEquals(fields.getSpeedWaterReferencedType(), "Paddle wheel");
     }
     
 }
