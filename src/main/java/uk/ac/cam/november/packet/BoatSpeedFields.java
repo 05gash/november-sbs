@@ -1,4 +1,4 @@
-package uk.ac.cam.november.message;
+package uk.ac.cam.november.packet;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -10,7 +10,7 @@ import org.apache.commons.exec.PumpStreamHandler;
 
 import com.google.common.collect.EvictingQueue;
 
-import uk.ac.cam.november.message.Message;
+import uk.ac.cam.november.packet.Packet;
 
 public class CanBoatFacade {
 
@@ -58,7 +58,7 @@ public class CanBoatFacade {
      * returns an evicting queue of Messages size 300 
      * @return
      */
-    public EvictingQueue<Message> getMessageQueue(){
+    public EvictingQueue<Packet> getMessageQueue(){
         return canboatOut.getMessageQueue();
     }
 }

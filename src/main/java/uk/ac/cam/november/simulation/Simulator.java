@@ -1,6 +1,6 @@
 package uk.ac.cam.november.simulation;
 
-import uk.ac.cam.november.message.Message;
+import uk.ac.cam.november.packet.Packet;
 import uk.ac.cam.november.simulation.ui.SimulatorUI;
 
 /**
@@ -60,7 +60,7 @@ public class Simulator {
      * @param m
      *            The message to add.
      */
-    public void queueMessage(Message m) {
+    public void queueMessage(Packet m) {
         System.out.println("Queueing a " + m.getDescription() + " packet at " + m.getTimestamp());
     }
 

@@ -1,4 +1,4 @@
-package uk.ac.cam.november.message;
+package uk.ac.cam.november.packet;
 
 public class WaterDepthFields extends Fields{
     private float Depth;

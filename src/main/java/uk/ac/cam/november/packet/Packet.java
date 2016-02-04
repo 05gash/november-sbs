@@ -1,7 +1,7 @@
-package uk.ac.cam.november.message;
+package uk.ac.cam.november.packet;
 import java.util.Date;
 
-public class Message { 
+public class Packet { 
     private Date timestamp;
     private int prio;
     private int src;

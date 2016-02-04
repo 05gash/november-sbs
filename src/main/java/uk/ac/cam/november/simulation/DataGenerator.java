@@ -2,11 +2,11 @@ package uk.ac.cam.november.simulation;
 
 import java.util.Date;
 
-import uk.ac.cam.november.message.BoatHeadingFields;
-import uk.ac.cam.november.message.BoatSpeedFields;
-import uk.ac.cam.november.message.Message;
-import uk.ac.cam.november.message.WaterDepthFields;
-import uk.ac.cam.november.message.WindDataFields;
+import uk.ac.cam.november.packet.BoatHeadingFields;
+import uk.ac.cam.november.packet.BoatSpeedFields;
+import uk.ac.cam.november.packet.Packet;
+import uk.ac.cam.november.packet.WaterDepthFields;
+import uk.ac.cam.november.packet.WindDataFields;
 
 /**
  * This class creates {@code Message} objects which emulate those produced by
@@ -40,8 +40,8 @@ public class DataGenerator {
      * 
      * @return {@code Message} containing the packet
      */
-    public static Message createDefaultPacket() {
-        Message packet = new Message();
+    public static Packet createDefaultPacket() {
+        Packet packet = new Packet();
         packet.setTimestamp(new Date());
         packet.setPrio(DEFAULT_PRIORITY);
         packet.setSrc(DEFAULT_SRC);
@@ -59,7 +59,7 @@ public class DataGenerator {
      * @return A {@code Message} containing the packet
      * @see {@link #generateVesselHeadingPacket(double, double, double)}
      */
-    public static Message generateVesselHeadingPacket(float heading) {
+    public static Packet generateVesselHeadingPacket(float heading) {
         return generateVesselHeadingPacket(heading, 0.0f, 0.0f);
     }
 
@@ -78,7 +78,7 @@ public class DataGenerator {
      *            Difference from Magnetic North to True North (degrees)
      * @return A {@code Message} containing the packet
      */
-    public static Message generateVesselHeadingPacket(float heading, float deviation, float variation) {
+    public static Packet generateVesselHeadingPacket(float heading, float deviation, float variation) {
         if (heading < 0.0 || heading > 360.0) {
             throw new IllegalArgumentException("Heading value must be between 0 and 360 degrees");
         }
@@ -89,7 +89,7 @@ public class DataGenerator {
             throw new IllegalArgumentException("Variation value must be between -180 and 180 degrees");
         }
 
-        Message packet = createDefaultPacket();
+        Packet packet = createDefaultPacket();
 
         packet.setPgn(127250);
         packet.setDescription("Vessel Heading");
@@ -117,12 +117,12 @@ public class DataGenerator {
      *            Distance from sensor to surface (positive) or keel (negative)
      * @return A {@code Message} containing the packet
      */
-    public static Message generateWaterDepthPacket(float waterDepth, float offset) {
+    public static Packet generateWaterDepthPacket(float waterDepth, float offset) {
         if (waterDepth < 0.0) {
             throw new IllegalArgumentException("Water depth value must be >= 0 meters");
         }
 
-        Message packet = createDefaultPacket();
+        Packet packet = createDefaultPacket();
 
         packet.setPgn(128267);
         packet.setDescription("Water Depth");
@@ -148,7 +148,7 @@ public class DataGenerator {
      *            Angle of wind (degrees, clockwise from bow)
      * @return A {@code Message} containing the packet
      */
-    public static Message generateWindDataPacket(float windSpeed, float windAngle) {
+    public static Packet generateWindDataPacket(float windSpeed, float windAngle) {
         if (windSpeed < 0.0) {
             throw new IllegalArgumentException("Wind speed value must be >= 0 m/s");
         }
@@ -156,7 +156,7 @@ public class DataGenerator {
             throw new IllegalArgumentException("Wind angle value must be between 0 and 360 degrees");
         }
 
-        Message packet = createDefaultPacket();
+        Packet packet = createDefaultPacket();
 
         packet.setPgn(130306);
         packet.setDescription("Wind Data");
@@ -181,12 +181,12 @@ public class DataGenerator {
      *            Speed of vessel relative to water (meters per second)
      * @return A {@code Message} containing the packet
      */
-    public static Message generateSpeedPacket(float vesselSpeed) {
+    public static Packet generateSpeedPacket(float vesselSpeed) {
         if (vesselSpeed < 0.0) {
             throw new IllegalArgumentException("Vessel speed value must be >= 0 m/s");
         }
 
-        Message packet = createDefaultPacket();
+        Packet packet = createDefaultPacket();
 
         packet.setPgn(128259);
         packet.setDescription("Speed");

@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import uk.ac.cam.november.input.MessageLogOutputStream;
-import uk.ac.cam.november.message.Message;
+import uk.ac.cam.november.packet.Packet;
 
 public class MessageLogTest {
     private MessageLogOutputStream messageLogOutputStream = new MessageLogOutputStream();
@@ -14,7 +14,7 @@ public class MessageLogTest {
     @Test
     public void processLineReturnsForValidJson(){
         messageLogOutputStream.processLine(HEADING_DATA_JSON, 0);
-        Message message = messageLogOutputStream.getMessageQueue().poll();
+        Packet message = messageLogOutputStream.getMessageQueue().poll();
         assertNotNull(message);
         assertEquals(message.getDescription(), "Vessel Heading");
         assertEquals(message.getFields().getVariation(), 0.0, 0.01);
