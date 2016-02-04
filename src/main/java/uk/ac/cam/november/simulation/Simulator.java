@@ -14,6 +14,7 @@ public class Simulator {
 
     private SimulatorUI ui;
     private WorldModel worldModel;
+    private BoatDataOutputter dataOutput;
 
     /**
      * Constructs the simulator. Creates the
@@ -22,6 +23,7 @@ public class Simulator {
      */
     public Simulator() {
         worldModel = new WorldModel();
+        dataOutput = new BoatDataOutputter(this);
         ui = new SimulatorUI(this);
     }
 
@@ -41,6 +43,7 @@ public class Simulator {
      */
     public void step(float dt) {
         worldModel.step(dt);
+        dataOutput.update();
         ui.revalidate();
         ui.repaint();
     }
