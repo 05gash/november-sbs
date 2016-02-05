@@ -70,6 +70,20 @@ public class Simulator {
      *            Number of seconds to advance time by
      */
     public void step(float dt) {
+        
+        if(ui.KEY_UP){
+            worldModel.setBoatSpeed(worldModel.getBoatSpeed() + 1);
+        }
+        if(ui.KEY_DOWN){
+            worldModel.setBoatSpeed(worldModel.getBoatSpeed() - 1);
+        }
+        if(ui.KEY_LEFT){
+            worldModel.setHeading(worldModel.getHeading() - 3);
+        }
+        if(ui.KEY_RIGHT){
+            worldModel.setHeading(worldModel.getHeading() + 3);
+        }
+        
         worldModel.step(dt);
         dataOutput.update();
         ui.revalidate();

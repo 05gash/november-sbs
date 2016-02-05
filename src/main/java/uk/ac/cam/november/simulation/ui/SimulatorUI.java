@@ -1,8 +1,6 @@
 package uk.ac.cam.november.simulation.ui;
 
 import java.awt.BorderLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -14,10 +12,17 @@ import uk.ac.cam.november.simulation.Simulator;
 public class SimulatorUI extends JFrame {
     private static final long serialVersionUID = -3171613750699870243L;
 
+    private SimulatorKeyListener keyListener;
+    
     public static BufferedImage boatImage;
     public static BufferedImage compassImage;
 
     private Simulator simulator;
+    
+    public boolean KEY_UP;
+    public boolean KEY_DOWN;
+    public boolean KEY_LEFT;
+    public boolean KEY_RIGHT;
 
     public SimulatorUI(Simulator sim) {
         super("Sailing by Sound Simulator");
@@ -42,30 +47,8 @@ public class SimulatorUI extends JFrame {
         RenderPanel renderPanel = new RenderPanel(simulator.getWorldModel());
 
         renderPanel.setFocusable(true);
-        renderPanel.addKeyListener(new KeyListener() {
-            public void keyTyped(KeyEvent e) {
-            }
-
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                case KeyEvent.VK_W:
-                    simulator.getWorldModel().setBoatSpeed(simulator.getWorldModel().getBoatSpeed() + 1);
-                    break;
-                case KeyEvent.VK_S:
-                    simulator.getWorldModel().setBoatSpeed(simulator.getWorldModel().getBoatSpeed() - 1);
-                    break;
-                case KeyEvent.VK_A:
-                    simulator.getWorldModel().setHeading(simulator.getWorldModel().getHeading() - 3);
-                    break;
-                case KeyEvent.VK_D:
-                    simulator.getWorldModel().setHeading(simulator.getWorldModel().getHeading() + 3);
-                    break;
-                }
-            }
-
-            public void keyReleased(KeyEvent e) {
-            }
-        });
+        keyListener = new SimulatorKeyListener(this);
+        renderPanel.addKeyListener(keyListener);
         return renderPanel;
     }
 
