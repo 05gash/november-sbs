@@ -1,5 +1,7 @@
 package uk.ac.cam.november.simulation;
 
+import java.io.IOException;
+
 /**
  * This class stores the world state used in the simulation. The values stored
  * are heading, boat speed, wind speed, wind direction and water depth.
@@ -21,6 +23,16 @@ public class WorldModel {
 
     private float boatX;
     private float boatY;
+
+    private DepthMap depthMap;
+
+    public WorldModel() {
+        try {
+            depthMap = new DepthMap(800, 600);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Set the heading of the boat in the world model.
@@ -153,6 +165,7 @@ public class WorldModel {
 
     /**
      * Return the current x-coordinate of the boat.
+     * 
      * @return float containing boat's current x-coordinate.
      */
     public float getBoatX() {
@@ -161,6 +174,7 @@ public class WorldModel {
 
     /**
      * Return the current y-coordinate of the boat.
+     * 
      * @return float containing boat's current y-coordinate.
      */
     public float getBoatY() {
@@ -169,8 +183,9 @@ public class WorldModel {
 
     public void step(float dt) {
         double ang = Math.toRadians(heading);
-        boatX += Math.cos(ang) * boatSpeed * (10 * dt);
-        boatY += Math.sin(ang) * boatSpeed * (10 * dt);
+        boatX += Math.cos(ang) * boatSpeed * (1 * dt);
+        boatY += Math.sin(ang) * boatSpeed * (1 * dt);
+        waterDepth = depthMap.getDepth(boatX, boatY);
     }
 
 }

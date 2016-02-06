@@ -8,15 +8,37 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import uk.ac.cam.november.simulation.DepthMap;
 import uk.ac.cam.november.simulation.WorldModel;
 
 public class RenderPanel extends JPanel {
     private static final long serialVersionUID = -6318987568691279660L;
 
     private WorldModel worldModel;
+    private BufferedImage lakeImage;
+    private Color backgroundColor;
 
     public RenderPanel(WorldModel wm) {
         this.worldModel = wm;
+
+        backgroundColor = new Color(0x00001E);
+
+        // Process depth map to produce a coloured lake image
+        int height = DepthMap.depthMapImage.getHeight();
+        int width = DepthMap.depthMapImage.getWidth();
+        lakeImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+        int[] mask = DepthMap.depthMapImage.getRGB(0, 0, width, height, null, 0, width);
+        int[] pixels = lakeImage.getRGB(0, 0, width, height, null, 0, width);
+        for (int i = 0; i < pixels.length; i++) {
+            int alpha = mask[i] << 24; // move the green channel to alpha
+            if (alpha == 0xff000000) {
+                pixels[i] = alpha | 0x425d00; // dark green
+            } else {
+                pixels[i] = alpha | 0x00009F; // dark blue
+            }
+        }
+        lakeImage.setRGB(0, 0, width, height, pixels, 0, width);
     }
 
     @Override
@@ -26,17 +48,24 @@ public class RenderPanel extends JPanel {
         int w = this.getWidth();
         int h = this.getHeight();
 
-        gr.setColor(Color.CYAN);
+        gr.setColor(backgroundColor);
         gr.fillRect(0, 0, w, h);
 
-        BufferedImage img = SimulatorUI.boatImage;
+        // Draw the lake
+        AffineTransform lakeMatrix = new AffineTransform();
+        lakeMatrix.translate(w / 2, h / 2);
+        lakeMatrix.scale(3, 3);
+        lakeMatrix.translate(-lakeImage.getWidth() / 2, -lakeImage.getHeight() / 2);
+        lakeMatrix.translate(-worldModel.getBoatX(), -worldModel.getBoatY());
+        gr.drawImage(lakeImage, lakeMatrix, null);
 
+        // Draw the boat
+        BufferedImage boatImg = SimulatorUI.boatImage;
         AffineTransform boatMatrix = new AffineTransform();
         boatMatrix.translate(w / 2, h / 2);
-        boatMatrix.translate(worldModel.getBoatX(), worldModel.getBoatY());
         boatMatrix.scale(0.5, 0.5);
-        boatMatrix.translate(-img.getWidth() / 2, -img.getHeight() / 2);
-        boatMatrix.rotate(Math.toRadians(worldModel.getHeading()), img.getWidth() / 2, img.getHeight() / 2);
+        boatMatrix.translate(-boatImg.getWidth() / 2, -boatImg.getHeight() / 2);
+        boatMatrix.rotate(Math.toRadians(worldModel.getHeading()), boatImg.getWidth() / 2, boatImg.getHeight() / 2);
         gr.drawImage(SimulatorUI.boatImage, boatMatrix, null);
     }
 
