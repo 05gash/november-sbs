@@ -13,12 +13,12 @@ public class SimulatorUI extends JFrame {
     private static final long serialVersionUID = -3171613750699870243L;
 
     private SimulatorKeyListener keyListener;
-    
+
     public static BufferedImage boatImage;
     public static BufferedImage compassImage;
 
     private Simulator simulator;
-    
+
     public boolean KEY_UP;
     public boolean KEY_DOWN;
     public boolean KEY_LEFT;
@@ -52,11 +52,11 @@ public class SimulatorUI extends JFrame {
         return renderPanel;
     }
 
-    private InstrumentPanel createInstrumentPanel(){
+    private InstrumentPanel createInstrumentPanel() {
         InstrumentPanel instrumentPanel = new InstrumentPanel(simulator.getWorldModel());
         return instrumentPanel;
     }
-    
+
     /**
      * Loads the images needed to render the user interface.
      */

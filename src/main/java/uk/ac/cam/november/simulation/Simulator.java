@@ -70,20 +70,20 @@ public class Simulator {
      *            Number of seconds to advance time by
      */
     public void step(float dt) {
-        
-        if(ui.KEY_UP){
+
+        if (ui.KEY_UP) {
             worldModel.setBoatSpeed(worldModel.getBoatSpeed() + 1);
         }
-        if(ui.KEY_DOWN){
+        if (ui.KEY_DOWN) {
             worldModel.setBoatSpeed(worldModel.getBoatSpeed() - 1);
         }
-        if(ui.KEY_LEFT){
+        if (ui.KEY_LEFT) {
             worldModel.setHeading(worldModel.getHeading() - 3);
         }
-        if(ui.KEY_RIGHT){
+        if (ui.KEY_RIGHT) {
             worldModel.setHeading(worldModel.getHeading() + 3);
         }
-        
+
         worldModel.step(dt);
         dataOutput.update();
         ui.revalidate();
@@ -129,12 +129,11 @@ public class Simulator {
     public Thread getThread() {
         return runThread;
     }
-    
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         Simulator sim = new Simulator();
         sim.showUI();
         sim.getThread().run();
     }
-    
 
 }
