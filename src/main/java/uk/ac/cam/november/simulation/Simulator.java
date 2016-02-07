@@ -72,16 +72,16 @@ public class Simulator {
     public void step(float dt) {
 
         if (ui.KEY_UP) {
-            worldModel.setBoatSpeed(worldModel.getBoatSpeed() + 1);
+            worldModel.setBoatSpeed(worldModel.getBoatSpeed() + 0.5f);
         }
         if (ui.KEY_DOWN) {
-            worldModel.setBoatSpeed(worldModel.getBoatSpeed() - 1);
+            worldModel.setBoatSpeed(worldModel.getBoatSpeed() - 0.5f);
         }
         if (ui.KEY_LEFT) {
-            worldModel.setHeading(worldModel.getHeading() - 3);
+            worldModel.setHeading(worldModel.getHeading() - 1.5f);
         }
         if (ui.KEY_RIGHT) {
-            worldModel.setHeading(worldModel.getHeading() + 3);
+            worldModel.setHeading(worldModel.getHeading() + 1.5f);
         }
 
         worldModel.step(dt);
