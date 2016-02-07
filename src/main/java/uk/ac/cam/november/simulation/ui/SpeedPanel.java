@@ -13,6 +13,8 @@ public class SpeedPanel extends JPanel {
     private static final long serialVersionUID = -2385072895131913349L;
     private WorldModel worldModel;
 
+    public static final double MS_TO_KTS = 1.9438444924406;
+
     public SpeedPanel(WorldModel worldModel) {
         this.worldModel = worldModel;
         setPreferredSize(new Dimension(250, 100));
@@ -30,7 +32,7 @@ public class SpeedPanel extends JPanel {
         gr.fillRect(0, 0, w, h);
 
         gr.setColor(Color.WHITE);
-        String angleMessage = "Boat Speed: " + worldModel.getBoatSpeed();
+        String angleMessage = "Boat Speed: " + String.format("%.2f", worldModel.getBoatSpeed() * MS_TO_KTS) + " kts";
         gr.drawString(angleMessage, 8, 16);
 
     }
