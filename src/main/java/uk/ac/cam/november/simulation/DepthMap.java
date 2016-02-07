@@ -57,27 +57,28 @@ public class DepthMap {
         double iy = pixely - (int) pixely;
 
         // pixel shifts to get next values
-        int shiftx = pixelx > 1 ? -1 : 0;
-        int shifty = pixely > 1 ? -1 : 0;
+        int shiftx = pixelx < (depthMapImage.getHeight() - 1) ? 1 : 0;
+        int shifty = pixely < (depthMapImage.getHeight() - 1) ? 1 : 0;
 
+        // If we should be looking at the next pixel over, move over 1
         if (ix > 0.5) {
-            shiftx = pixelx < (depthMapImage.getWidth() - 1) ? 1 : 0;
+            pixelx += pixelx > 1 ? -1 : 0;
         }
-
         if (iy > 0.5) {
-            shifty = pixely < (depthMapImage.getHeight() - 1) ? 1 : 0;
+            pixely += pixely > 1 ? -1 : 0;
         }
 
         // Sum of pixel values
-        double v1 = getGrayscale(depthMapImage.getRGB((int) pixelx, (int) pixely));
-        double v2 = getGrayscale(depthMapImage.getRGB((int) pixelx, (int) (pixely + shifty)));
-        double v3 = getGrayscale(depthMapImage.getRGB((int) (pixelx + shiftx), (int) pixely));
-        double v4 = getGrayscale(depthMapImage.getRGB((int) (pixelx + shiftx), (int) (pixely + shifty)));
+        double v1 = getGrayscale(depthMapImage.getRGB((int) pixelx, (int) pixely)) * (1 - ix) * (1 - iy);
+        double v2 = getGrayscale(depthMapImage.getRGB((int) pixelx, (int) (pixely + shifty))) * (1 - ix) * iy;
+        double v3 = getGrayscale(depthMapImage.getRGB((int) (pixelx + shiftx), (int) pixely)) * ix * (1 - iy);
+        double v4 = getGrayscale(depthMapImage.getRGB((int) (pixelx + shiftx), (int) (pixely + shifty))) * ix * iy;
 
-        double avg = (v1 + v2 + v3 + v4) / 4.0;
+        double avg = (v1 + v2 + v3 + v4);
 
         double range = MAX_DEPTH - MIN_DEPTH;
-        return (float) ((((255.0-avg) / 255.0) * range) + MIN_DEPTH);
+
+        return (float) ((((255.0 - avg) / 255.0) * range) + MIN_DEPTH);
     }
 
     /**
