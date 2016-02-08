@@ -39,7 +39,9 @@ public class SpeechSynthesis {
                 (new ProcessBuilder(playdir, wavdir, text)).start();
 
         } catch (IOException e) {
-            System.err.println("I/O exception: malformed play script?");
+            System.err.println("[Error in SpeechSynthesis]");
+            System.err.println(" -- I/O exception raised from play()");
+            System.err.println(" -- bad permissions, directory?");
         }
     }
     
@@ -51,14 +53,25 @@ public class SpeechSynthesis {
     public static void stop() {
         if (curr_speech != null) {
             try {
-                (new ProcessBuilder(stopdir, playdir)).start();
+                (new ProcessBuilder(stopdir, "espeak")).start();
+                (new ProcessBuilder(stopdir, "aplay")).start();
             } catch (IOException e) {
-                System.err.println("I/O exception raised from stop()");
+                System.err.println("[Error in SpeechSynthesis]");
+                System.err.println(" -- I/O exception raised from stop()");
+                System.err.println(" -- bad permissions, directory?");
             }
             curr_speech = null;
         }
     }
 
+    /**
+     * Returns whether any sound is being played at the moment.
+     * <p>
+     * Needed for correctly implementing MessageHandler.
+     */
+     public static boolean anythingPlaying() {
+        return curr_speech != null && curr_speech.isAlive();
+    }
 }
 
 
