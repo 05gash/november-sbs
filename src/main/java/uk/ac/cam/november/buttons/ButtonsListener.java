@@ -1,4 +1,4 @@
-// This is the main class of the whole package
+// This class listens to all buttons.
 // For every button connected to the Raspberry Pi,
 // an GpioPinDigitalInput object is created.
 // Each object waits for a button to be clicked,
@@ -11,8 +11,10 @@ import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.RaspiPin;
+import java.util.concurrent.locks.LockSupport;
 
-public class ButtonsListener implements Runnable {
+
+public class ButtonsListener {
 
 	private final static int NUMBER_OF_BUTTONS = 50;  // The actual number is much smaller
 	private final GpioPinDigitalInput buttons[] = new GpioPinDigitalInput[NUMBER_OF_BUTTONS];
@@ -27,8 +29,4 @@ public class ButtonsListener implements Runnable {
 			PinPullResistance.PULL_DOWN);
 		buttons[0].addListener(new PinListener(ButtonNames.WIND_SPEED));
 	}
-
-	@Override
-	public void run() {}
-
 }

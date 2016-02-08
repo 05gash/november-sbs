@@ -4,8 +4,6 @@
 // The method call will be supplied by
 // the name of the button that was just pressed.
 
-// TODO(ml693): figure out the message generator method NAME to be invoked.
-
 package uk.ac.cam.november.buttons;
 
 import uk.ac.cam.november.messages.MessageFormatter;
@@ -21,18 +19,17 @@ public class PinListener implements GpioPinListenerDigital {
 
 	public PinListener(final String buttonNameInput) {
 		buttonName = buttonNameInput;
-	}	
-
+	}
+	
 	@Override
 	public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
 
 		if (event.getState().isHigh()) {
-			// TODO(ml693): this message is just for debugging purposes.
-			// Remove after the system is fully tested.
-			System.out.println(buttonName + " button has just been pressed.");
+				// TODO(ml693): this message is just for debugging purposes.
+				// Remove after the system is fully tested.
+				System.out.println(buttonName + " button has just been pressed.");
 
-			MessageFormatter.handleButtonPress(buttonName);
-			
+		        	MessageFormatter.handleButtonPress(buttonName);
 		}
 
 	}

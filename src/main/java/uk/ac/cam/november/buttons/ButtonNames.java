@@ -12,5 +12,6 @@ public class ButtonNames {
     public final static String WIND_DIRECTION = "WindDirection";
     public final static String BOAT_SPEED = "BoatSpeed";
     public final static String COMPASS_HEADING = "COMPASS_HEADING";
+
 }
 
