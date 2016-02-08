@@ -1,3 +1,6 @@
+// NOTE: DEPRECATED FILE, the same functionality is now implemented in
+// Boot.java directly
+
 // This is a "Javish" attemt to write a system that will be able to recover from crashes. 
 // An alternative way is to write a shell script doing autorecovery.
 // Have a look at the script file if you think that bash program is going to be more useful.

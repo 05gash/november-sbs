@@ -22,11 +22,14 @@ public class MessageHandler {
      * @param   message a {@link Message} object to be potentially spoken
      * @see             Message
      */
+
+    // TODO(COMMENT FROM MARIUS): Consider making this method synchronized.
     public static void receiveMessage(Message message) {
         if (currMessage == null || message.getPriority() >= currMessage.getPriority()) {
             currMessage = message;
             SpeechSynthesis.stop();
-            SpeechSynthesis.play(currMessage.getText());
+	    // TODO(COMMENT FROM MARIUS): Also, consider putting this thread to sleep here for a few ms.
+	    SpeechSynthesis.play(currMessage.getText());
         }
     }
 
