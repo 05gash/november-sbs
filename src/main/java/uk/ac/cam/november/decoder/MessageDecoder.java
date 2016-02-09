@@ -147,11 +147,11 @@ public class MessageDecoder implements Runnable {
                 break;
             
             /** 
-             * If a packet is of type BoatHeading, png = 126720
+             * If a packet is of type BoatHeading, png = 127250
              * updates the current value of Heading, Deviation, and Variation
              * generates alert messages if a boat is in critical state
              */     
-            case 126720:
+            case 127250:
                 
                 // Alerts
                 if (!first_h) {
