@@ -32,6 +32,11 @@ public class MessageDecoder implements Runnable {
     BoatState state = new BoatState();
     AlertMessage am = new AlertMessage();
     
+    public MessageDecoder(Queue<Packet> messageQueue, Queue<AlertMessage> alertMessageQueue){
+        this.MessageQueue = messageQueue;
+        this.AlertMessageQueue = alertMessageQueue;
+    }
+    
     public BoatState getState() {
         return state;
     }
