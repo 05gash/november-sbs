@@ -23,7 +23,7 @@ class Boot {
 	public static void main(final String[] args) {
 		SpeechSynthesis.play("BootingUp");	
 		
-		LogConfig.setup();
+	//	LogConfig.setup();
 
 		// TODO(ml693): after message "BootingUp" is loudly said,
 		// it takes a few seconds for the system to boot
