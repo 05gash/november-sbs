@@ -21,11 +21,11 @@ public class BoatDataOutputter {
     private long lastSpeedTime = System.currentTimeMillis();
 
     private Simulator simulator;
-    
-    public BoatDataOutputter(Simulator sim){
+
+    public BoatDataOutputter(Simulator sim) {
         this.simulator = sim;
     }
-    
+
     /**
      * Checks internal time-stamps, and outputs any packets which are due.
      */
@@ -48,39 +48,42 @@ public class BoatDataOutputter {
             lastSpeedTime = nowTime;
         }
     }
-    
+
     /**
-     * Create and output a vessel-heading packet, containing the current boat heading from the world model.
+     * Create and output a vessel-heading packet, containing the current boat
+     * heading from the world model.
      */
-    private void outputCompassPacket(){
+    private void outputCompassPacket() {
         WorldModel worldModel = simulator.getWorldModel();
         Packet m = DataGenerator.generateVesselHeadingPacket(worldModel.getHeading());
         simulator.queueMessage(m);
     }
-    
+
     /**
-     * Create and output a wind-data packet, containing the wind speed and angle from the world model.
+     * Create and output a wind-data packet, containing the wind speed and angle
+     * from the world model.
      */
-    private void outputWindPacket(){
+    private void outputWindPacket() {
         WorldModel worldModel = simulator.getWorldModel();
-        float ang = worldModel.getWindAngle() - 180;
         Packet m = DataGenerator.generateWindDataPacket(worldModel.getWindSpeed(), worldModel.getWindAngle());
         simulator.queueMessage(m);
     }
-    
+
     /**
-     * Create and output a water-depth packet, containing the current water depth from the world model.
+     * Create and output a water-depth packet, containing the current water
+     * depth from the world model.
      */
-    private void outputDepthPacket(){
+    private void outputDepthPacket() {
         WorldModel worldModel = simulator.getWorldModel();
         Packet m = DataGenerator.generateWaterDepthPacket(worldModel.getWaterDepth(), 0f);
         simulator.queueMessage(m);
     }
-    
+
     /**
-     * Create and output a vessel-speed packet, containing the current boat speed from the world model.
+     * Create and output a vessel-speed packet, containing the current boat
+     * speed from the world model.
      */
-    private void outputSpeedPacket(){
+    private void outputSpeedPacket() {
         WorldModel worldModel = simulator.getWorldModel();
         Packet m = DataGenerator.generateSpeedPacket(worldModel.getBoatSpeed());
         simulator.queueMessage(m);
