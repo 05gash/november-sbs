@@ -217,6 +217,13 @@ public class WorldModel {
         boatX += Math.cos(ang) * boatSpeed * (1 * dt);
         boatY += Math.sin(ang) * boatSpeed * (1 * dt);
         waterDepth = depthMap.getDepth(boatX, boatY);
+        
+        if(waterDepth < 5){
+            boatX -= Math.cos(ang) * boatSpeed * (1 * dt);
+            boatY -= Math.sin(ang) * boatSpeed * (1 * dt);
+            boatSpeed = 0;
+            System.out.println("YOU CRASHED!");
+        }
         // Notify all listeners
         for (StepListener sl : listeners) {
             sl.onStep();
