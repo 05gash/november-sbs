@@ -22,11 +22,18 @@ public class MessageHandler {
      * @param   message a {@link Message} object to be potentially spoken
      * @see             Message
      */
-    public static void receiveMessage(Message message) {
-        if (currMessage == null || message.getPriority() >= currMessage.getPriority()) {
+    public static synchronized void receiveMessage(Message message) {
+        // reason for synchronized: if we ever decide that multiple
+        // threads will call this method, we need to ensure
+        // consistency
+        if (!SpeechSynthesis.anythingPlaying()) {
+            currMessage = null;
+        }
+        if (currMessage == null
+         || message.getPriority() >= currMessage.getPriority()) {
             currMessage = message;
             SpeechSynthesis.stop();
-            SpeechSynthesis.play(currMessage.getText());
+	        SpeechSynthesis.play(currMessage.getText());
         }
     }
 

@@ -1,7 +1,12 @@
 package uk.ac.cam.november.messages;
 
-import uk.ac.cam.november.StateDecoder;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import uk.ac.cam.november.alerts.AlertMessage;
 import uk.ac.cam.november.buttons.ButtonNames;
+import uk.ac.cam.november.decoder.BoatState;
+import uk.ac.cam.november.decoder.MessageDecoder;
 
 /**
  * 
@@ -17,13 +22,17 @@ public class MessageFormatter {
     
     private static final int MESSAGE_PRIORITY = 1;
     private static final int ALERT_PRIORITY = 2;
+    private static Logger logger = Logger.getLogger("uk.ac.cam.november.messages.MessageFormatter");
     
-    private static StateDecoder mDecoder = new StateDecoder();
+    private static MessageDecoder mDecoder = null;
     
-    private MessageFormatter()
+    public static void setDecoder(MessageDecoder decoder)
     {
-        mDecoder = new StateDecoder();
+        mDecoder = decoder;
     }
+    
+    // Prevents instantiation
+    private MessageFormatter() {}
     
     /**
      * Gets data which corresponds with input button, formats it, and sends it to the Messagehandler
@@ -34,7 +43,7 @@ public class MessageFormatter {
     {
         
         //poll StateDecoder
-        String sensorData = pollStateDecoder(buttonName);
+        float sensorData = pollStateDecoder(buttonName);
         
         // format the sensor data into a string;
         String formattedString = formatMessage(sensorData, buttonName);
@@ -47,10 +56,11 @@ public class MessageFormatter {
         MessageHandler.receiveMessage(m);
     }
 
- /*   
+    
     public static void handleAlert(AlertMessage alert)
     {
         
+        logger.log(Level.WARNING, "handlerAlert not implemented yet");
         // TODO: poll StateDecoder
         
         // TODO: format the sensor data into a string;
@@ -61,25 +71,50 @@ public class MessageFormatter {
         
         // call MessageHandler
         MessageHandler.receiveMessage(m);
+        
+        
     }
-*/
+
     
-    //TODO: determine format of polling from the state decoder.
-    private static String pollStateDecoder(String buttonName)
+    private static float pollStateDecoder(String buttonName)
     {
-        return mDecoder.getRecent(buttonName);
+        if(mDecoder == null)
+        {
+            logger.log(Level.SEVERE,"MessageDecoder not set");
+            throw new NullPointerException();
+        }
+        
+        BoatState state = mDecoder.getState();
+        switch(buttonName)
+        {
+        case ButtonNames.BOAT_SPEED:
+            return state.getSpeedWaterReferenced();
+        case ButtonNames.COMPASS_HEADING:
+            return state.getHeading();
+        case ButtonNames.WATER_DEPTH:
+            return state.getDepth();
+        case ButtonNames.WIND_DIRECTION:
+            return state.getWindAngle();
+        case ButtonNames.WIND_SPEED:
+            return state.getWindSpeed();
+            
+        default:
+            // Should not reach here
+            logger.log(Level.SEVERE, "Invalid button name: " + buttonName);
+            System.err.println("Invalid button name: " + buttonName);
+            throw new IllegalArgumentException("Invalid button name: " + buttonName);
+        }
     }
     
     /*
      * Given a data value and the field that it corresponds with, this creates a formatted string
      * that can be read by the MessageHandler
      * 
-     * @param data the value of the data
-     * @param buttonName the data field
-     * @return the formatted string 
      */
-    private static String formatMessage(String data, String buttonName)
+    private static String formatMessage(float dataValue, String buttonName)
     {
+        String data = String.format("%.2f", dataValue);
+        
         switch(buttonName)
         {
         case ButtonNames.WATER_DEPTH:
@@ -95,8 +130,9 @@ public class MessageFormatter {
         
         default:
             // Should not reach here
-            System.err.println("Format error: " + data + " " + buttonName);
-            return "Cannot format Message: " + data + " " + buttonName;
+            logger.log(Level.SEVERE, "Formatting error: " + data + " " + buttonName);
+            System.err.println("Formatting error: " + data + " " + buttonName);
+            throw new IllegalArgumentException("Formatting error: " + data + " " + buttonName);
         }
         
     }
