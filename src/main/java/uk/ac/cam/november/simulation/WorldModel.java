@@ -1,5 +1,8 @@
 package uk.ac.cam.november.simulation;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 /**
  * This class stores the world state used in the simulation. The values stored
  * are heading, boat speed, wind speed, wind direction and water depth.
@@ -21,6 +24,40 @@ public class WorldModel {
 
     private float boatX;
     private float boatY;
+
+    private DepthMap depthMap;
+
+    private ArrayList<StepListener> listeners;
+
+    public WorldModel() {
+        listeners = new ArrayList<StepListener>();
+        try {
+            depthMap = new DepthMap(800, 600);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Register a class to be called back when the simulation steps.
+     * 
+     * @param sl
+     *            StepListener
+     * @see StepListener
+     */
+    public void registerStepListener(StepListener sl) {
+        listeners.add(sl);
+    }
+
+    /**
+     * Unregister a step listener.
+     * 
+     * @param sl
+     *            The StepListener to remove from the listeners list.
+     */
+    public void unregisterStepListener(StepListener sl) {
+        listeners.remove(sl);
+    }
 
     /**
      * Set the heading of the boat in the world model.
@@ -153,6 +190,7 @@ public class WorldModel {
 
     /**
      * Return the current x-coordinate of the boat.
+     * 
      * @return float containing boat's current x-coordinate.
      */
     public float getBoatX() {
@@ -161,16 +199,28 @@ public class WorldModel {
 
     /**
      * Return the current y-coordinate of the boat.
+     * 
      * @return float containing boat's current y-coordinate.
      */
     public float getBoatY() {
         return boatY;
     }
 
+    /**
+     * Step the simulation by {@code dt} seconds.
+     * 
+     * @param dt
+     *            The number of seconds to advance time by.
+     */
     public void step(float dt) {
         double ang = Math.toRadians(heading);
-        boatX += Math.cos(ang) * boatSpeed * (10 * dt);
-        boatY += Math.sin(ang) * boatSpeed * (10 * dt);
+        boatX += Math.cos(ang) * boatSpeed * (1 * dt);
+        boatY += Math.sin(ang) * boatSpeed * (1 * dt);
+        waterDepth = depthMap.getDepth(boatX, boatY);
+        // Notify all listeners
+        for (StepListener sl : listeners) {
+            sl.onStep();
+        }
     }
 
 }

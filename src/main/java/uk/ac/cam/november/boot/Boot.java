@@ -8,6 +8,8 @@ import uk.ac.cam.november.messages.SpeechSynthesis;
 
 class Boot {
 
+	public static final int A_LOT_OF_TIME = 1000000000;
+
 	public static void main(final String[] args) {
 		SpeechSynthesis.play("BootingUp");	
 
@@ -15,15 +17,21 @@ class Boot {
 		// it takes a few seconds for the system to boot
 		// The system not instantly starts reacting to the buttons.
 		// Need to figure out why the system is so slow.
-	
-		// Creating a class that will listen to the buttons being clicked.
-		final ButtonsListener buttonsListener = new ButtonsListener();
-	
-		// Creating a system which will be able to recover from crashes.
-		final Recovery recovery = new Recovery();
 
-		// Running the buttonsListener within the scope of auto-crash-recovery.
-		// This invoked method will execute forever.
-		recovery.runAndRecover(buttonsListener);
+		while (true) {
+			try {	
+				// Creating a class that will listen to the buttons being clicked.
+				final ButtonsListener buttonsListener = new ButtonsListener();
+				
+				// TODO(ml693): Instantiate other modules HERE.
+
+				for (;;) {
+					Thread.sleep(A_LOT_OF_TIME);
+				}
+
+			} catch (Exception exception) {
+				exception.printStackTrace();
+			}
+		}
 	}	
 }

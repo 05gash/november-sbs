@@ -19,7 +19,20 @@ public class MessageTest {
             Thread.sleep(1300);
             for (int i = 0; i < 5; i++) {
                 m = new Message("No, I'm not!", 1);
+                MessageHandler.receiveMessage(m);
+                Thread.sleep(50);
             }
+            Thread.sleep(500);
+            m = new Message("And this should not be played!!", 0);
+            MessageHandler.receiveMessage(m);
+            Thread.sleep(500);
+            m = new Message("And this is a bunch of priority", 4);
+            MessageHandler.receiveMessage(m);
+            Thread.sleep(500);
+            m = new Message("And this will definitely not be played", 1);
+            MessageHandler.receiveMessage(m);
+            Thread.sleep(3000);
+            m = new Message("This concludes the test!", 1);
             MessageHandler.receiveMessage(m);
         } catch (InterruptedException e) {
             System.out.println("InterruptedException thrown");
