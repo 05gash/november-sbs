@@ -49,7 +49,6 @@ public class MessageFormatter {
         String formattedString = formatMessage(sensorData, buttonName);
         
         // assign priority and wrap in Message Object
-        //TODO: Come up with a sensible priority scheme.
         Message m = new Message(formattedString, MESSAGE_PRIORITY);
         
         // call MessageHandler

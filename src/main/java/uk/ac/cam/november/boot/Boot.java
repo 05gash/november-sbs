@@ -3,6 +3,9 @@
 
 package uk.ac.cam.november.boot;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.google.common.collect.EvictingQueue;
 
 import uk.ac.cam.november.alerts.AlertGenerator;
@@ -42,11 +45,11 @@ class Boot {
 				if (SIMULATOR){
 				    Simulator sim = new Simulator();
 				    sim.showUI();
-				    messageDec = new MessageDecoder(sim.getMessageQueue(), EvictingQueue.create(0));
-				    sim.getThread().run();
+				    messageDec = new MessageDecoder(sim.getMessageQueue());
+				    sim.getThread().start();
 				}else{
 				    CanBoatFacade canboat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
-				    messageDec = new MessageDecoder(canboat.getPacketQueue(), EvictingQueue.create(0));
+				    messageDec = new MessageDecoder(canboat.getPacketQueue());
 				}
 				
 				AlertGenerator alertGen = new AlertGenerator();
@@ -63,6 +66,8 @@ class Boot {
 				}
 
 			} catch (Exception exception) {
+			    Logger l = Logger.getLogger("uk.ac.cam.november.boot");
+			    l.log(Level.SEVERE, "System Crashed", exception);
 				exception.printStackTrace();
 			}
 		}
