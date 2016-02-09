@@ -2,11 +2,8 @@ package uk.ac.cam.november.simulation;
 
 import java.util.Date;
 
-import uk.ac.cam.november.packet.BoatHeadingFields;
-import uk.ac.cam.november.packet.BoatSpeedFields;
+import uk.ac.cam.november.packet.Fields;
 import uk.ac.cam.november.packet.Packet;
-import uk.ac.cam.november.packet.WaterDepthFields;
-import uk.ac.cam.november.packet.WindDataFields;
 
 /**
  * This class creates {@code Message} objects which emulate those produced by
@@ -94,7 +91,7 @@ public class DataGenerator {
         packet.setPgn(127250);
         packet.setDescription("Vessel Heading");
 
-        BoatHeadingFields fields = new BoatHeadingFields();
+        Fields fields = new Fields();
 
         fields.setSID(0);
         fields.setHeading(heading);
@@ -127,7 +124,7 @@ public class DataGenerator {
         packet.setPgn(128267);
         packet.setDescription("Water Depth");
 
-        WaterDepthFields fields = new WaterDepthFields();
+        Fields fields = new Fields();
 
         fields.setSID(0);
         fields.setDepth(waterDepth);
@@ -161,7 +158,7 @@ public class DataGenerator {
         packet.setPgn(130306);
         packet.setDescription("Wind Data");
 
-        WindDataFields fields = new WindDataFields();
+        Fields fields = new Fields();
 
         fields.setSID(0);
         fields.setWindSpeed(windSpeed);
@@ -191,7 +188,7 @@ public class DataGenerator {
         packet.setPgn(128259);
         packet.setDescription("Speed");
 
-        BoatSpeedFields fields = new BoatSpeedFields();
+        Fields fields = new Fields();
 
         fields.setSID(0);
         fields.setSpeedWaterReferenced(vesselSpeed);
