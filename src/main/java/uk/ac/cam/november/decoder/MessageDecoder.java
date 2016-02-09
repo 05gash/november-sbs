@@ -1,7 +1,6 @@
 package uk.ac.cam.november.decoder;
 
 import java.util.Queue;
-import javax.xml.datatype.Duration;
 
 import uk.ac.cam.november.alerts.AlertMessage;
 import uk.ac.cam.november.packet.Fields;
@@ -60,6 +59,12 @@ public class MessageDecoder implements Runnable {
         
         while (true) {
             Packet packet = MessageQueue.poll();
+            if(packet == null){
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) { }
+                continue;
+            }
             int packetID = packet.getPgn();
             Fields fields = (Fields) packet.getFields();
             
