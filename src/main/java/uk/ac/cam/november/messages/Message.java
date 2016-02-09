@@ -25,7 +25,6 @@ public class Message {
     public Message(String text, int priority) {
         mText = text;
         mPriority = priority;
-        System.out.println("created message");
     }
 
     /**
