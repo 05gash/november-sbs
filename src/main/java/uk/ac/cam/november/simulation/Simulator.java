@@ -52,7 +52,7 @@ public class Simulator {
                     }
                 }
             }
-        });
+        }, "Simulator-UI");
     }
 
     /**

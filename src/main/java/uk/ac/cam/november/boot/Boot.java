@@ -3,8 +3,6 @@
 
 package uk.ac.cam.november.boot;
 
-import com.google.common.collect.EvictingQueue;
-
 import uk.ac.cam.november.alerts.AlertGenerator;
 import uk.ac.cam.november.buttons.ButtonsListener;
 import uk.ac.cam.november.decoder.MessageDecoder;
@@ -52,7 +50,7 @@ class Boot {
 				
 				MessageFormatter.setDecoder(messageDec);
 				
-				Thread decoderThread = new Thread(messageDec);
+				Thread decoderThread = new Thread(messageDec, "Message-Decoder");
 				decoderThread.start();
 				
 
