@@ -7,6 +7,7 @@ import uk.ac.cam.november.buttons.ButtonsListener;
 import uk.ac.cam.november.decoder.AlertGenerator;
 import uk.ac.cam.november.decoder.MessageDecoder;
 import uk.ac.cam.november.logging.LogConfig;
+import uk.ac.cam.november.messages.MessageFormatter;
 import uk.ac.cam.november.messages.SpeechSynthesis;
 
 class Boot {
@@ -34,6 +35,11 @@ class Boot {
 				
 				AlertGenerator alertGen = new AlertGenerator();
 				alertGen.setMd(messageDec);
+				
+				MessageFormatter.setDecoder(messageDec);
+				
+				Thread decoderThread = new Thread(messageDec);
+				decoderThread.start();
 				
 
 				for (;;) {

@@ -14,6 +14,10 @@ public class LogConfig {
     private static final String LOG_FILE = "log.txt";
     private static final String XML_LOG_FILE = "xml_log.txt";
     
+    /**
+     * Configures the logging for this program, setting the output files and format. It applies settings to the logger with the string
+     * "uk.ac.cam.november", so all logs beginning with that prefix will inherit the properties.
+     */
     public static void setup()
     {
         FileHandler fh  = null;
