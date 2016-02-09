@@ -3,11 +3,11 @@ package uk.ac.cam.november.decoder;
 import java.util.Queue;
 import javax.xml.datatype.Duration;
 
-import uk.ac.cam.november.alerts.AlertMessage;
 import uk.ac.cam.november.packet.Fields;
 import uk.ac.cam.november.packet.Packet;
 
 public class MessageDecoder implements Runnable {
+    
     
     /*
      * Example JSON input (from CAN Boat using sample data on Wiki) -- WATER DEPTH

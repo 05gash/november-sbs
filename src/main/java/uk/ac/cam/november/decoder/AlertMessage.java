@@ -1,4 +1,4 @@
-package uk.ac.cam.november.alerts;
+package uk.ac.cam.november.decoder;
 
 public class AlertMessage {
 

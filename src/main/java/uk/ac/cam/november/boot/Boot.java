@@ -3,8 +3,8 @@
 
 package uk.ac.cam.november.boot;
 
-import uk.ac.cam.november.alerts.AlertGenerator;
 import uk.ac.cam.november.buttons.ButtonsListener;
+import uk.ac.cam.november.decoder.AlertGenerator;
 import uk.ac.cam.november.decoder.MessageDecoder;
 import uk.ac.cam.november.logging.LogConfig;
 import uk.ac.cam.november.messages.SpeechSynthesis;
