@@ -2,12 +2,15 @@
 
 package uk.ac.cam.november.boot;
 
+import uk.ac.cam.november.logging.LogConfig;
+
 class RecoveryTest {
 
 	private static int SOME_TIME_TO_WAIT = 1000; // Corresponds to 1 second
 
 
 	public static void main(final String args[]) {
+	    LogConfig.setup();
 
 		// 1) Creating a class which always throws an exception
 		final Runnable runnable = new Runnable() {
