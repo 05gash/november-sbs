@@ -133,7 +133,7 @@ public class Simulator {
     public static void main(String[] args) {
         Simulator sim = new Simulator();
         sim.showUI();
-        sim.getThread().run();
+        sim.getThread().start();
     }
 
 }
