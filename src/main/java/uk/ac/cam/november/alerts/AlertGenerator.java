@@ -10,11 +10,11 @@ public class AlertGenerator {
     AlertMessage am = new AlertMessage();
     Queue<AlertMessage> AlertMessageQueue;
     
-    MessageDecoder messageDec = new MessageDecoder();
+    MessageDecoder messageDec;
     BoatState state = null;
    
     public void setMd(MessageDecoder md) {
-        this.messageDec = messageDec;
+        this.messageDec = md;
         state = messageDec.getState();
     }
     
