@@ -42,12 +42,4 @@ public class ButtonsListener {
                 buttons[3].addListener(new PinListener(ButtonNames.COMPASS_HEADING));
 	}
 
-	public void unprovisionPins() {
-		gpio.shutdown();
-	//	gpio.unProvisionPin(buttons[0]);
-	//	gpio.unProvisionPin(buttons[1]);
-	//	gpio.unProvisionPin(buttons[2]);
-	//	gpio.unProvisionPin(buttons[3]);
-	//	gpio.unProvisionPin(buttons[7]);
-	}
 }

@@ -3,9 +3,6 @@
 
 package uk.ac.cam.november.boot;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import com.google.common.collect.EvictingQueue;
 
 import uk.ac.cam.november.alerts.AlertGenerator;
@@ -23,18 +20,16 @@ class Boot {
 	
 	public static final boolean SIMULATOR = true;
 
-	public static void main(final String[] args) {
+	public static void main(final String[] args) throws Exception {
 		SpeechSynthesis.play("BootingUp");	
 		
-	//	LogConfig.setup();
+		LogConfig.setup();
 
 		// TODO(ml693): after message "BootingUp" is loudly said,
 		// it takes a few seconds for the system to boot
 		// The system not instantly starts reacting to the buttons.
 		// Need to figure out why the system is so slow.
-		
-		while (true) {
-			try {	
+	
 				// Creating a class that will listen to the buttons being clicked.
 				final ButtonsListener buttonsListener = new ButtonsListener();
 				
@@ -42,12 +37,12 @@ class Boot {
 				
 				MessageDecoder messageDec = null;
 				
-				if (SIMULATOR){
+				if (SIMULATOR) {
 				    Simulator sim = new Simulator();
 				    sim.showUI();
 				    messageDec = new MessageDecoder(sim.getMessageQueue());
 				    sim.getThread().start();
-				}else{
+				} else {
 				    CanBoatFacade canboat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
 				    messageDec = new MessageDecoder(canboat.getPacketQueue());
 				}
@@ -64,12 +59,5 @@ class Boot {
 				for (;;) {
 					Thread.sleep(A_LOT_OF_TIME);
 				}
-
-			} catch (Exception exception) {
-			    Logger l = Logger.getLogger("uk.ac.cam.november.boot");
-			    l.log(Level.SEVERE, "System Crashed", exception);
-				exception.printStackTrace();
-			}
-		}
 	}	
 }
