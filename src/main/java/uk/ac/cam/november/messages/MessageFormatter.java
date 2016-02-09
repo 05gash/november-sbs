@@ -1,5 +1,8 @@
 package uk.ac.cam.november.messages;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import uk.ac.cam.november.StateDecoder;
 import uk.ac.cam.november.buttons.ButtonNames;
 
@@ -17,13 +20,12 @@ public class MessageFormatter {
     
     private static final int MESSAGE_PRIORITY = 1;
     private static final int ALERT_PRIORITY = 2;
+    private static Logger logger = Logger.getLogger("uk.ac.cam.november.messages.MessageFormatter");
     
     private static StateDecoder mDecoder = new StateDecoder();
     
-    private MessageFormatter()
-    {
-        mDecoder = new StateDecoder();
-    }
+    // Prevents instantiation
+    private MessageFormatter() {}
     
     /**
      * Gets data which corresponds with input button, formats it, and sends it to the Messagehandler
@@ -74,12 +76,10 @@ public class MessageFormatter {
      * Given a data value and the field that it corresponds with, this creates a formatted string
      * that can be read by the MessageHandler
      * 
-     * @param data the value of the data
-     * @param buttonName the data field
-     * @return the formatted string 
      */
     private static String formatMessage(String data, String buttonName)
     {
+        // TODO: truncate decimals?
         switch(buttonName)
         {
         case ButtonNames.WATER_DEPTH:
@@ -95,8 +95,9 @@ public class MessageFormatter {
         
         default:
             // Should not reach here
-            System.err.println("Format error: " + data + " " + buttonName);
-            return "Cannot format Message: " + data + " " + buttonName;
+            logger.log(Level.SEVERE, "Formatting error: " + data + " " + buttonName);
+            System.err.println("Formatting error: " + data + " " + buttonName);
+            throw new IllegalArgumentException("Formatting error: " + data + " " + buttonName);
         }
         
     }

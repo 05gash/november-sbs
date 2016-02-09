@@ -15,6 +15,9 @@
 
 package uk.ac.cam.november.boot;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 class Recovery {
 
 	final Object lock = new Object();
@@ -34,6 +37,8 @@ class Recovery {
 				} catch (Exception exception) {
 					// If the process was interrupted by exception
 					// we will restart it.
+				    Logger l = Logger.getLogger("uk.ac.cam.november.Recovery");
+				    l.log(Level.SEVERE, "System Crashed!", exception);
 					lock.notifyAll();
 
 					// TODO(ml693): currently not printing stack trace - 

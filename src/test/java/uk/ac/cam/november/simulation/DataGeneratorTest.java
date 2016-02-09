@@ -5,11 +5,8 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import uk.ac.cam.november.packet.BoatHeadingFields;
-import uk.ac.cam.november.packet.BoatSpeedFields;
+import uk.ac.cam.november.packet.Fields;
 import uk.ac.cam.november.packet.Packet;
-import uk.ac.cam.november.packet.WaterDepthFields;
-import uk.ac.cam.november.packet.WindDataFields;
 
 public class DataGeneratorTest {
     
@@ -38,7 +35,7 @@ public class DataGeneratorTest {
     @Test
     public void vesselHeadingPacketShouldContainCorrectFields() {
         Packet packet = DataGenerator.generateVesselHeadingPacket(100f, 1f, -1f);
-        BoatHeadingFields fields = (BoatHeadingFields)packet.getFields();
+        Fields fields = packet.getFields();
         
         assertEquals(packet.getPgn(), 127250);
         
@@ -57,7 +54,7 @@ public class DataGeneratorTest {
     @Test
     public void waterDepthPacketShouldContainCorrectFields() {
         Packet packet = DataGenerator.generateWaterDepthPacket(100f, 1f);
-        WaterDepthFields fields = (WaterDepthFields) packet.getFields();
+        Fields fields = packet.getFields();
         
         assertEquals(packet.getPgn(), 128267);
         
@@ -77,7 +74,7 @@ public class DataGeneratorTest {
     @Test
     public void windDataPacketShouldContainCorrectFields() {
         Packet packet = DataGenerator.generateWindDataPacket(100f, 1f);
-        WindDataFields fields = (WindDataFields) packet.getFields();
+        Fields fields = packet.getFields();
         
         assertEquals(packet.getPgn(), 130306);
         
@@ -96,7 +93,7 @@ public class DataGeneratorTest {
     @Test
     public void speedPacketShouldContainCorrectFields(){
         Packet packet = DataGenerator.generateSpeedPacket(100f);
-        BoatSpeedFields fields = (BoatSpeedFields) packet.getFields();
+        Fields fields = packet.getFields();
         
         assertEquals(packet.getPgn(), 128259);
         

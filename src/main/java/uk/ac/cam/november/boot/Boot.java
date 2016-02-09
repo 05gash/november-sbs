@@ -5,8 +5,8 @@ package uk.ac.cam.november.boot;
 
 import uk.ac.cam.november.alerts.AlertGenerator;
 import uk.ac.cam.november.buttons.ButtonsListener;
-import uk.ac.cam.november.decoder.BoatState;
 import uk.ac.cam.november.decoder.MessageDecoder;
+import uk.ac.cam.november.logging.LogConfig;
 import uk.ac.cam.november.messages.SpeechSynthesis;
 
 class Boot {
@@ -15,6 +15,8 @@ class Boot {
 
 	public static void main(final String[] args) {
 		SpeechSynthesis.play("BootingUp");	
+		
+		LogConfig.setup();
 
 		// TODO(ml693): after message "BootingUp" is loudly said,
 		// it takes a few seconds for the system to boot
