@@ -3,7 +3,10 @@
 
 package uk.ac.cam.november.boot;
 
+import uk.ac.cam.november.alerts.AlertGenerator;
 import uk.ac.cam.november.buttons.ButtonsListener;
+import uk.ac.cam.november.decoder.BoatState;
+import uk.ac.cam.november.decoder.MessageDecoder;
 import uk.ac.cam.november.messages.SpeechSynthesis;
 
 class Boot {
@@ -17,13 +20,19 @@ class Boot {
 		// it takes a few seconds for the system to boot
 		// The system not instantly starts reacting to the buttons.
 		// Need to figure out why the system is so slow.
-
+		
 		while (true) {
 			try {	
 				// Creating a class that will listen to the buttons being clicked.
 				final ButtonsListener buttonsListener = new ButtonsListener();
 				
 				// TODO(ml693): Instantiate other modules HERE.
+				
+				MessageDecoder messageDec = new MessageDecoder();
+				
+				AlertGenerator alertGen = new AlertGenerator();
+				alertGen.setMd(messageDec);
+				
 
 				for (;;) {
 					Thread.sleep(A_LOT_OF_TIME);

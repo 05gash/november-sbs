@@ -31,6 +31,10 @@ public class MessageDecoder implements Runnable {
     
     BoatState state = new BoatState();
     AlertMessage am = new AlertMessage();
+    
+    public BoatState getState() {
+        return state;
+    }
 
     @Override
     public void run() {
