@@ -3,6 +3,7 @@ package uk.ac.cam.november.decoder;
 import java.util.Queue;
 import javax.xml.datatype.Duration;
 
+import uk.ac.cam.november.alerts.AlertMessage;
 import uk.ac.cam.november.packet.Fields;
 import uk.ac.cam.november.packet.Packet;
 
@@ -21,25 +22,27 @@ public class MessageDecoder implements Runnable {
      * Boat Speed "128259"
      */      
     
-    AlertMessage am = new AlertMessage();
 
-    Queue<Packet> MessageQueue;
-    Queue<AlertMessage> AlertMessageQueue;
+    
 //    final Duration timeout = Duration.ofSeconds(10);
     
-    Fields c_fields = new Fields();
+    Queue<Packet> MessageQueue;
+    Queue<AlertMessage> AlertMessageQueue;
+    
+    BoatState state = new BoatState();
+    AlertMessage am = new AlertMessage();
 
     @Override
     public void run() {
 
-        c_fields.setDepth(0);
-        c_fields.setOffset(0);
-        c_fields.setWindSpeed(0);
-        c_fields.setWindAngle(0);
-        c_fields.setSpeedWaterReferenced(0);
-        c_fields.setHeading(0);
-        c_fields.setDeviation(0);
-        c_fields.setVariation(0);
+        state.setDepth(0);
+        state.setOffset(0);
+        state.setWindSpeed(0);
+        state.setWindAngle(0);
+        state.setSpeedWaterReferenced(0);
+        state.setHeading(0);
+        state.setDeviation(0);
+        state.setVariation(0);
         
         boolean first_d = true;
         boolean first_w = true;
@@ -49,11 +52,11 @@ public class MessageDecoder implements Runnable {
         
         while (true) {
             Packet packet = MessageQueue.poll();
-            int messageID = packet.getPgn();
+            int packetID = packet.getPgn();
             Fields fields = (Fields) packet.getFields();
             
             
-            switch (messageID) {
+            switch (packetID) {
       
             /** 
              * If a packet is of type WaterDepth, png = 128267
@@ -62,11 +65,11 @@ public class MessageDecoder implements Runnable {
              */
             case 128267:
                 
-                // Alerts
+                // Alerts`
                 if (!first_d) {
                 
                     // Rapid Change
-                    if (fields.getDepth() - c_fields.getDepth() > 20 | c_fields.getDepth() - fields.getDepth() > 20) {
+                    if (fields.getDepth() - state.getDepth() > 20 | state.getDepth() - state.getDepth() > 20) {
                         am.setType(0);
                         am.setWhat(0);
                         AlertMessageQueue.add(am);
@@ -80,8 +83,8 @@ public class MessageDecoder implements Runnable {
                     }
                 }
                 
-                c_fields.setDepth(fields.getDepth());
-                c_fields.setOffset(fields.getOffset());
+                state.setDepth(fields.getDepth());
+                state.setOffset(fields.getOffset());
                 
                 break;
             
@@ -94,16 +97,16 @@ public class MessageDecoder implements Runnable {
                 if (!first_w) {
                 
                     // Rapid Change in Wind Speed
-                    if (fields.getWindSpeed() - c_fields.getWindSpeed() > 20 | 
-                            c_fields.getWindSpeed() - fields.getWindSpeed() > 20) {
+                    if (fields.getWindSpeed() - state.getWindSpeed() > 20 | 
+                            state.getWindSpeed() - fields.getWindSpeed() > 20) {
                         am.setType(0);
                         am.setWhat(1);
                         AlertMessageQueue.add(am);
                     }
                     
                     // Rapid Change in Wind Angle
-                    if (fields.getWindAngle() - c_fields.getWindAngle() > 30 | 
-                            c_fields.getWindAngle() - fields.getWindAngle() > 30) {
+                    if (fields.getWindAngle() - state.getWindAngle() > 30 | 
+                            state.getWindAngle() - fields.getWindAngle() > 30) {
                         am.setType(0);
                         am.setWhat(2);
                         AlertMessageQueue.add(am);
@@ -125,8 +128,8 @@ public class MessageDecoder implements Runnable {
                     
                 }
           
-                c_fields.setWindSpeed(fields.getWindSpeed());
-                c_fields.setWindAngle(fields.getWindAngle());
+                state.setWindSpeed(fields.getWindSpeed());
+                state.setWindAngle(fields.getWindAngle());
                 
                 break;
             
@@ -141,7 +144,7 @@ public class MessageDecoder implements Runnable {
                 if (!first_h) {
                     
                     // Rapid Change
-                    if (fields.getHeading() - c_fields.getHeading() > 20 | c_fields.getHeading() - fields.getHeading() > 20) {
+                    if (fields.getHeading() - state.getHeading() > 20 | state.getHeading() - fields.getHeading() > 20) {
                         am.setType(0);
                         am.setWhat(3);
                         AlertMessageQueue.add(am);
@@ -150,9 +153,9 @@ public class MessageDecoder implements Runnable {
                     // No Critical Value Alert
                 }
           
-                c_fields.setHeading(fields.getHeading());
-                c_fields.setDeviation(fields.getDeviation());
-                c_fields.setVariation(fields.getVariation());
+                state.setHeading(fields.getHeading());
+                state.setDeviation(fields.getDeviation());
+                state.setVariation(fields.getVariation());
                 break;
                 
             /** 
@@ -164,8 +167,8 @@ public class MessageDecoder implements Runnable {
                 if (!first_s) {
                     
                     // Rapid Change
-                    if (fields.getSpeedWaterReferenced() - c_fields.getSpeedWaterReferenced() > 20 | 
-                            c_fields.getSpeedWaterReferenced() - fields.getSpeedWaterReferenced() > 20) {
+                    if (fields.getSpeedWaterReferenced() - state.getSpeedWaterReferenced() > 20 | 
+                            state.getSpeedWaterReferenced() - fields.getSpeedWaterReferenced() > 20) {
                         am.setType(0);
                         am.setWhat(4);
                         AlertMessageQueue.add(am);
@@ -179,7 +182,7 @@ public class MessageDecoder implements Runnable {
                     }
                 }
           
-                c_fields.setSpeedWaterReferenced(fields.getSpeedWaterReferenced());
+                state.setSpeedWaterReferenced(fields.getSpeedWaterReferenced());
                 break;
                 
             default:
