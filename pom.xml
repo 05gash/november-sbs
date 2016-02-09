@@ -52,9 +52,9 @@
 		</plugins>
 		<resources>
 			<resource>
-				<directory>res/</directory>
+				<directory>res</directory>
 				<includes>
-					<include>*</include>
+					<include>**/*</include>
 				</includes>
 			</resource>
 		</resources>
