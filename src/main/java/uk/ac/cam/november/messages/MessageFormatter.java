@@ -3,8 +3,10 @@ package uk.ac.cam.november.messages;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import uk.ac.cam.november.StateDecoder;
+import uk.ac.cam.november.alerts.AlertMessage;
 import uk.ac.cam.november.buttons.ButtonNames;
+import uk.ac.cam.november.decoder.BoatState;
+import uk.ac.cam.november.decoder.MessageDecoder;
 
 /**
  * 
@@ -22,7 +24,12 @@ public class MessageFormatter {
     private static final int ALERT_PRIORITY = 2;
     private static Logger logger = Logger.getLogger("uk.ac.cam.november.messages.MessageFormatter");
     
-    private static StateDecoder mDecoder = new StateDecoder();
+    private static MessageDecoder mDecoder = null;
+    
+    public static void setDecoder(MessageDecoder decoder)
+    {
+        mDecoder = decoder;
+    }
     
     // Prevents instantiation
     private MessageFormatter() {}
@@ -36,7 +43,7 @@ public class MessageFormatter {
     {
         
         //poll StateDecoder
-        String sensorData = pollStateDecoder(buttonName);
+        float sensorData = pollStateDecoder(buttonName);
         
         // format the sensor data into a string;
         String formattedString = formatMessage(sensorData, buttonName);
@@ -49,10 +56,11 @@ public class MessageFormatter {
         MessageHandler.receiveMessage(m);
     }
 
- /*   
+    
     public static void handleAlert(AlertMessage alert)
     {
         
+        logger.log(Level.WARNING, "handlerAlert not implemented yet");
         // TODO: poll StateDecoder
         
         // TODO: format the sensor data into a string;
@@ -63,13 +71,39 @@ public class MessageFormatter {
         
         // call MessageHandler
         MessageHandler.receiveMessage(m);
+        
+        
     }
-*/
+
     
-    //TODO: determine format of polling from the state decoder.
-    private static String pollStateDecoder(String buttonName)
+    private static float pollStateDecoder(String buttonName)
     {
-        return mDecoder.getRecent(buttonName);
+        if(mDecoder == null)
+        {
+            logger.log(Level.SEVERE,"MessageDecoder not set");
+            throw new NullPointerException();
+        }
+        
+        BoatState state = mDecoder.getState();
+        switch(buttonName)
+        {
+        case ButtonNames.BOAT_SPEED:
+            return state.getSpeedWaterReferenced();
+        case ButtonNames.COMPASS_HEADING:
+            return state.getHeading();
+        case ButtonNames.WATER_DEPTH:
+            return state.getDepth();
+        case ButtonNames.WIND_DIRECTION:
+            return state.getWindAngle();
+        case ButtonNames.WIND_SPEED:
+            return state.getWindSpeed();
+            
+        default:
+            // Should not reach here
+            logger.log(Level.SEVERE, "Invalid button name: " + buttonName);
+            System.err.println("Invalid button name: " + buttonName);
+            throw new IllegalArgumentException("Invalid button name: " + buttonName);
+        }
     }
     
     /*
@@ -77,9 +111,10 @@ public class MessageFormatter {
      * that can be read by the MessageHandler
      * 
      */
-    private static String formatMessage(String data, String buttonName)
+    private static String formatMessage(float dataValue, String buttonName)
     {
-        // TODO: truncate decimals?
+        String data = String.format("%.2f", dataValue);
+        
         switch(buttonName)
         {
         case ButtonNames.WATER_DEPTH:
