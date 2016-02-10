@@ -17,11 +17,11 @@ public class SpeechSynthesis {
 
     private static Process curr_speech = null;
     private static String wavdir =
-        SpeechSynthesis.class.getResource("/messages/speech.wav").toString();
+        "uk/ac/cam/november/messages/speech.wav";
     private static String playdir =
-        SpeechSynthesis.class.getResource("/messages/play_sound.sh").toString();
+        "uk/ac/cam/november/messages/play_sound.sh";
     private static String stopdir =
-        SpeechSynthesis.class.getResource("/messages/stop_sound.sh").toString();
+        "uk/ac/cam/november/messages/stop_sound.sh";
 
     // METHODS
 
