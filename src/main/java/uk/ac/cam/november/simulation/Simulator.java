@@ -124,14 +124,4 @@ public class Simulator {
         return runThread;
     }
 
-    public static void main(String[] args) {
-        if (args.length != 1) {
-            System.err.println("Usage: Simulator <server_address>");
-            System.exit(1);
-        }
-        Simulator sim = new Simulator(args[0]);
-        sim.showUI();
-        sim.getThread().start();
-    }
-
 }
