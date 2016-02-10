@@ -19,6 +19,16 @@ class Boot {
 
     public static void main(final String[] args) throws Exception {
 
+	// Making sure that if one thread crashes,
+	// then the whole JVM will shut down.
+	Thread.setDefaultUncaughtExceptionHandler(new Thread.
+   		UncaughtExceptionHandler() {
+   			public void uncaughtException(Thread t, Throwable e) {
+   				System.out.println(t + " throws exception: " + e);
+				System.exit(1);
+  			}
+   		});
+
         boolean runSimServer = false;
 
         if (args.length > 0) {
