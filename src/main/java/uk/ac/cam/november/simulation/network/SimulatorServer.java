@@ -9,7 +9,8 @@ import java.util.Queue;
 import com.google.common.collect.EvictingQueue;
 import com.google.common.collect.Queues;
 
-import uk.ac.cam.november.messages.SpeechSynthesis;
+import uk.ac.cam.november.messages.Message;
+import uk.ac.cam.november.messages.MessageHandler;
 import uk.ac.cam.november.packet.Packet;
 
 public class SimulatorServer {
@@ -38,6 +39,7 @@ public class SimulatorServer {
                     try {
                         Socket client = listenSocket.accept();
                         System.out.println("New client connected from " + client.getInetAddress().getHostName());
+                        MessageHandler.receiveMessage(new Message("Client connected", 2));
                         DataInputStream dis = new DataInputStream(client.getInputStream());
                         while (true) {
                             Packet p = PacketTranslator.read(dis);
@@ -49,6 +51,7 @@ public class SimulatorServer {
                         }
                         client.close();
                         System.out.println("Client disconnected.");
+                        MessageHandler.receiveMessage(new Message("Client disconnected", 2));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -59,7 +62,7 @@ public class SimulatorServer {
         socketThread.start();
 
         System.out.println("Server started on port 8989");
-        SpeechSynthesis.play("Server started on port 8989");
+        MessageHandler.receiveMessage(new Message("Server started on port 8989", 2));
     }
 
     /**
