@@ -29,8 +29,12 @@ class Boot {
 		// Need to figure out why the system is so slow.
 	
 				// Creating a class that will listen to the buttons being clicked.
-				final ButtonsListener buttonsListener = new ButtonsListener();
-				
+		        try{
+		            new ButtonsListener();
+		        }catch(UnsatisfiedLinkError e){
+		            System.err.println("Failed to load Pi4J library.");
+		            System.err.println("Most likely you're not on a RaspberryPi.");
+		        }
 				MessageDecoder messageDec = null;
 				
 				if (SIMULATOR) {
