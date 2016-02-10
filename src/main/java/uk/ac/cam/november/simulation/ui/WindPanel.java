@@ -31,7 +31,14 @@ public class WindPanel extends JPanel {
         gr.fillRect(0, 0, w, h);
 
         gr.setColor(Color.WHITE);
-        String angleMessage = "Wind Angle: " + worldModel.getWindAngle();
+
+        float angle = worldModel.getWindAngle() - worldModel.getHeading();
+        if (angle < 0f)
+            angle += 360.0f;
+        if (angle > 360f)
+            angle -= 360.0f;
+
+        String angleMessage = "Wind Angle: " + angle;
         gr.drawString(angleMessage, 8, 16);
         String speedMessage = "Wind Speed: " + worldModel.getWindSpeed();
         gr.drawString(speedMessage, 8, 32);
