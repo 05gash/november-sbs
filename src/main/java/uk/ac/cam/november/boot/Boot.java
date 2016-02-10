@@ -10,7 +10,7 @@ import uk.ac.cam.november.input.CanBoatFacade;
 import uk.ac.cam.november.logging.LogConfig;
 import uk.ac.cam.november.messages.MessageFormatter;
 import uk.ac.cam.november.messages.SpeechSynthesis;
-import uk.ac.cam.november.simulation.Simulator;
+import uk.ac.cam.november.simulation.network.SimulatorServer;
 
 class Boot {
 
@@ -19,7 +19,7 @@ class Boot {
 	public static final boolean SIMULATOR = true;
 
 	public static void main(final String[] args) throws Exception {
-		SpeechSynthesis.play("BootingUp");	
+		SpeechSynthesis.play("Booting Up");
 		
 		LogConfig.setup();
 
@@ -31,15 +31,11 @@ class Boot {
 				// Creating a class that will listen to the buttons being clicked.
 				final ButtonsListener buttonsListener = new ButtonsListener();
 				
-				// TODO(ml693): Instantiate other modules HERE.
-				
 				MessageDecoder messageDec = null;
 				
 				if (SIMULATOR) {
-				    Simulator sim = new Simulator();
-				    sim.showUI();
+				    SimulatorServer sim = new SimulatorServer();
 				    messageDec = new MessageDecoder(sim.getMessageQueue());
-				    sim.getThread().start();
 				} else {
 				    CanBoatFacade canboat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
 				    messageDec = new MessageDecoder(canboat.getPacketQueue());
