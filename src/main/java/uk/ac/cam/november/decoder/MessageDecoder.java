@@ -1,36 +1,44 @@
 package uk.ac.cam.november.decoder;
 
 import java.util.Queue;
-import javax.xml.datatype.Duration;
 
 import uk.ac.cam.november.packet.Fields;
 import uk.ac.cam.november.packet.Packet;
 
 public class MessageDecoder implements Runnable {
     
+    int criticalMinDepth = 15;
+    int criticalMaxDepth = 1000;
+    int criticalChangeDepth = 50;
+    
+    int criticalMinWindSpeed = 0;
+    int criticalMaxWindSpeed = 0;
+    int criticalChangeWindSpeed = 0;
+    int criticalChangeWindAngle = 0;
+    
+    int criticalChangeHeading = 0;
+    
+    int criticalMinBoatSpeed = 0;
+    int criticalMaxBoatSpeed = 0;
+    int criticalChangeSpeed = 0;
+
     
     /*
-     * Example JSON input (from CAN Boat using sample data on Wiki) -- WATER DEPTH
-     * 
-     * {"timestamp":"2011-11-24-22:42:04.388","prio":2,"src":36,"dst":255,"pgn":127251,"description":"Rate of Turn","fields":{"SID":125,"Rate":0.029200}}
-     * {"timestamp":"2011-11-24-22:42:04.390","prio":2,"src":36,"dst":255,"pgn":127250,"description":"Vessel Heading","fields":{"SID":0,"Heading":182.4,"Deviation":0.0,"Variation":0.0,"Reference":"Magnetic"}}
-     * {"timestamp":"2011-11-24-22:42:04.437","prio":2,"src":36,"dst":255,"pgn":130306,"description":"Wind Data","fields":{"SID":177,"Wind Speed":0.92,"Wind Angle":353.4,"Reference":"Apparent"}}
-     * 
      * Water Depth "128267"
      * Wind Data "130306"  -- both Wind Direction and Wind Speed
      * heading "126720"
      * Boat Speed "128259"
      */      
     
-
-    
-//    final Duration timeout = Duration.ofSeconds(10);
-    
     Queue<Packet> MessageQueue;
     Queue<AlertMessage> AlertMessageQueue;
     
     BoatState state = new BoatState();
     AlertMessage am = new AlertMessage();
+    
+    public MessageDecoder(Queue<Packet> messageQueue){
+        this.MessageQueue = messageQueue;
+    }
     
     public BoatState getState() {
         return state;
@@ -56,6 +64,12 @@ public class MessageDecoder implements Runnable {
         
         while (true) {
             Packet packet = MessageQueue.poll();
+            if(packet == null){
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) { }
+                continue;
+            }
             int packetID = packet.getPgn();
             Fields fields = (Fields) packet.getFields();
             
@@ -68,21 +82,28 @@ public class MessageDecoder implements Runnable {
              * generates alert messages if a boat is in critical state
              */
             case 128267:
-                
-                // Alerts`
+              
                 if (!first_d) {
                 
-                    // Rapid Change
-                    if (fields.getDepth() - state.getDepth() > 20 | state.getDepth() - state.getDepth() > 20) {
-                        am.setType(0);
-                        am.setWhat(0);
+                    // CriticalChange
+                    if (fields.getDepth() - state.getDepth() > criticalChangeDepth | 
+                            state.getDepth() - state.getDepth() > criticalChangeDepth) {
+                        am.setAlertType(0);
+                        am.setSensor(0);
                         AlertMessageQueue.add(am);
                     }
                     
-                    // Critical Value
-                    if (fields.getDepth() > 1000) {
-                        am.setType(1);
-                        am.setWhat(0);
+                    // CriticalMax
+                    if (fields.getDepth() > criticalMaxDepth) {
+                        am.setAlertType(1);
+                        am.setSensor(0);
+                        AlertMessageQueue.add(am);
+                    }
+                    
+                    // CriticalMin
+                    if (fields.getDepth() < criticalMinDepth) {
+                        am.setAlertType(2);
+                        am.setSensor(0);
                         AlertMessageQueue.add(am);
                     }
                 }
@@ -100,35 +121,36 @@ public class MessageDecoder implements Runnable {
             case 130306:
                 if (!first_w) {
                 
-                    // Rapid Change in Wind Speed
-                    if (fields.getWindSpeed() - state.getWindSpeed() > 20 | 
-                            state.getWindSpeed() - fields.getWindSpeed() > 20) {
-                        am.setType(0);
-                        am.setWhat(1);
+                    // CriticalChange in Wind Speed
+                    if (fields.getWindSpeed() - state.getWindSpeed() > criticalChangeWindSpeed | 
+                            state.getWindSpeed() - fields.getWindSpeed() > criticalChangeWindSpeed) {
+                        am.setAlertType(0);
+                        am.setSensor(1);
                         AlertMessageQueue.add(am);
                     }
                     
-                    // Rapid Change in Wind Angle
-                    if (fields.getWindAngle() - state.getWindAngle() > 30 | 
-                            state.getWindAngle() - fields.getWindAngle() > 30) {
-                        am.setType(0);
-                        am.setWhat(2);
+                    // CriticalMax in WindSpeed
+                    if (fields.getWindSpeed() > criticalMaxWindSpeed) {
+                        am.setAlertType(1);
+                        am.setSensor(1);
                         AlertMessageQueue.add(am);
                     }
                     
-                    // Critical Value in WindSpeed
-                    if (fields.getWindSpeed() > 30) {
-                        am.setType(1);
-                        am.setWhat(1);
+                    // CriticalMin in WindSpeed
+                    if (fields.getWindSpeed() < criticalMinWindSpeed) {
+                        am.setAlertType(2);
+                        am.setSensor(1);
                         AlertMessageQueue.add(am);
                     }
                     
-                    // Critical Value in WindAngle
-                    if (fields.getWindAngle() > 50) {
-                        am.setType(1);
-                        am.setWhat(2);
+                    // CriticalChange in Wind Angle
+                    if (fields.getWindAngle() - state.getWindAngle() > criticalChangeWindAngle | 
+                            state.getWindAngle() - fields.getWindAngle() > criticalChangeWindAngle) {
+                        am.setAlertType(0);
+                        am.setSensor(2);
                         AlertMessageQueue.add(am);
                     }
+                    
                     
                 }
           
@@ -138,23 +160,20 @@ public class MessageDecoder implements Runnable {
                 break;
             
             /** 
-             * If a packet is of type BoatHeading, png = 126720
+             * If a packet is of type BoatHeading, png = 127250
              * updates the current value of Heading, Deviation, and Variation
              * generates alert messages if a boat is in critical state
              */     
-            case 126720:
-                
-                // Alerts
+            case 127250:
                 if (!first_h) {
                     
-                    // Rapid Change
-                    if (fields.getHeading() - state.getHeading() > 20 | state.getHeading() - fields.getHeading() > 20) {
-                        am.setType(0);
-                        am.setWhat(3);
+                    // CriticalChange in Heading
+                    if (fields.getHeading() - state.getHeading() > criticalChangeHeading | 
+                    state.getHeading() - fields.getHeading() > criticalChangeHeading) {
+                        am.setAlertType(0);
+                        am.setSensor(3);
                         AlertMessageQueue.add(am);
                     }
-                    
-                    // No Critical Value Alert
                 }
           
                 state.setHeading(fields.getHeading());
@@ -168,20 +187,28 @@ public class MessageDecoder implements Runnable {
              * generates alert messages if a boat is in critical state
              */ 
             case 128259:
+                
                 if (!first_s) {
                     
-                    // Rapid Change
-                    if (fields.getSpeedWaterReferenced() - state.getSpeedWaterReferenced() > 20 | 
-                            state.getSpeedWaterReferenced() - fields.getSpeedWaterReferenced() > 20) {
-                        am.setType(0);
-                        am.setWhat(4);
+                    // CriticalChange in Boat Speed
+                    if (fields.getSpeedWaterReferenced() - state.getSpeedWaterReferenced() > criticalChangeSpeed | 
+                            state.getSpeedWaterReferenced() - fields.getSpeedWaterReferenced() > criticalChangeSpeed) {
+                        am.setAlertType(0);
+                        am.setSensor(4);
                         AlertMessageQueue.add(am);
                     }
                     
-                    // Critical Value
-                    if (fields.getSpeedWaterReferenced() > 50) {
-                        am.setType(1);
-                        am.setWhat(4);
+                    // CriticalMax in Boat Speed
+                    if (fields.getSpeedWaterReferenced() > criticalMaxBoatSpeed) {
+                        am.setAlertType(1);
+                        am.setSensor(4);
+                        AlertMessageQueue.add(am);
+                    }
+                    
+                    // CriticalMin in Boat Speed
+                    if (fields.getSpeedWaterReferenced() < criticalMinBoatSpeed) {
+                        am.setAlertType(2);
+                        am.setSensor(4);
                         AlertMessageQueue.add(am);
                     }
                 }

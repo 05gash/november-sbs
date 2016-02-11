@@ -65,7 +65,12 @@ public class BoatDataOutputter {
      */
     private void outputWindPacket() {
         WorldModel worldModel = simulator.getWorldModel();
-        Packet m = DataGenerator.generateWindDataPacket(worldModel.getWindSpeed(), worldModel.getWindAngle());
+        float angle = worldModel.getWindAngle() - worldModel.getHeading();
+        if (angle < 0f)
+            angle += 360.0f;
+        if (angle > 360f)
+            angle -= 360.0f;
+        Packet m = DataGenerator.generateWindDataPacket(worldModel.getWindSpeed(), angle);
         simulator.queueMessage(m);
     }
 

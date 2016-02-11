@@ -28,5 +28,18 @@ public class ButtonsListener {
 		buttons[0] = gpio.provisionDigitalInputPin(RaspiPin.GPIO_00,
 			PinPullResistance.PULL_DOWN);
 		buttons[0].addListener(new PinListener(ButtonNames.WIND_SPEED));
+
+		buttons[1] = gpio.provisionDigitalInputPin(RaspiPin.GPIO_01,
+                        PinPullResistance.PULL_DOWN);
+                buttons[1].addListener(new PinListener(ButtonNames.WIND_DIRECTION));
+
+		buttons[2] = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02,
+                        PinPullResistance.PULL_DOWN);
+                buttons[2].addListener(new PinListener(ButtonNames.BOAT_SPEED));
+
+		buttons[3] = gpio.provisionDigitalInputPin(RaspiPin.GPIO_03,
+                        PinPullResistance.PULL_DOWN);
+                buttons[3].addListener(new PinListener(ButtonNames.COMPASS_HEADING));
 	}
+
 }

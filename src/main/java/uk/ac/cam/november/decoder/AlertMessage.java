@@ -2,24 +2,24 @@ package uk.ac.cam.november.decoder;
 
 public class AlertMessage {
 
-    private int type; // 0 - change; 1 - value
-    private int what; // 0 - WD; 1 - WindSpeed; 2 - WindAngle; 3 - BoatHeading;
+    private int alertType; // 0 - change; 1 - max value, 2- min value
+    private int sensor; // 0 - WaterDepth; 1 - WindSpeed; 2 - WindAngle; 3 - BoatHeading;
                       // 4 - BoatSpeed
 
-    public int getType() {
-        return type;
+    public int getAlertType() {
+        return alertType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setAlertType(int alertType) {
+        this.alertType = alertType;
     }
 
-    public int getWhat() {
-        return what;
+    public int getSensor() {
+        return sensor;
     }
 
-    public void setWhat(int what) {
-        this.what = what;
+    public void setSensor(int sensor) {
+        this.sensor = sensor;
     }
 
 }

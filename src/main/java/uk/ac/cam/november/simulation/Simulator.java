@@ -1,11 +1,9 @@
 package uk.ac.cam.november.simulation;
 
-import java.util.Queue;
-
-import com.google.common.collect.EvictingQueue;
-import com.google.common.collect.Queues;
+import java.io.IOException;
 
 import uk.ac.cam.november.packet.Packet;
+import uk.ac.cam.november.simulation.network.SimulatorClient;
 import uk.ac.cam.november.simulation.ui.SimulatorUI;
 
 /**
@@ -20,7 +18,8 @@ public class Simulator {
     private SimulatorUI ui;
     private WorldModel worldModel;
     private BoatDataOutputter dataOutput;
-    private Queue<Packet> messageQueue;
+
+    private SimulatorClient netClient;
 
     private Thread runThread;
 
@@ -29,12 +28,18 @@ public class Simulator {
      * {@link uk.ac.cam.november.simulation.ui.SimulatorUI SimulatorUI} user
      * interface but does not show it.
      */
-    public Simulator() {
+    public Simulator(String serverAddress) {
         worldModel = new WorldModel();
         dataOutput = new BoatDataOutputter(this);
         ui = new SimulatorUI(this);
-        EvictingQueue<Packet> pq = EvictingQueue.create(300);
-        messageQueue = Queues.synchronizedQueue(pq);
+
+        try {
+            netClient = new SimulatorClient(serverAddress);
+        } catch (IOException e) {
+            System.err.println("Failed to open connection to simulator server");
+            System.err.println("ERROR: " + e.getMessage());
+            System.exit(1);
+        }
 
         runThread = new Thread(new Runnable() {
             @Override
@@ -52,7 +57,7 @@ public class Simulator {
                     }
                 }
             }
-        });
+        }, "Simulator-UI");
     }
 
     /**
@@ -100,25 +105,14 @@ public class Simulator {
     }
 
     /**
-     * Returns the message queue used to retrieve messages.
-     * 
-     * The returned queue is a thread-safe circular buffer of size 300.
-     * 
-     * @return Queue<Packet> the message queue.
-     */
-    public Queue<Packet> getMessageQueue() {
-        return messageQueue;
-    }
-
-    /**
      * Adds a message to the output queue.
      * 
      * @param p
      *            The message to add.
      */
     public void queueMessage(Packet p) {
-        System.out.println("Queueing a " + p.getDescription() + " packet at " + p.getTimestamp());
-        messageQueue.add(p);
+        System.out.println("Sending a " + p.getDescription() + " packet at " + p.getTimestamp());
+        netClient.sendPacket(p);
     }
 
     /**
@@ -128,12 +122,6 @@ public class Simulator {
      */
     public Thread getThread() {
         return runThread;
-    }
-
-    public static void main(String[] args) {
-        Simulator sim = new Simulator();
-        sim.showUI();
-        sim.getThread().run();
     }
 
 }
