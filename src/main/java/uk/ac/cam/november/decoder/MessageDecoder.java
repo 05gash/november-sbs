@@ -5,30 +5,39 @@ import java.util.Queue;
 import uk.ac.cam.november.packet.Fields;
 import uk.ac.cam.november.packet.Packet;
 
+/**
+ * This class initializes the current Boat State, composed of values of:
+ * --> From Water Depth Sensor: Water Depth and WaterDepthOffset;
+ * --> From Wind Sensor: WindSpeed and WindAngle;
+ * --> From Boat Speed Sensor: BoatSpeedReferenced; 
+ * --> From Boat Heading Sensor: BoatHeading, BoatHeadingDerivation, BoatHeadingVariation.
+ * 
+ * Receives decoded NMEA packets and updates the current Boat State
+ * 
+ * Generates 4 types of alerts and puts them onto AlertMessageQueue:
+ * --> type0: the state of the boat has critically changed: CriticalChange alert;
+ * --> type1: a value of the state of the boat is critically large: CriticalMax value alert;
+ * --> type2: a value of the state of the boat is critically small: CriticalMin value alert;
+ * --> type4: the module stopped receiving packets for some time (stale data): TimeOut alert.
+ * 
+ * @author Marie Menshova
+ *
+ */
+
 public class MessageDecoder implements Runnable {
     
+    /** Values describing critical state of the system */
     int criticalMinDepth = 15;
     int criticalMaxDepth = 1000;
-    int criticalChangeDepth = 50;
-    
+    int criticalChangeDepth = 50;   
     int criticalMinWindSpeed = 0;
     int criticalMaxWindSpeed = 0;
     int criticalChangeWindSpeed = 0;
     int criticalChangeWindAngle = 0;
-    
     int criticalChangeHeading = 0;
-    
     int criticalMinBoatSpeed = 0;
     int criticalMaxBoatSpeed = 0;
-    int criticalChangeSpeed = 0;
-
-    
-    /*
-     * Water Depth "128267"
-     * Wind Data "130306"  -- both Wind Direction and Wind Speed
-     * heading "126720"
-     * Boat Speed "128259"
-     */      
+    int criticalChangeSpeed = 0;     
     
     Queue<Packet> MessageQueue;
     Queue<AlertMessage> AlertMessageQueue;
@@ -47,6 +56,7 @@ public class MessageDecoder implements Runnable {
     @Override
     public void run() {
 
+        /** Initial values of the boat state are zeros */
         state.setDepth(0);
         state.setOffset(0);
         state.setWindSpeed(0);
@@ -63,17 +73,19 @@ public class MessageDecoder implements Runnable {
         
         
         while (true) {
+            /** Receive a packet from NMEA input */
             Packet packet = MessageQueue.poll();
+            
             if(packet == null){
                 try {
                     Thread.sleep(1);
                 } catch (InterruptedException e) { }
                 continue;
             }
+            
             int packetID = packet.getPgn();
             Fields fields = (Fields) packet.getFields();
-            
-            
+
             switch (packetID) {
             
             
