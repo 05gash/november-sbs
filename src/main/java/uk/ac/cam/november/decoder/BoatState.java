@@ -1,5 +1,13 @@
 package uk.ac.cam.november.decoder;
 
+/**
+ * This class defines a Boat State. It's attributes come from sensors: 
+ * Water Depth sensor, Wind Data sensor, Boat Heading sensor, and Boat Speed sensor
+ * 
+ * @author Marie Menshova
+ *
+ */
+
 public class BoatState {
     
     private int SID;

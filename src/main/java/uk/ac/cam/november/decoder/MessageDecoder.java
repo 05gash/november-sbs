@@ -18,7 +18,7 @@ import uk.ac.cam.november.packet.Packet;
  * --> type0: the state of the boat has critically changed: CriticalChange alert;
  * --> type1: a value of the state of the boat is critically large: CriticalMax value alert;
  * --> type2: a value of the state of the boat is critically small: CriticalMin value alert;
- * --> type4: the module stopped receiving packets for some time (stale data): TimeOut alert.
+ * --> type4: the module stopped receiving packets for more than 10s (stale data): TimeOut alert.
  * 
  * @author Marie Menshova
  *
@@ -27,17 +27,25 @@ import uk.ac.cam.november.packet.Packet;
 public class MessageDecoder implements Runnable {
     
     /** Values describing critical state of the system */
-    int criticalMinDepth = 15;
-    int criticalMaxDepth = 1000;
-    int criticalChangeDepth = 50;   
-    int criticalMinWindSpeed = 0;
-    int criticalMaxWindSpeed = 0;
-    int criticalChangeWindSpeed = 0;
-    int criticalChangeWindAngle = 0;
-    int criticalChangeHeading = 0;
-    int criticalMinBoatSpeed = 0;
-    int criticalMaxBoatSpeed = 0;
-    int criticalChangeSpeed = 0;     
+    int criticalMinDepth = 20;
+    int criticalMaxDepth = 80;
+    int criticalChangeDepth = 40;   
+    int criticalMinWindSpeed = 20;
+    int criticalMaxWindSpeed = 75;
+    int criticalChangeWindSpeed = 40;
+    int criticalChangeWindAngle = 40;
+    int criticalChangeHeading = 40;
+    int criticalMinBoatSpeed = 4;
+    int criticalMaxBoatSpeed = 20;
+    int criticalChangeSpeed = 10;
+    
+    long lastTimeD;
+    long lastTimeWS;
+    long lastTimeWA;
+    long lastTimeH;
+    long lastTimeS;
+    long curTime;
+    long timeOutTime = 10000000000L;
     
     Queue<Packet> MessageQueue;
     Queue<AlertMessage> AlertMessageQueue;
@@ -97,6 +105,8 @@ public class MessageDecoder implements Runnable {
              */ 
             case 128267:
                 
+                lastTimeD = System.nanoTime();
+                
                 /** If it is the first message of this type, NO criticalChange alert */
                 if (!first_d) {
                 
@@ -127,6 +137,8 @@ public class MessageDecoder implements Runnable {
                 state.setDepth(fields.getDepth());
                 state.setOffset(fields.getOffset());
                 
+                
+                
                 first_d = false;
                 
                 break;
@@ -138,6 +150,9 @@ public class MessageDecoder implements Runnable {
              * updates the current value of Speed and Angle
              */   
             case 130306:
+                
+                lastTimeWS = System.nanoTime();
+                lastTimeWA = System.nanoTime();
                 
                 /** If it is the first message of this type, NO criticalChange alert */
                 if (!first_w) {
@@ -189,6 +204,8 @@ public class MessageDecoder implements Runnable {
              */        
             case 127250:
                 
+                lastTimeH = System.nanoTime();
+                
                 /** If it is the first message of this type, NO criticalChange alert */
                 if (!first_h) {
                     
@@ -217,6 +234,8 @@ public class MessageDecoder implements Runnable {
              * updates the current value of Speed and Angle
              */   
             case 128259:
+                
+                lastTimeS = System.nanoTime();
                 
                 /** If it is the first message of this type, NO criticalChange alert */
                 if (!first_s) {
@@ -254,6 +273,43 @@ public class MessageDecoder implements Runnable {
             default:
                     // "CANNOT DECODE A MESSAGE!"
                     break;
+            }
+            
+            curTime = System.nanoTime();
+            
+            long diffD = curTime - lastTimeD;
+            if (diffD > timeOutTime) {
+                am.setAlertType(3);
+                am.setSensor(0);
+                AlertMessageQueue.add(am);
+            }
+            
+            long diffWS = curTime - lastTimeWS;
+            if (diffWS > timeOutTime) {
+                am.setAlertType(3);
+                am.setSensor(1);
+                AlertMessageQueue.add(am);
+            }
+            
+            long diffWA = curTime - lastTimeWA;
+            if (diffWA > timeOutTime) {
+                am.setAlertType(3);
+                am.setSensor(2);
+                AlertMessageQueue.add(am);
+            }
+            
+            long diffH = curTime - lastTimeH;
+            if (diffH > timeOutTime) {
+                am.setAlertType(3);
+                am.setSensor(3);
+                AlertMessageQueue.add(am);
+            }
+            
+            long diffS = curTime - lastTimeS;
+            if (diffS > timeOutTime) {
+                am.setAlertType(3);
+                am.setSensor(4);
+                AlertMessageQueue.add(am);
             }
          
         }
