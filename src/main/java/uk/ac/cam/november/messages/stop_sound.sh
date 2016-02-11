@@ -1,2 +1,1 @@
-killall -9 "$1"
-
+killall $1
