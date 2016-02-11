@@ -105,6 +105,7 @@ public class MessageDecoder implements Runnable {
              */ 
             case 128267:
                 
+                /** Initializes the last time since WaterDepth packet was received */
                 lastTimeD = System.nanoTime();
                 
                 /** If it is the first message of this type, NO criticalChange alert */
@@ -151,6 +152,7 @@ public class MessageDecoder implements Runnable {
              */   
             case 130306:
                 
+                /** Initializes the last time since WindData packet was received */
                 lastTimeWS = System.nanoTime();
                 lastTimeWA = System.nanoTime();
                 
@@ -204,6 +206,7 @@ public class MessageDecoder implements Runnable {
              */        
             case 127250:
                 
+                /** Initializes the last time since BoatHeading packet was received */
                 lastTimeH = System.nanoTime();
                 
                 /** If it is the first message of this type, NO criticalChange alert */
@@ -235,6 +238,7 @@ public class MessageDecoder implements Runnable {
              */   
             case 128259:
                 
+                /** Initializes the last time since BoatSpeed packet was received */
                 lastTimeS = System.nanoTime();
                 
                 /** If it is the first message of this type, NO criticalChange alert */
@@ -277,6 +281,7 @@ public class MessageDecoder implements Runnable {
             
             curTime = System.nanoTime();
             
+            /** Generates an alert of type TimeOut of WaterDepth if the data has been stale for 10s */
             long diffD = curTime - lastTimeD;
             if (diffD > timeOutTime) {
                 am.setAlertType(3);
@@ -284,6 +289,7 @@ public class MessageDecoder implements Runnable {
                 AlertMessageQueue.add(am);
             }
             
+            /** Generates an alert of type TimeOut of WindSpeed if the data has been stale for 10s */
             long diffWS = curTime - lastTimeWS;
             if (diffWS > timeOutTime) {
                 am.setAlertType(3);
@@ -291,6 +297,7 @@ public class MessageDecoder implements Runnable {
                 AlertMessageQueue.add(am);
             }
             
+            /** Generates an alert of type TimeOut of WindAngle if the data has been stale for 10s */
             long diffWA = curTime - lastTimeWA;
             if (diffWA > timeOutTime) {
                 am.setAlertType(3);
@@ -298,6 +305,7 @@ public class MessageDecoder implements Runnable {
                 AlertMessageQueue.add(am);
             }
             
+            /** Generates an alert of type TimeOut of BoatHeading if the data has been stale for 10s */
             long diffH = curTime - lastTimeH;
             if (diffH > timeOutTime) {
                 am.setAlertType(3);
@@ -305,6 +313,7 @@ public class MessageDecoder implements Runnable {
                 AlertMessageQueue.add(am);
             }
             
+            /** Generates an alert of type TimeOut of BoatSpeed if the data has been stale for 10s */
             long diffS = curTime - lastTimeS;
             if (diffS > timeOutTime) {
                 am.setAlertType(3);
