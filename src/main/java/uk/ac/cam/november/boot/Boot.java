@@ -29,6 +29,8 @@ class Boot {
   			}
    		});
 
+	SpeechSynthesis.play("Booting Up");
+
         boolean runSimServer = false;
 
         if (args.length > 0) {
@@ -57,8 +59,6 @@ class Boot {
                 System.exit(1);
             }
         }
-
-        SpeechSynthesis.play("Booting Up");
 
         LogConfig.setup();
 
@@ -95,5 +95,6 @@ class Boot {
         for (;;) {
             Thread.sleep(A_LOT_OF_TIME);
         }
+
     }
 }
