@@ -75,53 +75,62 @@ public class MessageDecoder implements Runnable {
             
             
             switch (packetID) {
-      
+            
+            
             /** 
-             * If a packet is of type WaterDepth, png = 128267
-             * updates the current value of Depth and Offset
-             * generates alert messages if a boat is in critical state
-             */
+             * If a packet is of type WaterDepth, png = 128267, 
+             * generates Alert Messages and puts them on AlertMessageQueue, of types: 
+             * no data (timeout), criticalChange, criticalMax or criticalMin values
+             * updates the current value of Speed and Angle
+             */ 
             case 128267:
-              
+                
+                /** If it is the first message of this type, NO criticalChange alert */
                 if (!first_d) {
                 
-                    // CriticalChange
+                    /** Generates an alert of type CriticalChange in Water Depth */
                     if (fields.getDepth() - state.getDepth() > criticalChangeDepth | 
                             state.getDepth() - state.getDepth() > criticalChangeDepth) {
                         am.setAlertType(0);
                         am.setSensor(0);
                         AlertMessageQueue.add(am);
                     }
-                    
-                    // CriticalMax
-                    if (fields.getDepth() > criticalMaxDepth) {
-                        am.setAlertType(1);
-                        am.setSensor(0);
-                        AlertMessageQueue.add(am);
-                    }
-                    
-                    // CriticalMin
-                    if (fields.getDepth() < criticalMinDepth) {
-                        am.setAlertType(2);
-                        am.setSensor(0);
-                        AlertMessageQueue.add(am);
-                    }
                 }
                 
+                /** Generates an alert of type CriticalMax in Water Depth */
+                if (fields.getDepth() > criticalMaxDepth) {
+                    am.setAlertType(1);
+                    am.setSensor(0);
+                    AlertMessageQueue.add(am);
+                }
+                
+                /** Generates an alert of type CriticalMin in Water Depth */
+                if (fields.getDepth() < criticalMinDepth) {
+                    am.setAlertType(2);
+                    am.setSensor(0);
+                    AlertMessageQueue.add(am);
+                }
+                
+                /** Updates current values of Water Depth and Offset */   
                 state.setDepth(fields.getDepth());
                 state.setOffset(fields.getOffset());
+                
+                first_d = false;
                 
                 break;
             
             /** 
-             * If a packet is of type WindData, png = 130306
+             * If a packet is of type WindData, png = 130306, 
+             * generates Alert Messages and puts them on AlertMessageQueue, of types: 
+             * no data (timeout), criticalChange, criticalMax or criticalMin values
              * updates the current value of Speed and Angle
-             * generates alert messages if a boat is in critical state
              */   
             case 130306:
-                if (!first_w) {
                 
-                    // CriticalChange in Wind Speed
+                /** If it is the first message of this type, NO criticalChange alert */
+                if (!first_w) {
+                    
+                    /** Generates an alert of type CriticalChange in Wind Speed */
                     if (fields.getWindSpeed() - state.getWindSpeed() > criticalChangeWindSpeed | 
                             state.getWindSpeed() - fields.getWindSpeed() > criticalChangeWindSpeed) {
                         am.setAlertType(0);
@@ -129,45 +138,49 @@ public class MessageDecoder implements Runnable {
                         AlertMessageQueue.add(am);
                     }
                     
-                    // CriticalMax in WindSpeed
-                    if (fields.getWindSpeed() > criticalMaxWindSpeed) {
-                        am.setAlertType(1);
-                        am.setSensor(1);
-                        AlertMessageQueue.add(am);
-                    }
-                    
-                    // CriticalMin in WindSpeed
-                    if (fields.getWindSpeed() < criticalMinWindSpeed) {
-                        am.setAlertType(2);
-                        am.setSensor(1);
-                        AlertMessageQueue.add(am);
-                    }
-                    
-                    // CriticalChange in Wind Angle
+                    /** Generates an alert of type CriticalChange in Wind Angle */
                     if (fields.getWindAngle() - state.getWindAngle() > criticalChangeWindAngle | 
                             state.getWindAngle() - fields.getWindAngle() > criticalChangeWindAngle) {
                         am.setAlertType(0);
                         am.setSensor(2);
                         AlertMessageQueue.add(am);
-                    }
-                    
-                    
+                    }    
                 }
-          
+                
+                /** Generates an alert of type CriticalMax in WindSpeed */
+                if (fields.getWindSpeed() > criticalMaxWindSpeed) {
+                    am.setAlertType(1);
+                    am.setSensor(1);
+                    AlertMessageQueue.add(am);
+                }
+                
+                /** Generates an alert of type CriticalMin in WindSpeed */
+                if (fields.getWindSpeed() < criticalMinWindSpeed) {
+                    am.setAlertType(2);
+                    am.setSensor(1);
+                    AlertMessageQueue.add(am);
+                }
+                
+                /** Updates current values of Wind Speed and Wind Angle */               
                 state.setWindSpeed(fields.getWindSpeed());
                 state.setWindAngle(fields.getWindAngle());
+                
+                first_w = false;
                 
                 break;
             
             /** 
-             * If a packet is of type BoatHeading, png = 127250
-             * updates the current value of Heading, Deviation, and Variation
-             * generates alert messages if a boat is in critical state
-             */     
+             * If a packet is of type BoatHeading, png = 127250, 
+             * generates Alert Messages and puts them on AlertMessageQueue, of types: 
+             * no data (timeout), criticalChange
+             * updates the current value of Speed and Angle
+             */        
             case 127250:
+                
+                /** If it is the first message of this type, NO criticalChange alert */
                 if (!first_h) {
                     
-                    // CriticalChange in Heading
+                    /** Generates an alert of type CriticalChange in Heading */
                     if (fields.getHeading() - state.getHeading() > criticalChangeHeading | 
                     state.getHeading() - fields.getHeading() > criticalChangeHeading) {
                         am.setAlertType(0);
@@ -175,45 +188,55 @@ public class MessageDecoder implements Runnable {
                         AlertMessageQueue.add(am);
                     }
                 }
-          
+                
+                /** Updates current values of Heading, Deviation, and Variation */         
                 state.setHeading(fields.getHeading());
                 state.setDeviation(fields.getDeviation());
                 state.setVariation(fields.getVariation());
+                
+                first_h = false;
+                
                 break;
                 
             /** 
-             * If a packet is of type BoatSpeed, png = 128259
-             * updates the current value of Speed
-             * generates alert messages if a boat is in critical state
-             */ 
+             * If a packet is of type BoatSpeed, png = 128259, 
+             * generates Alert Messages and puts them on AlertMessageQueue, of types: 
+             * no data (timeout), criticalChange, criticalMax or criticalMin values
+             * updates the current value of Speed and Angle
+             */   
             case 128259:
                 
+                /** If it is the first message of this type, NO criticalChange alert */
                 if (!first_s) {
                     
-                    // CriticalChange in Boat Speed
+                    /** Generates an alert of type CriticalChange in BoatSpeed */
                     if (fields.getSpeedWaterReferenced() - state.getSpeedWaterReferenced() > criticalChangeSpeed | 
                             state.getSpeedWaterReferenced() - fields.getSpeedWaterReferenced() > criticalChangeSpeed) {
                         am.setAlertType(0);
                         am.setSensor(4);
                         AlertMessageQueue.add(am);
                     }
-                    
-                    // CriticalMax in Boat Speed
-                    if (fields.getSpeedWaterReferenced() > criticalMaxBoatSpeed) {
-                        am.setAlertType(1);
-                        am.setSensor(4);
-                        AlertMessageQueue.add(am);
-                    }
-                    
-                    // CriticalMin in Boat Speed
-                    if (fields.getSpeedWaterReferenced() < criticalMinBoatSpeed) {
-                        am.setAlertType(2);
-                        am.setSensor(4);
-                        AlertMessageQueue.add(am);
-                    }
                 }
-          
+                
+                /** Generates an alert of type CriticalMax in BoatSpeed */
+                if (fields.getSpeedWaterReferenced() > criticalMaxBoatSpeed) {
+                    am.setAlertType(1);
+                    am.setSensor(4);
+                    AlertMessageQueue.add(am);
+                }
+                
+                /** Generates an alert of type CriticalMin in BoatSpeed */
+                if (fields.getSpeedWaterReferenced() < criticalMinBoatSpeed) {
+                    am.setAlertType(2);
+                    am.setSensor(4);
+                    AlertMessageQueue.add(am);
+                }
+                
+                /** Updates current values of BoatSpeed */ 
                 state.setSpeedWaterReferenced(fields.getSpeedWaterReferenced());
+                
+                first_s = false;
+                
                 break;
                 
             default:
