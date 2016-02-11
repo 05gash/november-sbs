@@ -7,31 +7,29 @@
 package uk.ac.cam.november.buttons;
 
 import uk.ac.cam.november.messages.MessageFormatter;
-import uk.ac.cam.november.messages.SpeechSynthesis;
-
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 public class PinListener implements GpioPinListenerDigital {
 
-	// Corresponds to the button that this instance of class is listening to.
-	final private String buttonName;
+    // Corresponds to the button that this instance of class is listening to.
+    final private String buttonName;
 
-	public PinListener(final String buttonNameInput) {
-		buttonName = buttonNameInput;
-	}
-	
-	@Override
-	public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
+    public PinListener(final String buttonNameInput) {
+        buttonName = buttonNameInput;
+    }
 
-		if (event.getState().isHigh()) {
-				// TODO(ml693): this message is just for debugging purposes.
-				// Remove after the system is fully tested.
-				System.out.println(buttonName + " button has just been pressed.");
+    @Override
+    public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
 
-		        	MessageFormatter.handleButtonPress(buttonName);
-		}
+        if (event.getState().isHigh()) {
+            // TODO(ml693): this message is just for debugging purposes.
+            // Remove after the system is fully tested.
+            System.out.println(buttonName + " button has just been pressed.");
 
-	}
-	
+            MessageFormatter.handleButtonPress(buttonName);
+        }
+
+    }
+
 }

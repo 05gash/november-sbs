@@ -15,76 +15,85 @@ import uk.ac.cam.november.simulation.network.SimulatorServer;
 
 class Boot {
 
-	public static final int A_LOT_OF_TIME = 1000000000;
+    public static final int A_LOT_OF_TIME = 1000000000;
 
-	public static void main(final String[] args) throws Exception {
-	    
-	    boolean runSimServer = false;
-	    
-	    if(args.length > 0) {
-	        if(args[0].equalsIgnoreCase("simulator")){
-	            if(args.length > 1){
-	                if(args[1].equalsIgnoreCase("client")){
-	                    if(args.length == 3){
-	                        // Launch the simulator client and return
-	                        Simulator sim = new Simulator(args[2]);
-	                        sim.showUI();
-	                        sim.getThread().start();
-	                        return;
-	                    }else{
-	                        System.err.println("Usage: sbs simulator client <server_address>");
-	                        System.exit(1);
-	                    }
-	                }else{
-	                    System.err.println("Usage: sbs simulator [client <server_address>]");
-	                    System.exit(1);
-	                }
-	            }else{
-	                runSimServer = true;
-	            }
-	        }else{
-	            System.err.println("Usage: sbs [simulator [client <server_address>]]");
-	            System.exit(1);
-	        }
-	    }
-	    
-		SpeechSynthesis.play("Booting Up");
-		
-		LogConfig.setup();
+    public static void main(final String[] args) throws Exception {
 
-		// TODO(ml693): after message "BootingUp" is loudly said,
-		// it takes a few seconds for the system to boot
-		// The system not instantly starts reacting to the buttons.
-		// Need to figure out why the system is so slow.
-	
-				// Creating a class that will listen to the buttons being clicked.
-		        try{
-		            new ButtonsListener();
-		        }catch(UnsatisfiedLinkError e){
-		            System.err.println("Failed to load Pi4J library.");
-		            System.err.println("Most likely you're not on a RaspberryPi.");
-		        }
-				MessageDecoder messageDec = null;
-				
-				if (runSimServer) {
-				    SimulatorServer sim = new SimulatorServer();
-				    messageDec = new MessageDecoder(sim.getMessageQueue());
-				} else {
-				    CanBoatFacade canboat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
-				    messageDec = new MessageDecoder(canboat.getPacketQueue());
-				}
-				
-				AlertGenerator alertGen = new AlertGenerator();
-				alertGen.setMd(messageDec);
-				
-				MessageFormatter.setDecoder(messageDec);
-				
-				Thread decoderThread = new Thread(messageDec, "Message-Decoder");
-				decoderThread.start();
-				
+	// Making sure that if one thread crashes,
+	// then the whole JVM will shut down.
+	Thread.setDefaultUncaughtExceptionHandler(new Thread.
+   		UncaughtExceptionHandler() {
+   			public void uncaughtException(Thread t, Throwable e) {
+   				System.out.println(t + " throws exception: " + e);
+				System.exit(1);
+  			}
+   		});
 
-				for (;;) {
-					Thread.sleep(A_LOT_OF_TIME);
-				}
-	}	
+        boolean runSimServer = false;
+
+        if (args.length > 0) {
+            if (args[0].equalsIgnoreCase("simulator")) {
+                if (args.length > 1) {
+                    if (args[1].equalsIgnoreCase("client")) {
+                        if (args.length == 3) {
+                            // Launch the simulator client and return
+                            Simulator sim = new Simulator(args[2]);
+                            sim.showUI();
+                            sim.getThread().start();
+                            return;
+                        } else {
+                            System.err.println("Usage: sbs simulator client <server_address>");
+                            System.exit(1);
+                        }
+                    } else {
+                        System.err.println("Usage: sbs simulator [client <server_address>]");
+                        System.exit(1);
+                    }
+                } else {
+                    runSimServer = true;
+                }
+            } else {
+                System.err.println("Usage: sbs [simulator [client <server_address>]]");
+                System.exit(1);
+            }
+        }
+
+        SpeechSynthesis.play("Booting Up");
+
+        LogConfig.setup();
+
+        // TODO(ml693): after message "BootingUp" is loudly said,
+        // it takes a few seconds for the system to boot
+        // The system not instantly starts reacting to the buttons.
+        // Need to figure out why the system is so slow.
+
+        // Creating a class that will listen to the buttons being clicked.
+        try {
+            new ButtonsListener();
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("Failed to load Pi4J library.");
+            System.err.println("Most likely you're not on a RaspberryPi.");
+        }
+        MessageDecoder messageDec = null;
+
+        if (runSimServer) {
+            SimulatorServer sim = new SimulatorServer();
+            messageDec = new MessageDecoder(sim.getMessageQueue());
+        } else {
+            CanBoatFacade canboat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
+            messageDec = new MessageDecoder(canboat.getPacketQueue());
+        }
+
+        AlertGenerator alertGen = new AlertGenerator();
+        alertGen.setMd(messageDec);
+
+        MessageFormatter.setDecoder(messageDec);
+
+        Thread decoderThread = new Thread(messageDec, "Message-Decoder");
+        decoderThread.start();
+
+        for (;;) {
+            Thread.sleep(A_LOT_OF_TIME);
+        }
+    }
 }
