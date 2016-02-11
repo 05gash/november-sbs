@@ -3,7 +3,6 @@ package uk.ac.cam.november.messages;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import uk.ac.cam.november.alerts.AlertMessage;
 import uk.ac.cam.november.buttons.ButtonNames;
 import uk.ac.cam.november.decoder.BoatState;
 import uk.ac.cam.november.decoder.MessageDecoder;
@@ -56,7 +55,7 @@ public class MessageFormatter {
     }
 
     
-    public static void handleAlert(AlertMessage alert)
+ /*   public static void handleAlert(AlertMessage alert)
     {
         
         logger.log(Level.WARNING, "handlerAlert not implemented yet");
@@ -73,6 +72,7 @@ public class MessageFormatter {
         
         
     }
+*/
 
     
     private static float pollStateDecoder(String buttonName)
@@ -112,7 +112,9 @@ public class MessageFormatter {
      */
     private static String formatMessage(float dataValue, String buttonName)
     {
-        String data = String.format("%.2f", dataValue);
+        //Only reads a decimal point if less than 10
+        int l = dataValue > 10 ? 0 : 1;
+        String data = String.format("%."+ l  +"f",dataValue);
         
         switch(buttonName)
         {
@@ -135,7 +137,6 @@ public class MessageFormatter {
         }
         
     }
-    
-    
+
     
 }
