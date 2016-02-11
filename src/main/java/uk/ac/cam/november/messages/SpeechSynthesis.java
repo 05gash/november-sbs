@@ -17,11 +17,11 @@ public class SpeechSynthesis {
 
     private static Process curr_speech = null;
     private static String wavdir =
-        SpeechSynthesis.class.getResource("/messages/speech.wav").toString();
+        "temp/speech.wav";
     private static String playdir =
-        SpeechSynthesis.class.getResource("/messages/play_sound.sh").toString();
+        "temp/play_sound.sh";
     private static String stopdir =
-        SpeechSynthesis.class.getResource("/messages/stop_sound.sh").toString();
+        "temp/stop_sound.sh";
 
     // METHODS
 
@@ -53,7 +53,10 @@ public class SpeechSynthesis {
     public static void stop() {
         if (curr_speech != null) {
             try {
-                (new ProcessBuilder(stopdir, "pico2wave")).start();
+                Process p = (new ProcessBuilder(stopdir, "pico2wave")).start();
+                while (p.isAlive()) {
+                    ;
+                }
                 (new ProcessBuilder(stopdir, "aplay")).start();
             } catch (IOException e) {
                 System.err.println("[Error in SpeechSynthesis]");
@@ -71,7 +74,7 @@ public class SpeechSynthesis {
      */
      public static boolean anythingPlaying() {
         return curr_speech != null && curr_speech.isAlive();
-    }
+     }
 }
 
 
