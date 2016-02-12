@@ -25,6 +25,14 @@ public class Fields {
     private float Variation;
     private String Reference;
 
+
+    // 3 fields for GPS coordinates
+    private float Latitude;
+    private float Longtitude;
+    private float Altitude;
+
+
+
     public int getSID() {
         return SID;
     }
@@ -168,5 +176,29 @@ public class Fields {
 
     public void setReference(String reference) {
         Reference = reference;
+    }
+
+    public float getLatitude() {
+        return Latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        Latitude = latitude;
+    }
+
+    public float getLongtitude() {
+        return Longtitude;
+    }
+
+    public void setLongtitude(float longtitude) {
+        Longtitude = longtitude;
+    }
+
+    public float getAltitude() {
+        return Altitude;
+    }
+
+    public void setAltitude(float altitude) {
+        Altitude = altitude;
     }
 }

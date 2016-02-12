@@ -19,6 +19,9 @@ public class BoatState {
     private float Heading;
     private float Deviation;
     private float Variation;
+    private float Latitude;
+    private float Longtitude;
+    private float Altitude;
     
     public int getSID() {
         return SID;
@@ -73,5 +76,29 @@ public class BoatState {
     }
     public void setVariation(float variation) {
         Variation = variation;
+    }
+
+    public float getLatitude() {
+        return Latitude;
+    }
+
+    public void setLatitude(float latitude) {
+        Latitude = latitude;
+    }
+
+    public float getLongtitude() {
+        return Longtitude;
+    }
+
+    public void setLongtitude(float longtitude) {
+        Longtitude = longtitude;
+    }
+
+    public float getAltitude() {
+        return Altitude;
+    }
+
+    public void setAltitude(float altitude) {
+        Altitude = altitude;
     }
 }

@@ -43,6 +43,10 @@ public class ButtonsListener {
 		buttons[4] = gpio.provisionDigitalInputPin(RaspiPin.GPIO_04,
 			PinPullResistance.PULL_DOWN);
 		buttons[4].addListener(new PinListener(ButtonNames.SHUT_DOWN));
+
+		buttons[5] = gpio.provisionDigitalInputPin(RaspiPin.GPIO_05,
+			PinPullResistance.PULL_DOWN);
+		buttons[5].addListener(new PinListener(ButtonNames.NEAREST_PORT));
     	}
 
 }

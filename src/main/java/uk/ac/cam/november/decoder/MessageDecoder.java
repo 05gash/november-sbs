@@ -73,6 +73,10 @@ public class MessageDecoder implements Runnable {
         state.setHeading(0);
         state.setDeviation(0);
         state.setVariation(0);
+        // TODO(ml693): after testing, set latitude to 0
+	state.setLatitude(0);
+	state.setLongtitude(0);
+	state.setAltitude(0);
         
         boolean first_d = true;
         boolean first_w = true;
@@ -273,7 +277,15 @@ public class MessageDecoder implements Runnable {
                 first_s = false;
                 
                 break;
-                
+
+            // Dealing with GPS coordinates
+            case 129029:
+		// GPS coordinates will not generate alerts
+		state.setLatitude(fields.getLatitude());
+		state.setLongtitude(fields.getLongtitude());
+		state.setAltitude(fields.getAltitude());
+		break;
+ 
             default:
                     // "CANNOT DECODE A MESSAGE!"
                     break;
