@@ -1,5 +1,14 @@
 package uk.ac.cam.november.decoder;
 
+/**
+ * This class defines an AlertMessage. It has two attributes: 
+ * -- type of an alert: CriticalChange, CriticalMax, CriticalMin, TimeOut
+ * -- type of a sensor: WaterDepth, WindSpeed, WindAngle, BoatHeading, BoatSpeed
+ * 
+ * @author Marie Menshova
+ *
+ */
+
 public class AlertMessage {
     
     /** Type of an Alert Message
