@@ -11,9 +11,11 @@ import uk.ac.cam.november.messages.MessageFormatter;
 import uk.ac.cam.november.messages.SpeechSynthesis;
 import uk.ac.cam.november.simulation.Simulator;
 import uk.ac.cam.november.simulation.network.SimulatorServer;
-import java.nio.chanels.FileChannel;
+import java.nio.channels.FileChannel;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 class Boot {
 
@@ -43,15 +45,17 @@ class Boot {
 
     // copy resource into temp folder
     private static void copyRes(String resname, String fname) {
-        ClassLoader cl = getClass().getClassLoader();
-        try {
-            File fin = new File(cl.getResource("/res/" + resname).getFile());
+	// TODO(team): make this method work.
+        /*
+	try {
+            File fin = new File(getClass().getResource("/res/" + resname).getFile());
             File fout = new File("temp/" + fname);
             copyFile(fin, fout);
         } catch (IOException e) {
             System.err.println("[Error in Boot]");
             System.err.println(" -- I/O exception raised from copyRes()");
         }
+	*/
     }
 
     public static void main(final String[] args) throws Exception {

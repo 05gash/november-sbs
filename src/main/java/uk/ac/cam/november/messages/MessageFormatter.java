@@ -3,6 +3,7 @@ package uk.ac.cam.november.messages;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import uk.ac.cam.november.boot.ShutDown;
 import uk.ac.cam.november.buttons.ButtonNames;
 import uk.ac.cam.november.decoder.BoatState;
 import uk.ac.cam.november.decoder.MessageDecoder;
@@ -21,6 +22,8 @@ public class MessageFormatter {
     
     private static final int MESSAGE_PRIORITY = 1;
     private static final int ALERT_PRIORITY = 2;
+    private static final int SHUT_DOWN_PRIORITY = 3;
+
     private static Logger logger = Logger.getLogger("uk.ac.cam.november.messages.MessageFormatter");
     
     private static MessageDecoder mDecoder = null;
@@ -40,6 +43,18 @@ public class MessageFormatter {
      */
     public static void handleButtonPress(String buttonName)
     {
+	// If the shut down button has been pressed,
+	// we will deal with it separately by turning the system off
+	if (buttonName.compareTo(ButtonNames.SHUT_DOWN) == 0) {
+		// Before shutting down, we will announce a shut down message loudly.
+		Message shutDownMessage = new Message("Turning the system completely off", 
+			SHUT_DOWN_PRIORITY);
+                MessageHandler.receiveMessage(shutDownMessage);
+		
+		// Excecuting an actual shut down operation;
+		ShutDown.shutDown();
+		return;
+	}
         
         //poll StateDecoder
         float sensorData = pollStateDecoder(buttonName);
@@ -53,7 +68,6 @@ public class MessageFormatter {
         // call MessageHandler
         MessageHandler.receiveMessage(m);
     }
-
     
  /*   public static void handleAlert(AlertMessage alert)
     {

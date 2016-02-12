@@ -33,7 +33,12 @@ public class MessageHandler {
          || message.getPriority() >= currMessage.getPriority()) {
             currMessage = message;
             SpeechSynthesis.stop();
-	        SpeechSynthesis.play(currMessage.getText());
+	    try {
+		Thread.sleep(50);
+	    } catch (InterruptedException exception) {
+		exception.printStackTrace();
+	    }
+	    SpeechSynthesis.play(currMessage.getText());
         }
     }
 
