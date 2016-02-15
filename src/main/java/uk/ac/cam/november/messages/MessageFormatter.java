@@ -41,15 +41,14 @@ public class MessageFormatter {
      * 
      * @param buttonName The name of the button that was pressed.
      */
-    public static void handleButtonPress(String buttonName)
+    public static void handleButtonPress(ButtonNames buttonName)
     {
 	// If the shut down button has been pressed,
 	// we will deal with it separately by turning the system off
-	if (buttonName.compareTo(ButtonNames.SHUT_DOWN) == 0) {
+	if (buttonName == ButtonNames.SHUT_DOWN) {
 		// Before shutting down, we will announce a shut down message loudly.
-		Message shutDownMessage = new Message("Turning the system completely off", 
-			SHUT_DOWN_PRIORITY);
-                MessageHandler.receiveMessage(shutDownMessage);
+		Message shutDownMessage = new Message("Turning the system completely off", SHUT_DOWN_PRIORITY);
+        MessageHandler.receiveMessage(shutDownMessage);
 		
 		// Excecuting an actual shut down operation;
 		ShutDown.shutDown();
@@ -89,7 +88,7 @@ public class MessageFormatter {
 */
 
     
-    private static float pollStateDecoder(String buttonName)
+    private static float pollStateDecoder(ButtonNames buttonName)
     {
         if(mDecoder == null)
         {
@@ -100,19 +99,19 @@ public class MessageFormatter {
         BoatState state = mDecoder.getState();
         switch(buttonName)
         {
-        case ButtonNames.BOAT_SPEED:
+        case BOAT_SPEED:
             return state.getSpeedWaterReferenced();
-        case ButtonNames.COMPASS_HEADING:
+        case COMPASS_HEADING:
             return state.getHeading();
-	case ButtonNames.NEAREST_PORT:
+	case NEAREST_PORT:
             // TODO(ml693): decide of what is going to happen on button click which asks for nearest port.
-            // So far only latitude is returned, but there are also longtitude and altitude values!
+            // So far only latitude is returned, but there are also longitude and altitude values!
             return state.getLatitude();
-        case ButtonNames.WATER_DEPTH:
+        case WATER_DEPTH:
             return state.getDepth();
-        case ButtonNames.WIND_DIRECTION:
+        case WIND_DIRECTION:
             return state.getWindAngle();
-        case ButtonNames.WIND_SPEED:
+        case WIND_SPEED:
             return state.getWindSpeed();
             
         default:
@@ -128,7 +127,7 @@ public class MessageFormatter {
      * that can be read by the MessageHandler
      * 
      */
-    private static String formatMessage(float dataValue, String buttonName)
+    private static String formatMessage(float dataValue, ButtonNames buttonName)
     {
         //Only reads a decimal point if less than 10
         int l = dataValue > 10 ? 0 : 1;
@@ -136,18 +135,18 @@ public class MessageFormatter {
         
         switch(buttonName)
         {
-        case ButtonNames.NEAREST_PORT:
+        case NEAREST_PORT:
             // TODO(ml693): decide how to handle button asking for nearest port;
             return data + " latitude";
-        case ButtonNames.WATER_DEPTH:
+        case WATER_DEPTH:
             return data + " meters deep";
-        case ButtonNames.WIND_SPEED:
+        case WIND_SPEED:
             return data + " meters per second";
-        case ButtonNames.WIND_DIRECTION:
+        case WIND_DIRECTION:
             return data + " degrees from head";
-        case ButtonNames.COMPASS_HEADING:
+        case COMPASS_HEADING:
             return data + " degrees from north";
-        case ButtonNames.BOAT_SPEED:
+        case BOAT_SPEED:
             return data + " meters per second";
         
         default:

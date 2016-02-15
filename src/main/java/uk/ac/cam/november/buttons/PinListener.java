@@ -13,9 +13,9 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 public class PinListener implements GpioPinListenerDigital {
 
     // Corresponds to the button that this instance of class is listening to.
-    final private String buttonName;
+    final private ButtonNames buttonName;
 
-    public PinListener(final String buttonNameInput) {
+    public PinListener(final ButtonNames buttonNameInput) {
         buttonName = buttonNameInput;
     }
 
