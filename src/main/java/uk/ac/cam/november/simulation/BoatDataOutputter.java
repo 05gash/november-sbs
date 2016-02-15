@@ -1,5 +1,7 @@
 package uk.ac.cam.november.simulation;
 
+import java.io.IOException;
+
 import uk.ac.cam.november.packet.Packet;
 
 /**
@@ -14,11 +16,13 @@ public class BoatDataOutputter {
     public static final int WIND_INTERVAL = 1000;
     public static final int DEPTH_INTERVAL = 1000;
     public static final int SPEED_INTERVAL = 1000;
+    public static final int GPS_INTERVAL = 1000;
 
     private long lastCompassTime = System.currentTimeMillis();
     private long lastWindTime = System.currentTimeMillis();
     private long lastDepthTime = System.currentTimeMillis();
     private long lastSpeedTime = System.currentTimeMillis();
+    private long lastGPSTime = System.currentTimeMillis();
 
     private Simulator simulator;
 
@@ -29,7 +33,7 @@ public class BoatDataOutputter {
     /**
      * Checks internal time-stamps, and outputs any packets which are due.
      */
-    public void update() {
+    public void update() throws IOException {
         long nowTime = System.currentTimeMillis();
         if (lastCompassTime + COMPASS_INTERVAL < nowTime) {
             outputCompassPacket();
@@ -47,13 +51,17 @@ public class BoatDataOutputter {
             outputSpeedPacket();
             lastSpeedTime = nowTime;
         }
+        if (lastGPSTime + GPS_INTERVAL < nowTime) {
+            outputGPSPacket();
+            lastGPSTime = nowTime;
+        }
     }
 
     /**
      * Create and output a vessel-heading packet, containing the current boat
      * heading from the world model.
      */
-    private void outputCompassPacket() {
+    private void outputCompassPacket() throws IOException {
         WorldModel worldModel = simulator.getWorldModel();
         Packet m = DataGenerator.generateVesselHeadingPacket(worldModel.getHeading());
         simulator.queueMessage(m);
@@ -63,7 +71,7 @@ public class BoatDataOutputter {
      * Create and output a wind-data packet, containing the wind speed and angle
      * from the world model.
      */
-    private void outputWindPacket() {
+    private void outputWindPacket() throws IOException {
         WorldModel worldModel = simulator.getWorldModel();
         float angle = worldModel.getWindAngle() - worldModel.getHeading();
         if (angle < 0f)
@@ -78,7 +86,7 @@ public class BoatDataOutputter {
      * Create and output a water-depth packet, containing the current water
      * depth from the world model.
      */
-    private void outputDepthPacket() {
+    private void outputDepthPacket() throws IOException {
         WorldModel worldModel = simulator.getWorldModel();
         Packet m = DataGenerator.generateWaterDepthPacket(worldModel.getWaterDepth(), 0f);
         simulator.queueMessage(m);
@@ -88,9 +96,21 @@ public class BoatDataOutputter {
      * Create and output a vessel-speed packet, containing the current boat
      * speed from the world model.
      */
-    private void outputSpeedPacket() {
+    private void outputSpeedPacket() throws IOException {
         WorldModel worldModel = simulator.getWorldModel();
         Packet m = DataGenerator.generateSpeedPacket(worldModel.getBoatSpeed());
+        simulator.queueMessage(m);
+    }
+
+    /**
+     * Create and output a gnss-position-data packet, containing a
+     * representation of the current boat location from the world model.
+     */
+    private void outputGPSPacket() throws IOException {
+        WorldModel worldModel = simulator.getWorldModel();
+        float lat = -worldModel.getBoatY()/1000f;
+        float lon = worldModel.getBoatX()/1000f;
+        Packet m = DataGenerator.generateGPSPacket(lat, lon, 0);
         simulator.queueMessage(m);
     }
 

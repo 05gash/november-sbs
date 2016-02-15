@@ -21,8 +21,16 @@ public class SimulatorClient {
         dos = new DataOutputStream(socket.getOutputStream());
     }
 
-    public void sendPacket(Packet p) {
+    public void sendPacket(Packet p) throws IOException {
         PacketTranslator.write(dos, p);
+    }
+    
+    public void close(){
+        try {
+            dos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

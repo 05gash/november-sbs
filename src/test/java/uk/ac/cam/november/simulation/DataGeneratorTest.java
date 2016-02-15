@@ -101,4 +101,26 @@ public class DataGeneratorTest {
         assertEquals(fields.getSpeedWaterReferencedType(), "Paddle wheel");
     }
     
+    /* generateGPSPacket */
+    
+    @Test
+    public void gpsPacketShouldCheckInputRange(){
+        try{ DataGenerator.generateGPSPacket(-91f, 0, 0); fail("Latitude value did not catch <-90"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateGPSPacket(91f, 0, 0); fail("Latitude value did not catch >90"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateGPSPacket(0, -181f, 0); fail("Longitude value did not catch <-180"); } catch(IllegalArgumentException e) {}
+        try{ DataGenerator.generateGPSPacket(0, 181f, 0); fail("Longitude value did not catch >180"); } catch(IllegalArgumentException e) {}
+    }
+    
+    @Test
+    public void gpsPacketShouldContainCorrectFields(){
+        Packet packet = DataGenerator.generateGPSPacket(-45.54367f, 37.12345f, 123.47f);
+        Fields fields = packet.getFields();
+        
+        assertEquals(packet.getPgn(), 129029);
+        
+        assertEquals(fields.getLatitude(), -45.54367f, 0.0000001);
+        assertEquals(fields.getLongtitude(), 37.12345f, 0.0000001);
+        assertEquals(fields.getAltitude(), 123.47f, 0.0000001);
+    }
+    
 }
