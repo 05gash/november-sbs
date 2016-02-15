@@ -90,7 +90,14 @@ public class Simulator {
         }
 
         worldModel.step(dt);
-        dataOutput.update();
+        try{
+            dataOutput.update();
+        }catch(IOException e){
+            System.err.println("Failed to write data packet to socket");
+            System.err.println("ERROR: " + e.getMessage());
+            netClient.close();
+            System.exit(1);
+        }
         ui.revalidate();
         ui.repaint();
     }
@@ -110,7 +117,7 @@ public class Simulator {
      * @param p
      *            The message to add.
      */
-    public void queueMessage(Packet p) {
+    public void queueMessage(Packet p) throws IOException {
         System.out.println("Sending a " + p.getDescription() + " packet at " + p.getTimestamp());
         netClient.sendPacket(p);
     }

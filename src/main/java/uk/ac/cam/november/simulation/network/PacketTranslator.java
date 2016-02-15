@@ -13,15 +13,11 @@ public class PacketTranslator {
 
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd-HH:mm:ss.SSSSS").create();
 
-    public static void write(DataOutputStream dos, Packet p) {
+    public static void write(DataOutputStream dos, Packet p) throws IOException {
         String data = gson.toJson(p);
-        try {
-            byte[] dataBytes = data.getBytes("ASCII");
-            dos.writeInt(dataBytes.length);
-            dos.write(dataBytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        byte[] dataBytes = data.getBytes("ASCII");
+        dos.writeInt(dataBytes.length);
+        dos.write(dataBytes);
     }
 
     public static Packet read(DataInputStream dos) {

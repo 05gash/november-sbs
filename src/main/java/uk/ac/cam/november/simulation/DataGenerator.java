@@ -6,8 +6,8 @@ import uk.ac.cam.november.packet.Fields;
 import uk.ac.cam.november.packet.Packet;
 
 /**
- * This class creates {@code Message} objects which emulate those produced by
- * the CANBoat input stage of the project. This is useful for testing the
+ * This class creates {@code Packet} objects which emulate those produced by the
+ * CANBoat input stage of the project. This is useful for testing the
  * data-parsing module, and for demonstration purposes.
  * 
  * @author Jamie Wood
@@ -15,7 +15,7 @@ import uk.ac.cam.november.packet.Packet;
  */
 public class DataGenerator {
 
-    /** Priority for generated messages. 0 is highest priority, 7 is lowest. */
+    /** Priority for generated Packets. 0 is highest priority, 7 is lowest. */
     public static int DEFAULT_PRIORITY = 2;
     /** Arbitrary source address for the generated packets. */
     public static int DEFAULT_SRC = 36;
@@ -35,7 +35,7 @@ public class DataGenerator {
      * </ol>
      * Also creates the {@code fields} array ready to be populated with data.
      * 
-     * @return {@code Message} containing the packet
+     * @return {@code Packet} containing the packet
      */
     public static Packet createDefaultPacket() {
         Packet packet = new Packet();
@@ -53,7 +53,7 @@ public class DataGenerator {
      * 
      * @param heading
      *            compass heading in degrees from North
-     * @return A {@code Message} containing the packet
+     * @return A {@code Packet} containing the packet
      * @see {@link #generateVesselHeadingPacket(double, double, double)}
      */
     public static Packet generateVesselHeadingPacket(float heading) {
@@ -73,7 +73,7 @@ public class DataGenerator {
      *            vessel (degrees)
      * @param variation
      *            Difference from Magnetic North to True North (degrees)
-     * @return A {@code Message} containing the packet
+     * @return A {@code Packet} containing the packet
      */
     public static Packet generateVesselHeadingPacket(float heading, float deviation, float variation) {
         if (heading < 0.0 || heading > 360.0) {
@@ -112,7 +112,7 @@ public class DataGenerator {
      *            Depth of water below the sensor (meters)
      * @param offset
      *            Distance from sensor to surface (positive) or keel (negative)
-     * @return A {@code Message} containing the packet
+     * @return A {@code Packet} containing the packet
      */
     public static Packet generateWaterDepthPacket(float waterDepth, float offset) {
         if (waterDepth < 0.0) {
@@ -143,7 +143,7 @@ public class DataGenerator {
      *            Speed of wind (meters per second)
      * @param windAngle
      *            Angle of wind (degrees, clockwise from bow)
-     * @return A {@code Message} containing the packet
+     * @return A {@code Packet} containing the packet
      */
     public static Packet generateWindDataPacket(float windSpeed, float windAngle) {
         if (windSpeed < 0.0) {
@@ -176,7 +176,7 @@ public class DataGenerator {
      * 
      * @param vesselSpeed
      *            Speed of vessel relative to water (meters per second)
-     * @return A {@code Message} containing the packet
+     * @return A {@code Packet} containing the packet
      */
     public static Packet generateSpeedPacket(float vesselSpeed) {
         if (vesselSpeed < 0.0) {
@@ -193,6 +193,43 @@ public class DataGenerator {
         fields.setSID(0);
         fields.setSpeedWaterReferenced(vesselSpeed);
         fields.setSpeedWaterReferencedType("Paddle wheel");
+
+        packet.setFields(fields);
+
+        return packet;
+    }
+
+    /**
+     * Creates and returns a GPS position packet with the specified latitude,
+     * longitude and altitude.
+     * 
+     * @param lat
+     *            Latitude (degrees)
+     * @param lon
+     *            Longitude (degrees)
+     * @param alt
+     *            Altitude (meters)
+     * @return A {@code Packet} containing the packet
+     */
+    public static Packet generateGPSPacket(float lat, float lon, float alt) {
+        if (lat < -90 || lat > 90) {
+            throw new IllegalArgumentException("Latitude out of range");
+        }
+        if (lon < -180 || lon > 180) {
+            throw new IllegalArgumentException("Longitude out of range");
+        }
+
+        Packet packet = createDefaultPacket();
+
+        packet.setPgn(129029);
+        packet.setDescription("GNSS Position Data");
+
+        Fields fields = new Fields();
+
+        fields.setSID(0);
+        fields.setLatitude(lat);
+        fields.setLongtitude(lon);
+        fields.setAltitude(alt);
 
         packet.setFields(fields);
 
