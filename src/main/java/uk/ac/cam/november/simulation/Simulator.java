@@ -38,7 +38,7 @@ public class Simulator {
         } catch (IOException e) {
             System.err.println("Failed to open connection to simulator server");
             System.err.println("ERROR: " + e.getMessage());
-            System.exit(1);
+            throw new RuntimeException("Failed to connecto to the server.");
         }
 
         runThread = new Thread(new Runnable() {
@@ -96,7 +96,7 @@ public class Simulator {
             System.err.println("Failed to write data packet to socket");
             System.err.println("ERROR: " + e.getMessage());
             netClient.close();
-            System.exit(1);
+            throw new RuntimeException("Failed to write data to port");
         }
         ui.revalidate();
         ui.repaint();
