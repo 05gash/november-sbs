@@ -3,6 +3,7 @@
 
 package uk.ac.cam.november.boot;
 
+import uk.ac.cam.november.boot.ScriptCreator;
 import uk.ac.cam.november.buttons.ButtonsListener;
 import uk.ac.cam.november.decoder.MessageDecoder;
 import uk.ac.cam.november.input.CanBoatFacade;
@@ -20,43 +21,6 @@ import java.io.IOException;
 class Boot {
 
     public static final int A_LOT_OF_TIME = 1000000000;
-
-    // usual file copy method
-    public static void copyFile(File sourceFile, File destFile) throws IOException {
-        if (!destFile.exists()) {
-            destFile.createNewFile();
-        }
-        FileChannel source = null;
-        FileChannel destination = null;
-        try {
-            source = new FileInputStream(sourceFile).getChannel();
-            destination = new FileOutputStream(destFile).getChannel();
-            destination.transferFrom(source, 0, source.size());
-        }
-        finally {
-            if (source != null) {
-                source.close();
-            }
-            if (destination != null) {
-                destination.close();
-            }
-        }
-    }
-
-    // copy resource into temp folder
-    private static void copyRes(String resname, String fname) {
-	// TODO(team): make this method work.
-        /*
-	try {
-            File fin = new File(getClass().getResource("/res/" + resname).getFile());
-            File fout = new File("temp/" + fname);
-            copyFile(fin, fout);
-        } catch (IOException e) {
-            System.err.println("[Error in Boot]");
-            System.err.println(" -- I/O exception raised from copyRes()");
-        }
-	*/
-    }
 
     public static void main(final String[] args) throws Exception {
 
@@ -101,6 +65,7 @@ class Boot {
         }
 
         LogConfig.setup();
+        ScriptCreator.writeScripts();
 
         // TODO(ml693): after message "BootingUp" is loudly said,
         // it takes a few seconds for the system to boot
