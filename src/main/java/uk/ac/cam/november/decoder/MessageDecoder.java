@@ -1,5 +1,6 @@
 package uk.ac.cam.november.decoder;
 
+import java.util.LinkedList;
 import java.util.Queue;
 
 import uk.ac.cam.november.packet.Fields;
@@ -48,7 +49,7 @@ public class MessageDecoder implements Runnable {
     long timeOutTime = 10000000000L;
     
     Queue<Packet> MessageQueue;
-    Queue<AlertMessage> AlertMessageQueue;
+    Queue<AlertMessage> AlertMessageQueue = new LinkedList<AlertMessage>();
     
     BoatState state = new BoatState();
     AlertMessage am = new AlertMessage();

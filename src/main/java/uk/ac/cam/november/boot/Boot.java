@@ -71,8 +71,6 @@ class Boot {
                     }
                 });
 
-	SpeechSynthesis.play("Booting Up");
-
         boolean runSimServer = false;
 
         if (args.length > 0) {

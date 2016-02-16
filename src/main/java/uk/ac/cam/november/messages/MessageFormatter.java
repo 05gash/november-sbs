@@ -105,9 +105,7 @@ public class MessageFormatter {
         case ButtonNames.COMPASS_HEADING:
             return state.getHeading();
 	case ButtonNames.NEAREST_PORT:
-            // TODO(ml693): decide of what is going to happen on button click which asks for nearest port.
-            // So far only latitude is returned, but there are also longtitude and altitude values!
-            return state.getLatitude();
+            return state.getLatitude(); // Not used
         case ButtonNames.WATER_DEPTH:
             return state.getDepth();
         case ButtonNames.WIND_DIRECTION:
@@ -137,8 +135,10 @@ public class MessageFormatter {
         switch(buttonName)
         {
         case ButtonNames.NEAREST_PORT:
-            // TODO(ml693): decide how to handle button asking for nearest port;
-            return data + " latitude";
+             BoatState state = mDecoder.getState();
+	     float latitude = state.getLatitude();
+	     float longtitude = state.getLongtitude();
+             return latitude + ", " + longtitude + " latitude and longtitude";
         case ButtonNames.WATER_DEPTH:
             return data + " meters deep";
         case ButtonNames.WIND_SPEED:
