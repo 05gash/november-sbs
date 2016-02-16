@@ -187,10 +187,8 @@ public class MessageFormatter {
         switch(buttonName)
         {
         case ButtonNames.NEAREST_PORT:
-             BoatState state = mDecoder.getState();
-	     float latitude = state.getLatitude();
-	     float longtitude = state.getLongtitude();
-             return latitude + ", " + longtitude + " latitude and longtitude";
+	    BoatState state = mDecoder.getState();
+            return data + " north";
         case ButtonNames.WATER_DEPTH:
             return data + " meters deep";
         case ButtonNames.WIND_SPEED:
