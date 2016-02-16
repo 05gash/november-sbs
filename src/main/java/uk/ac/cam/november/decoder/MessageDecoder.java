@@ -3,6 +3,9 @@ package uk.ac.cam.november.decoder;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import com.google.common.collect.EvictingQueue;
+import com.google.common.collect.Queues;
+
 import uk.ac.cam.november.packet.Fields;
 import uk.ac.cam.november.packet.Packet;
 
@@ -48,14 +51,20 @@ public class MessageDecoder implements Runnable {
     long curTime;
     long timeOutTime = 10000000000L;
     
-    Queue<Packet> MessageQueue;
-    Queue<AlertMessage> AlertMessageQueue = new LinkedList<AlertMessage>();
+
+    private Queue<Packet> MessageQueue;
+    private Queue<AlertMessage> AlertMessageQueue;
     
     BoatState state = new BoatState();
     AlertMessage am = new AlertMessage();
     
     public MessageDecoder(Queue<Packet> messageQueue){
         this.MessageQueue = messageQueue;
+        AlertMessageQueue = Queues.synchronizedQueue(EvictingQueue.create(30));
+    }
+    
+    public Queue<AlertMessage> getAlertMessageQueue() {
+        return AlertMessageQueue;
     }
     
     public BoatState getState() {
@@ -74,9 +83,9 @@ public class MessageDecoder implements Runnable {
         state.setHeading(0);
         state.setDeviation(0);
         state.setVariation(0);
-	state.setLatitude(0);
-	state.setLongtitude(0);
-	state.setAltitude(0);
+    	state.setLatitude(0);
+    	state.setLongtitude(0);
+    	state.setAltitude(0);
         
         boolean first_d = true;
         boolean first_w = true;

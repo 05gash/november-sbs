@@ -5,6 +5,7 @@ package uk.ac.cam.november.boot;
 
 import uk.ac.cam.november.boot.ScriptCreator;
 import uk.ac.cam.november.buttons.ButtonsListener;
+import uk.ac.cam.november.decoder.AlertHandler;
 import uk.ac.cam.november.decoder.MessageDecoder;
 import uk.ac.cam.november.input.CanBoatFacade;
 import uk.ac.cam.november.logging.LogConfig;
@@ -88,11 +89,18 @@ class Boot {
             CanBoatFacade canboat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
             messageDec = new MessageDecoder(canboat.getPacketQueue());
         }
-
+        
         MessageFormatter.setDecoder(messageDec);
 
         Thread decoderThread = new Thread(messageDec, "Message-Decoder");
         decoderThread.start();
+        
+        AlertHandler alertHandler = new AlertHandler(messageDec);
+        Thread alertThread = new Thread(alertHandler, "Alert-Handler");
+        alertThread.start();
+        
+        
+        
 
         for (;;) {
             Thread.sleep(A_LOT_OF_TIME);

@@ -12,7 +12,7 @@ public class ScriptCreator {
         "pico2wave -w \"$1\" \"$2\" ; aplay \"$1\" \n",
         "killall \"$1\" \n"};
         
-    private static void writeScripts() throws IOException {
+    public static void writeScripts() throws IOException {
         int scriptCount = scriptName.length;
         for (int i = 0; i < scriptCount; i++) {
             File file = new File("temp/" + scriptName[i]);
