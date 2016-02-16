@@ -14,17 +14,6 @@ public class LocationUtil {
         ports = pl.ports;
     }
 
-    public static void main(String[] args) {
-        LatLng myLoc = new LatLng(52,0);
-        Port p = nearestPort(myLoc);
-        double dist = distance(p.location, myLoc) / 1000.0;
-        double bear = initialBearing(myLoc, p.location);
-        System.out.println(p);
-        System.out.println(String.format("%.2f km", dist));
-        System.out.println(String.format("%.0f degrees", bear));
-        
-    }
-
     /**
      * Calculate the initial bearing for a straight-line route from {@code from}
      * to {@code to}. Uses the 'Bearing' algorithm from
