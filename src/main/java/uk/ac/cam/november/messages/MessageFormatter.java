@@ -5,6 +5,9 @@ import uk.ac.cam.november.buttons.ButtonNames;
 import uk.ac.cam.november.decoder.AlertMessage;
 import uk.ac.cam.november.decoder.BoatState;
 import uk.ac.cam.november.decoder.MessageDecoder;
+import uk.ac.cam.november.location.LatLng;
+import uk.ac.cam.november.location.LocationUtil;
+import uk.ac.cam.november.location.Port;
 
 /**
  * 
@@ -145,8 +148,8 @@ public class MessageFormatter {
             return state.getSpeedWaterReferenced();
         case ButtonNames.COMPASS_HEADING:
             return state.getHeading();
-	case ButtonNames.NEAREST_PORT:
-            return state.getLatitude();
+        case ButtonNames.NEAREST_PORT:
+            return 0f; // not used
         case ButtonNames.WATER_DEPTH:
             return state.getDepth();
         case ButtonNames.WIND_DIRECTION:
@@ -161,6 +164,15 @@ public class MessageFormatter {
         }
     }
     
+    private static String formatDistance(double distance){
+        String unit = "m";
+        if(distance > 1000){
+            distance /= 1000;
+            unit = "km";
+        }
+        return String.format("%.2f", distance) + unit;
+    }
+    
     private static String truncateFloat(float v, String buttonName)
     {
         int l = 1; 
@@ -168,6 +180,7 @@ public class MessageFormatter {
         if( v > 10 || 
             buttonName == ButtonNames.COMPASS_HEADING || 
             buttonName == ButtonNames.WIND_DIRECTION  ||
+            buttonName == ButtonNames.NEAREST_PORT ||
             (v - Math.floor(v) < 0.1) )
         {
             l = 0; 
@@ -188,7 +201,14 @@ public class MessageFormatter {
         switch(buttonName)
         {
         case ButtonNames.NEAREST_PORT:
-            return data + " north";
+            BoatState state = mDecoder.getState();
+            LatLng myLoc = new LatLng(state.getLatitude(), state.getLongtitude());
+            Port p = LocationUtil.nearestPort(myLoc);
+            double dist = LocationUtil.distance(myLoc, p.location)/1000;
+            double bearing = LocationUtil.initialBearing(myLoc, p.location);
+            String distString = formatDistance(dist);
+            String bearingString = truncateFloat((float)bearing, buttonName);
+            return distString + " at " + bearingString + " degrees";
         case ButtonNames.WATER_DEPTH:
             return data + " meters deep";
         case ButtonNames.WIND_SPEED:
