@@ -203,11 +203,11 @@ public class MessageFormatter {
             BoatState state = mDecoder.getState();
             LatLng myLoc = new LatLng(state.getLatitude(), state.getLongtitude());
             Port p = LocationUtil.nearestPort(myLoc);
-            double dist = LocationUtil.distance(myLoc, p.location)/1000;
+            double dist = LocationUtil.distance(myLoc, p.location);
             double bearing = LocationUtil.initialBearing(myLoc, p.location);
             String distString = formatDistance(dist);
             String bearingString = truncateFloat((float)bearing, buttonName);
-            return distString + " at " + bearingString + " degrees";
+            return distString + " at " + bearingString + " degrees to " + p.name;
         case ButtonNames.WATER_DEPTH:
             return data + " meters deep";
         case ButtonNames.WIND_SPEED:
