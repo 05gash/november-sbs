@@ -1,0 +1,4087 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2016-02-16T13:52:07</date>
+  <millis>1455630727588</millis>
+  <sequence>1</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.boot.Boot</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Failed to load Pi4J library.</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:07</date>
+  <millis>1455630727691</millis>
+  <sequence>2</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.boot.Boot</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Most likely you're not on a RaspberryPi.</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:07</date>
+  <millis>1455630727764</millis>
+  <sequence>3</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Server started on port 8989</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:08</date>
+  <millis>1455630728049</millis>
+  <sequence>4</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>1</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:08</date>
+  <millis>1455630728051</millis>
+  <sequence>5</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>1</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:08</date>
+  <millis>1455630728054</millis>
+  <sequence>6</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>1</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:15</date>
+  <millis>1455630735731</millis>
+  <sequence>7</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer$1</class>
+  <method>run</method>
+  <thread>12</thread>
+  <message>New client connected from localhost</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:15</date>
+  <millis>1455630735791</millis>
+  <sequence>8</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>12</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:15</date>
+  <millis>1455630735792</millis>
+  <sequence>9</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>12</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:15</date>
+  <millis>1455630735793</millis>
+  <sequence>10</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>12</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736853</millis>
+  <sequence>11</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:16 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736868</millis>
+  <sequence>12</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:16 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736873</millis>
+  <sequence>13</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:16 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736898</millis>
+  <sequence>14</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:16 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736902</millis>
+  <sequence>15</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736906</millis>
+  <sequence>16</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:16 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736968</millis>
+  <sequence>17</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736969</millis>
+  <sequence>18</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736970</millis>
+  <sequence>19</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:16</date>
+  <millis>1455630736976</millis>
+  <sequence>20</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737023</millis>
+  <sequence>21</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:17 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737025</millis>
+  <sequence>22</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:17 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737027</millis>
+  <sequence>23</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:17 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737048</millis>
+  <sequence>25</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737057</millis>
+  <sequence>26</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737058</millis>
+  <sequence>27</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737045</millis>
+  <sequence>24</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:17 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737060</millis>
+  <sequence>28</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is high'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737065</millis>
+  <sequence>29</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:17 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737122</millis>
+  <sequence>30</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737123</millis>
+  <sequence>31</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737130</millis>
+  <sequence>32</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737136</millis>
+  <sequence>33</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737204</millis>
+  <sequence>34</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737205</millis>
+  <sequence>35</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737206</millis>
+  <sequence>36</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737220</millis>
+  <sequence>37</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737277</millis>
+  <sequence>38</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737278</millis>
+  <sequence>39</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737279</millis>
+  <sequence>40</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737280</millis>
+  <sequence>41</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737338</millis>
+  <sequence>42</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737339</millis>
+  <sequence>43</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:17</date>
+  <millis>1455630737341</millis>
+  <sequence>44</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738032</millis>
+  <sequence>45</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:18 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738044</millis>
+  <sequence>46</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:18 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738046</millis>
+  <sequence>47</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:18 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738048</millis>
+  <sequence>48</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738051</millis>
+  <sequence>49</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:18 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738062</millis>
+  <sequence>50</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:18 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738099</millis>
+  <sequence>51</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738100</millis>
+  <sequence>52</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738107</millis>
+  <sequence>53</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738108</millis>
+  <sequence>54</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738159</millis>
+  <sequence>55</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738160</millis>
+  <sequence>56</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738161</millis>
+  <sequence>57</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738172</millis>
+  <sequence>58</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738223</millis>
+  <sequence>59</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738224</millis>
+  <sequence>60</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:18</date>
+  <millis>1455630738225</millis>
+  <sequence>61</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739059</millis>
+  <sequence>62</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:19 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739065</millis>
+  <sequence>63</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:19 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739068</millis>
+  <sequence>64</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:19 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739070</millis>
+  <sequence>65</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739078</millis>
+  <sequence>66</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:19 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739080</millis>
+  <sequence>67</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:19 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739122</millis>
+  <sequence>68</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739122</millis>
+  <sequence>69</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739123</millis>
+  <sequence>70</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739130</millis>
+  <sequence>71</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739182</millis>
+  <sequence>72</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739183</millis>
+  <sequence>73</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739186</millis>
+  <sequence>74</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739189</millis>
+  <sequence>75</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739240</millis>
+  <sequence>76</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739241</millis>
+  <sequence>77</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:19</date>
+  <millis>1455630739242</millis>
+  <sequence>78</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740050</millis>
+  <sequence>79</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:20 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740051</millis>
+  <sequence>80</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:20 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740053</millis>
+  <sequence>81</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:20 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740056</millis>
+  <sequence>82</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740061</millis>
+  <sequence>83</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:20 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740075</millis>
+  <sequence>84</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:20 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740112</millis>
+  <sequence>85</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740113</millis>
+  <sequence>86</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740114</millis>
+  <sequence>87</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740114</millis>
+  <sequence>88</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740172</millis>
+  <sequence>89</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740173</millis>
+  <sequence>90</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740173</millis>
+  <sequence>91</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740184</millis>
+  <sequence>92</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740241</millis>
+  <sequence>93</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740242</millis>
+  <sequence>94</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:20</date>
+  <millis>1455630740243</millis>
+  <sequence>95</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741054</millis>
+  <sequence>96</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:21 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741055</millis>
+  <sequence>97</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:21 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741055</millis>
+  <sequence>98</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:21 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741064</millis>
+  <sequence>99</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:21 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741066</millis>
+  <sequence>100</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:21 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741067</millis>
+  <sequence>101</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741118</millis>
+  <sequence>102</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741119</millis>
+  <sequence>103</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741119</millis>
+  <sequence>104</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741120</millis>
+  <sequence>105</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741176</millis>
+  <sequence>106</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741176</millis>
+  <sequence>107</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741177</millis>
+  <sequence>108</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741177</millis>
+  <sequence>109</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741231</millis>
+  <sequence>110</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741231</millis>
+  <sequence>111</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:21</date>
+  <millis>1455630741232</millis>
+  <sequence>112</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742062</millis>
+  <sequence>113</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:22 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742063</millis>
+  <sequence>114</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:22 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742066</millis>
+  <sequence>115</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:22 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742068</millis>
+  <sequence>116</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742071</millis>
+  <sequence>117</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:22 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742074</millis>
+  <sequence>118</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:22 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742119</millis>
+  <sequence>119</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742120</millis>
+  <sequence>120</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742120</millis>
+  <sequence>121</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742120</millis>
+  <sequence>122</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742174</millis>
+  <sequence>123</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742174</millis>
+  <sequence>124</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742175</millis>
+  <sequence>125</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742175</millis>
+  <sequence>126</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742236</millis>
+  <sequence>127</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742237</millis>
+  <sequence>128</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:22</date>
+  <millis>1455630742237</millis>
+  <sequence>129</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743077</millis>
+  <sequence>130</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:23 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743088</millis>
+  <sequence>131</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:23 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743089</millis>
+  <sequence>132</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:23 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743090</millis>
+  <sequence>133</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:23 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743091</millis>
+  <sequence>134</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:23 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743093</millis>
+  <sequence>135</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743150</millis>
+  <sequence>136</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743151</millis>
+  <sequence>137</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743151</millis>
+  <sequence>138</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743152</millis>
+  <sequence>139</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743207</millis>
+  <sequence>140</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743208</millis>
+  <sequence>141</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743208</millis>
+  <sequence>142</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743209</millis>
+  <sequence>143</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743266</millis>
+  <sequence>144</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743266</millis>
+  <sequence>145</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:23</date>
+  <millis>1455630743267</millis>
+  <sequence>146</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744084</millis>
+  <sequence>147</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:24 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744085</millis>
+  <sequence>148</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:24 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744085</millis>
+  <sequence>149</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:24 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744086</millis>
+  <sequence>150</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:24 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744093</millis>
+  <sequence>151</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:24 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744094</millis>
+  <sequence>152</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744149</millis>
+  <sequence>153</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744150</millis>
+  <sequence>154</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744150</millis>
+  <sequence>155</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744150</millis>
+  <sequence>156</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744202</millis>
+  <sequence>157</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744202</millis>
+  <sequence>158</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744203</millis>
+  <sequence>159</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744203</millis>
+  <sequence>160</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744254</millis>
+  <sequence>161</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744255</millis>
+  <sequence>162</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:24</date>
+  <millis>1455630744259</millis>
+  <sequence>163</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745106</millis>
+  <sequence>164</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Vessel Heading packet at Tue Feb 16 13:52:25 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745107</millis>
+  <sequence>165</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Wind Data packet at Tue Feb 16 13:52:25 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745107</millis>
+  <sequence>166</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Water Depth packet at Tue Feb 16 13:52:25 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745108</millis>
+  <sequence>167</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is high'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745114</millis>
+  <sequence>168</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a Speed packet at Tue Feb 16 13:52:25 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745115</millis>
+  <sequence>169</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>queueMessage</method>
+  <thread>12</thread>
+  <message>Queueing a GNSS Position Data packet at Tue Feb 16 13:52:25 GMT 2016</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745159</millis>
+  <sequence>170</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745160</millis>
+  <sequence>171</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745160</millis>
+  <sequence>172</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745160</millis>
+  <sequence>173</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745212</millis>
+  <sequence>174</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745213</millis>
+  <sequence>175</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745213</millis>
+  <sequence>176</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745214</millis>
+  <sequence>177</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is low'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745265</millis>
+  <sequence>178</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745265</millis>
+  <sequence>179</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:25</date>
+  <millis>1455630745266</millis>
+  <sequence>180</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2016-02-16T13:52:44</date>
+  <millis>1455630764710</millis>
+  <sequence>1</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.boot.Boot</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Failed to load Pi4J library.</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:44</date>
+  <millis>1455630764769</millis>
+  <sequence>2</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.boot.Boot</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Most likely you're not on a RaspberryPi.</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:44</date>
+  <millis>1455630764804</millis>
+  <sequence>3</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.simulation.network.SimulatorServer</class>
+  <method>&lt;init&gt;</method>
+  <thread>1</thread>
+  <message>Server started on port 8989</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:45</date>
+  <millis>1455630765010</millis>
+  <sequence>4</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>1</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:45</date>
+  <millis>1455630765013</millis>
+  <sequence>5</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>1</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:45</date>
+  <millis>1455630765015</millis>
+  <sequence>6</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>1</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775048</millis>
+  <sequence>7</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775106</millis>
+  <sequence>8</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775107</millis>
+  <sequence>9</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775111</millis>
+  <sequence>10</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775113</millis>
+  <sequence>11</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Heading is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775172</millis>
+  <sequence>12</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775173</millis>
+  <sequence>13</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775174</millis>
+  <sequence>14</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775176</millis>
+  <sequence>15</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775227</millis>
+  <sequence>16</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775229</millis>
+  <sequence>17</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775230</millis>
+  <sequence>18</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775230</millis>
+  <sequence>19</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Heading is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775291</millis>
+  <sequence>20</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775298</millis>
+  <sequence>21</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775299</millis>
+  <sequence>22</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775309</millis>
+  <sequence>23</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775361</millis>
+  <sequence>24</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775362</millis>
+  <sequence>25</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775368</millis>
+  <sequence>26</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775369</millis>
+  <sequence>27</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775420</millis>
+  <sequence>28</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775421</millis>
+  <sequence>29</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775422</millis>
+  <sequence>30</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775432</millis>
+  <sequence>31</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775484</millis>
+  <sequence>32</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775485</millis>
+  <sequence>33</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775486</millis>
+  <sequence>34</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775487</millis>
+  <sequence>35</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775538</millis>
+  <sequence>36</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775539</millis>
+  <sequence>37</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775541</millis>
+  <sequence>38</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775542</millis>
+  <sequence>39</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775601</millis>
+  <sequence>40</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775602</millis>
+  <sequence>41</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775603</millis>
+  <sequence>42</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775608</millis>
+  <sequence>43</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775663</millis>
+  <sequence>44</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775664</millis>
+  <sequence>45</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775668</millis>
+  <sequence>46</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775669</millis>
+  <sequence>47</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775721</millis>
+  <sequence>48</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775722</millis>
+  <sequence>49</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775722</millis>
+  <sequence>50</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775723</millis>
+  <sequence>51</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Heading is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775774</millis>
+  <sequence>52</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775775</millis>
+  <sequence>53</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775784</millis>
+  <sequence>54</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775788</millis>
+  <sequence>55</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775840</millis>
+  <sequence>56</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775841</millis>
+  <sequence>57</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775841</millis>
+  <sequence>58</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775842</millis>
+  <sequence>59</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775904</millis>
+  <sequence>60</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775905</millis>
+  <sequence>61</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775906</millis>
+  <sequence>62</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775906</millis>
+  <sequence>63</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775958</millis>
+  <sequence>64</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775960</millis>
+  <sequence>65</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775960</millis>
+  <sequence>66</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:55</date>
+  <millis>1455630775961</millis>
+  <sequence>67</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776013</millis>
+  <sequence>68</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776014</millis>
+  <sequence>69</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776014</millis>
+  <sequence>70</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776018</millis>
+  <sequence>71</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776069</millis>
+  <sequence>72</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776070</millis>
+  <sequence>73</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776071</millis>
+  <sequence>74</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776074</millis>
+  <sequence>75</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776125</millis>
+  <sequence>76</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776126</millis>
+  <sequence>77</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776126</millis>
+  <sequence>78</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776129</millis>
+  <sequence>79</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776183</millis>
+  <sequence>80</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776184</millis>
+  <sequence>81</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776185</millis>
+  <sequence>82</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776185</millis>
+  <sequence>83</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776236</millis>
+  <sequence>84</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776237</millis>
+  <sequence>85</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776237</millis>
+  <sequence>86</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776238</millis>
+  <sequence>87</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776289</millis>
+  <sequence>88</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776290</millis>
+  <sequence>89</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776290</millis>
+  <sequence>90</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776291</millis>
+  <sequence>91</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776343</millis>
+  <sequence>92</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776344</millis>
+  <sequence>93</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776344</millis>
+  <sequence>94</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776345</millis>
+  <sequence>95</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776400</millis>
+  <sequence>96</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776401</millis>
+  <sequence>97</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776404</millis>
+  <sequence>98</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776412</millis>
+  <sequence>99</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776463</millis>
+  <sequence>100</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776464</millis>
+  <sequence>101</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776464</millis>
+  <sequence>102</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776465</millis>
+  <sequence>103</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776516</millis>
+  <sequence>104</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776518</millis>
+  <sequence>105</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776519</millis>
+  <sequence>106</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776525</millis>
+  <sequence>107</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776576</millis>
+  <sequence>108</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776577</millis>
+  <sequence>109</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776577</millis>
+  <sequence>110</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776577</millis>
+  <sequence>111</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776629</millis>
+  <sequence>112</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776629</millis>
+  <sequence>113</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776629</millis>
+  <sequence>114</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776630</millis>
+  <sequence>115</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776681</millis>
+  <sequence>116</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776681</millis>
+  <sequence>117</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776682</millis>
+  <sequence>118</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776685</millis>
+  <sequence>119</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Heading is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776737</millis>
+  <sequence>120</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776738</millis>
+  <sequence>121</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776738</millis>
+  <sequence>122</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776739</millis>
+  <sequence>123</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776791</millis>
+  <sequence>124</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776791</millis>
+  <sequence>125</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776792</millis>
+  <sequence>126</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776792</millis>
+  <sequence>127</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776843</millis>
+  <sequence>128</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776846</millis>
+  <sequence>129</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776847</millis>
+  <sequence>130</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776847</millis>
+  <sequence>131</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776903</millis>
+  <sequence>132</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776909</millis>
+  <sequence>133</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776910</millis>
+  <sequence>134</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776916</millis>
+  <sequence>135</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776967</millis>
+  <sequence>136</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776968</millis>
+  <sequence>137</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776968</millis>
+  <sequence>138</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:56</date>
+  <millis>1455630776969</millis>
+  <sequence>139</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777023</millis>
+  <sequence>140</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777026</millis>
+  <sequence>141</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777026</millis>
+  <sequence>142</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777027</millis>
+  <sequence>143</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777083</millis>
+  <sequence>144</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777083</millis>
+  <sequence>145</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777084</millis>
+  <sequence>146</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777085</millis>
+  <sequence>147</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777144</millis>
+  <sequence>148</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777145</millis>
+  <sequence>149</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777145</millis>
+  <sequence>150</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777146</millis>
+  <sequence>151</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777197</millis>
+  <sequence>152</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777197</millis>
+  <sequence>153</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777198</millis>
+  <sequence>154</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777198</millis>
+  <sequence>155</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777252</millis>
+  <sequence>156</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777253</millis>
+  <sequence>157</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777253</millis>
+  <sequence>158</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777253</millis>
+  <sequence>159</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Water Depth is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777304</millis>
+  <sequence>160</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777305</millis>
+  <sequence>161</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777305</millis>
+  <sequence>162</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777306</millis>
+  <sequence>163</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777357</millis>
+  <sequence>164</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777358</millis>
+  <sequence>165</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777358</millis>
+  <sequence>166</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777358</millis>
+  <sequence>167</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Heading is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777409</millis>
+  <sequence>168</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777410</millis>
+  <sequence>169</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777410</millis>
+  <sequence>170</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777411</millis>
+  <sequence>171</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777468</millis>
+  <sequence>172</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777469</millis>
+  <sequence>173</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777469</millis>
+  <sequence>174</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777470</millis>
+  <sequence>175</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777524</millis>
+  <sequence>176</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777524</millis>
+  <sequence>177</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777525</millis>
+  <sequence>178</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777525</millis>
+  <sequence>179</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777576</millis>
+  <sequence>180</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777577</millis>
+  <sequence>181</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777577</millis>
+  <sequence>182</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777577</millis>
+  <sequence>183</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Wind Angle is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777643</millis>
+  <sequence>184</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777645</millis>
+  <sequence>185</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777645</millis>
+  <sequence>186</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777646</millis>
+  <sequence>187</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777702</millis>
+  <sequence>188</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message>[Error in SpeechSynthesis]</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777703</millis>
+  <sequence>189</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- I/O exception raised from play()</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777703</millis>
+  <sequence>190</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>SEVERE</level>
+  <class>uk.ac.cam.november.messages.SpeechSynthesis</class>
+  <method>play</method>
+  <thread>14</thread>
+  <message> -- bad permissions, directory?</message>
+</record>
+<record>
+  <date>2016-02-16T13:52:57</date>
+  <millis>1455630777708</millis>
+  <sequence>191</sequence>
+  <logger>uk.ac.cam.november</logger>
+  <level>INFO</level>
+  <class>uk.ac.cam.november.messages.MessageFormatter</class>
+  <method>handleAlert</method>
+  <thread>14</thread>
+  <message>Sending Alert Message: 'Warning: Boat Speed is unresponsive'</message>
+</record>
