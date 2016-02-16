@@ -96,8 +96,9 @@ public class MessageFormatter {
             logger.log(Level.SEVERE,"MessageDecoder not set");
             throw new NullPointerException();
         }
-        
+
         BoatState state = mDecoder.getState();
+   
         switch(buttonName)
         {
         case ButtonNames.BOAT_SPEED:
@@ -105,7 +106,7 @@ public class MessageFormatter {
         case ButtonNames.COMPASS_HEADING:
             return state.getHeading();
 	case ButtonNames.NEAREST_PORT:
-            return state.getLatitude(); // Not used
+            return state.getLatitude();
         case ButtonNames.WATER_DEPTH:
             return state.getDepth();
         case ButtonNames.WIND_DIRECTION:
@@ -135,7 +136,6 @@ public class MessageFormatter {
         switch(buttonName)
         {
         case ButtonNames.NEAREST_PORT:
-	    BoatState state = mDecoder.getState();
             return data + " north";
         case ButtonNames.WATER_DEPTH:
             return data + " meters deep";
