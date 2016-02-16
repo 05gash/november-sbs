@@ -34,7 +34,6 @@ public class MessageDecoder implements Runnable {
     int criticalMinDepth = 20;
     int criticalMaxDepth = 80;
     int criticalChangeDepth = 40;
-    int criticalMinWindSpeed = 20;
     int criticalMaxWindSpeed = 75;
     int criticalChangeWindSpeed = 40;
     int criticalChangeWindAngle = 40;
@@ -49,8 +48,14 @@ public class MessageDecoder implements Runnable {
     long lastTimeH;
     long lastTimeS;
     long curTime;
+    long lastTimeDAlert;
+    long lastTimeWSAlert;
+    long lastTimeWAAlert;
+    long lastTimeHAlert;
+    long lastTimeSAlert;
 
-    long timeOutTime = 10000L;
+    long timeOutTime = 10000L; // 10s
+    long timeOutTimeAlert = 5000L;  // 5s
 
     private Queue<Packet> MessageQueue;
     private Queue<AlertMessage> AlertMessageQueue;
@@ -122,45 +127,54 @@ public class MessageDecoder implements Runnable {
                      * received
                      */
                     lastTimeD = System.currentTimeMillis();
-
-                    /**
-                     * If it is the first message of this type, NO
-                     * criticalChange alert
-                     */
-                    if (!first_d) {
-
+                    
+                    if (lastTimeD - lastTimeDAlert > timeOutTimeAlert) {
+                        
                         /**
-                         * Generates an alert of type CriticalChange in Water
-                         * Depth
+                         * If it is the first message of this type, NO
+                         * criticalChange alert
                          */
-                        if (fields.getDepth() - state.getDepth() > criticalChangeDepth
-                                | state.getDepth() - state.getDepth() > criticalChangeDepth) {
-                            AlertMessage amD0 = new AlertMessage();
-                            amD0.setAlertType(0);
-                            amD0.setSensor(0);
-                            AlertMessageQueue.add(amD0);
+                     
+                        if (!first_d) {
+    
+                            /**
+                             * Generates an alert of type CriticalChange in Water
+                             * Depth
+                             */
+                            
+                            if (fields.getDepth() - state.getDepth() > criticalChangeDepth
+                                    | state.getDepth() - state.getDepth() > criticalChangeDepth) {
+                                AlertMessage amD0 = new AlertMessage();
+                                amD0.setAlertType(0);
+                                amD0.setSensor(0);
+                                AlertMessageQueue.add(amD0);
+                            }
                         }
-                    }
-
-                    /** Generates an alert of type CriticalMax in Water Depth */
-                    if (fields.getDepth() > criticalMaxDepth) {
-                        AlertMessage amD1 = new AlertMessage();
-                        amD1.setAlertType(1);
-                        amD1.setSensor(0);
-                        AlertMessageQueue.add(amD1);
-                    }
-
-                    /** Generates an alert of type CriticalMin in Water Depth */
-                    if (fields.getDepth() < criticalMinDepth) {
-                        AlertMessage amD2 = new AlertMessage();
-                        amD2.setAlertType(2);
-                        amD2.setSensor(0);
-                        AlertMessageQueue.add(amD2);
+    
+                        /** Generates an alert of type CriticalMax in Water Depth */
+                        if (fields.getDepth() > criticalMaxDepth) {
+                            AlertMessage amD1 = new AlertMessage();
+                            amD1.setAlertType(1);
+                            amD1.setSensor(0);
+                            AlertMessageQueue.add(amD1);
+                        }
+    
+                        /** Generates an alert of type CriticalMin in Water Depth */
+                        if (fields.getDepth() < criticalMinDepth) {
+                            AlertMessage amD2 = new AlertMessage();
+                            amD2.setAlertType(2);
+                            amD2.setSensor(0);
+                            AlertMessageQueue.add(amD2);
+                        }
+                    
+                        lastTimeDAlert = System.currentTimeMillis();
                     }
 
                     /** Updates current values of Water Depth and Offset */
                     state.setDepth(fields.getDepth());
                     state.setOffset(fields.getOffset());
+                    
+                    
 
                     first_d = false;
 
@@ -180,52 +194,52 @@ public class MessageDecoder implements Runnable {
                      */
                     lastTimeWS = System.currentTimeMillis();
                     lastTimeWA = System.currentTimeMillis();
-
-                    /**
-                     * If it is the first message of this type, NO
-                     * criticalChange alert
-                     */
-                    if (!first_w) {
+                    
+                    if (lastTimeWA - lastTimeWSAlert > timeOutTimeAlert |
+                            lastTimeWS - lastTimeWAAlert > timeOutTimeAlert) {
 
                         /**
-                         * Generates an alert of type CriticalChange in Wind
-                         * Speed
+                         * If it is the first message of this type, NO
+                         * criticalChange alert
                          */
-                        if (fields.getWindSpeed() - state.getWindSpeed() > criticalChangeWindSpeed
-                                | state.getWindSpeed() - fields.getWindSpeed() > criticalChangeWindSpeed) {
-                            AlertMessage amWS0 = new AlertMessage();
-                            amWS0.setAlertType(0);
-                            amWS0.setSensor(1);
-                            AlertMessageQueue.add(amWS0);
+                        if (!first_w) {
+    
+                            /**
+                             * Generates an alert of type CriticalChange in WindSpeed
+                             * Speed
+                             */
+                            if (fields.getWindSpeed() - state.getWindSpeed() > criticalChangeWindSpeed
+                                    | state.getWindSpeed() - fields.getWindSpeed() > criticalChangeWindSpeed) {
+                                AlertMessage amWS0 = new AlertMessage();
+                                amWS0.setAlertType(0);
+                                amWS0.setSensor(1);
+                                AlertMessageQueue.add(amWS0);
+                            }
+    
+                            /**
+                             * Generates an alert of type CriticalChange in WindAngle
+                             * Angle
+                             */
+                            if (fields.getWindAngle() - state.getWindAngle() > criticalChangeWindAngle
+                                    | state.getWindAngle() - fields.getWindAngle() > criticalChangeWindAngle) {
+                                AlertMessage amWA0 = new AlertMessage();
+                                amWA0.setAlertType(0);
+                                amWA0.setSensor(2);
+                                AlertMessageQueue.add(amWA0);
+                            }
                         }
-
-                        /**
-                         * Generates an alert of type CriticalChange in Wind
-                         * Angle
-                         */
-                        if (fields.getWindAngle() - state.getWindAngle() > criticalChangeWindAngle
-                                | state.getWindAngle() - fields.getWindAngle() > criticalChangeWindAngle) {
-                            AlertMessage amWA0 = new AlertMessage();
-                            amWA0.setAlertType(0);
-                            amWA0.setSensor(2);
-                            AlertMessageQueue.add(amWA0);
+    
+                        /** Generates an alert of type CriticalMax in WindSpeed */
+                        if (fields.getWindSpeed() > criticalMaxWindSpeed) {
+                            AlertMessage amWS1 = new AlertMessage();
+                            amWS1.setAlertType(1);
+                            amWS1.setSensor(1);
+                            AlertMessageQueue.add(amWS1);
                         }
-                    }
-
-                    /** Generates an alert of type CriticalMax in WindSpeed */
-                    if (fields.getWindSpeed() > criticalMaxWindSpeed) {
-                        AlertMessage amWS1 = new AlertMessage();
-                        amWS1.setAlertType(1);
-                        amWS1.setSensor(1);
-                        AlertMessageQueue.add(amWS1);
-                    }
-
-                    /** Generates an alert of type CriticalMin in WindSpeed */
-                    if (fields.getWindSpeed() < criticalMinWindSpeed) {
-                        AlertMessage amWS2 = new AlertMessage();
-                        amWS2.setAlertType(2);
-                        amWS2.setSensor(1);
-                        AlertMessageQueue.add(amWS2);
+                        
+                        lastTimeWSAlert = System.currentTimeMillis();
+                        lastTimeWAAlert = System.currentTimeMillis();
+                    
                     }
 
                     /** Updates current values of Wind Speed and Wind Angle */
@@ -249,23 +263,28 @@ public class MessageDecoder implements Runnable {
                      * received
                      */
                     lastTimeH = System.currentTimeMillis();
-
-                    /**
-                     * If it is the first message of this type, NO
-                     * criticalChange alert
-                     */
-                    if (!first_h) {
+                    
+                    if (lastTimeH - lastTimeHAlert > timeOutTimeAlert) {
 
                         /**
-                         * Generates an alert of type CriticalChange in Heading
+                         * If it is the first message of this type, NO
+                         * criticalChange alert
                          */
-                        if (fields.getHeading() - state.getHeading() > criticalChangeHeading
-                                | state.getHeading() - fields.getHeading() > criticalChangeHeading) {
-                            AlertMessage amH0 = new AlertMessage();
-                            amH0.setAlertType(0);
-                            amH0.setSensor(3);
-                            AlertMessageQueue.add(amH0);
+                        if (!first_h) {
+    
+                            /**
+                             * Generates an alert of type CriticalChange in Heading
+                             */
+                            if (fields.getHeading() - state.getHeading() > criticalChangeHeading
+                                    | state.getHeading() - fields.getHeading() > criticalChangeHeading) {
+                                AlertMessage amH0 = new AlertMessage();
+                                amH0.setAlertType(0);
+                                amH0.setSensor(3);
+                                AlertMessageQueue.add(amH0);
+                            }
                         }
+                        
+                        lastTimeHAlert = System.currentTimeMillis();
                     }
 
                     /**
@@ -293,41 +312,39 @@ public class MessageDecoder implements Runnable {
                      * received
                      */
                     lastTimeS = System.currentTimeMillis();
-
-                    /**
-                     * If it is the first message of this type, NO
-                     * criticalChange alert
-                     */
-                    if (!first_s) {
+                    
+                    if (lastTimeS - lastTimeSAlert > timeOutTimeAlert) {
 
                         /**
-                         * Generates an alert of type CriticalChange in
-                         * BoatSpeed
+                         * If it is the first message of this type, NO
+                         * criticalChange alert
                          */
-                        if (fields.getSpeedWaterReferenced() - state.getSpeedWaterReferenced() > criticalChangeSpeed
-                                | state.getSpeedWaterReferenced()
-                                        - fields.getSpeedWaterReferenced() > criticalChangeSpeed) {
-                            AlertMessage amB0 = new AlertMessage();
-                            amB0.setAlertType(0);
-                            amB0.setSensor(4);
-                            AlertMessageQueue.add(amB0);
+                        if (!first_s) {
+    
+                            /**
+                             * Generates an alert of type CriticalChange in
+                             * BoatSpeed
+                             */
+                            if (fields.getSpeedWaterReferenced() - state.getSpeedWaterReferenced() > criticalChangeSpeed
+                                    | state.getSpeedWaterReferenced()
+                                            - fields.getSpeedWaterReferenced() > criticalChangeSpeed) {
+                                AlertMessage amB0 = new AlertMessage();
+                                amB0.setAlertType(0);
+                                amB0.setSensor(4);
+                                AlertMessageQueue.add(amB0);
+                            }
+                            
+                            lastTimeSAlert = System.currentTimeMillis();
                         }
-                    }
-
-                    /** Generates an alert of type CriticalMax in BoatSpeed */
-                    if (fields.getSpeedWaterReferenced() > criticalMaxBoatSpeed) {
-                        AlertMessage amB1 = new AlertMessage();
-                        amB1.setAlertType(1);
-                        amB1.setSensor(4);
-                        AlertMessageQueue.add(amB1);
-                    }
-
-                    /** Generates an alert of type CriticalMin in BoatSpeed */
-                    if (fields.getSpeedWaterReferenced() < criticalMinBoatSpeed) {
-                        AlertMessage amB2 = new AlertMessage();
-                        amB2.setAlertType(2);
-                        amB2.setSensor(4);
-                        AlertMessageQueue.add(amB2);
+    
+                        /** Generates an alert of type CriticalMax in BoatSpeed */
+                        if (fields.getSpeedWaterReferenced() > criticalMaxBoatSpeed) {
+                            AlertMessage amB1 = new AlertMessage();
+                            amB1.setAlertType(1);
+                            amB1.setSensor(4);
+                            AlertMessageQueue.add(amB1);
+                        }
+                    
                     }
 
                     /** Updates current values of BoatSpeed */
