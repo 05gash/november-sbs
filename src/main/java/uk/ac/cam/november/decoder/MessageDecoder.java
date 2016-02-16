@@ -56,7 +56,6 @@ public class MessageDecoder implements Runnable {
     private Queue<AlertMessage> AlertMessageQueue;
 
     BoatState state = new BoatState();
-    AlertMessage am = new AlertMessage();
 
     public MessageDecoder(Queue<Packet> messageQueue) {
         this.MessageQueue = messageQueue;
@@ -136,24 +135,27 @@ public class MessageDecoder implements Runnable {
                          */
                         if (fields.getDepth() - state.getDepth() > criticalChangeDepth
                                 | state.getDepth() - state.getDepth() > criticalChangeDepth) {
-                            am.setAlertType(0);
-                            am.setSensor(0);
-                            AlertMessageQueue.add(am);
+                            AlertMessage amD0 = new AlertMessage();
+                            amD0.setAlertType(0);
+                            amD0.setSensor(0);
+                            AlertMessageQueue.add(amD0);
                         }
                     }
 
                     /** Generates an alert of type CriticalMax in Water Depth */
                     if (fields.getDepth() > criticalMaxDepth) {
-                        am.setAlertType(1);
-                        am.setSensor(0);
-                        AlertMessageQueue.add(am);
+                        AlertMessage amD1 = new AlertMessage();
+                        amD1.setAlertType(1);
+                        amD1.setSensor(0);
+                        AlertMessageQueue.add(amD1);
                     }
 
                     /** Generates an alert of type CriticalMin in Water Depth */
                     if (fields.getDepth() < criticalMinDepth) {
-                        am.setAlertType(2);
-                        am.setSensor(0);
-                        AlertMessageQueue.add(am);
+                        AlertMessage amD2 = new AlertMessage();
+                        amD2.setAlertType(2);
+                        amD2.setSensor(0);
+                        AlertMessageQueue.add(amD2);
                     }
 
                     /** Updates current values of Water Depth and Offset */
@@ -191,9 +193,10 @@ public class MessageDecoder implements Runnable {
                          */
                         if (fields.getWindSpeed() - state.getWindSpeed() > criticalChangeWindSpeed
                                 | state.getWindSpeed() - fields.getWindSpeed() > criticalChangeWindSpeed) {
-                            am.setAlertType(0);
-                            am.setSensor(1);
-                            AlertMessageQueue.add(am);
+                            AlertMessage amWS0 = new AlertMessage();
+                            amWS0.setAlertType(0);
+                            amWS0.setSensor(1);
+                            AlertMessageQueue.add(amWS0);
                         }
 
                         /**
@@ -202,24 +205,27 @@ public class MessageDecoder implements Runnable {
                          */
                         if (fields.getWindAngle() - state.getWindAngle() > criticalChangeWindAngle
                                 | state.getWindAngle() - fields.getWindAngle() > criticalChangeWindAngle) {
-                            am.setAlertType(0);
-                            am.setSensor(2);
-                            AlertMessageQueue.add(am);
+                            AlertMessage amWA0 = new AlertMessage();
+                            amWA0.setAlertType(0);
+                            amWA0.setSensor(2);
+                            AlertMessageQueue.add(amWA0);
                         }
                     }
 
                     /** Generates an alert of type CriticalMax in WindSpeed */
                     if (fields.getWindSpeed() > criticalMaxWindSpeed) {
-                        am.setAlertType(1);
-                        am.setSensor(1);
-                        AlertMessageQueue.add(am);
+                        AlertMessage amWS1 = new AlertMessage();
+                        amWS1.setAlertType(1);
+                        amWS1.setSensor(1);
+                        AlertMessageQueue.add(amWS1);
                     }
 
                     /** Generates an alert of type CriticalMin in WindSpeed */
                     if (fields.getWindSpeed() < criticalMinWindSpeed) {
-                        am.setAlertType(2);
-                        am.setSensor(1);
-                        AlertMessageQueue.add(am);
+                        AlertMessage amWS2 = new AlertMessage();
+                        amWS2.setAlertType(2);
+                        amWS2.setSensor(1);
+                        AlertMessageQueue.add(amWS2);
                     }
 
                     /** Updates current values of Wind Speed and Wind Angle */
@@ -255,9 +261,10 @@ public class MessageDecoder implements Runnable {
                          */
                         if (fields.getHeading() - state.getHeading() > criticalChangeHeading
                                 | state.getHeading() - fields.getHeading() > criticalChangeHeading) {
-                            am.setAlertType(0);
-                            am.setSensor(3);
-                            AlertMessageQueue.add(am);
+                            AlertMessage amH0 = new AlertMessage();
+                            amH0.setAlertType(0);
+                            amH0.setSensor(3);
+                            AlertMessageQueue.add(amH0);
                         }
                     }
 
@@ -300,24 +307,27 @@ public class MessageDecoder implements Runnable {
                         if (fields.getSpeedWaterReferenced() - state.getSpeedWaterReferenced() > criticalChangeSpeed
                                 | state.getSpeedWaterReferenced()
                                         - fields.getSpeedWaterReferenced() > criticalChangeSpeed) {
-                            am.setAlertType(0);
-                            am.setSensor(4);
-                            AlertMessageQueue.add(am);
+                            AlertMessage amB0 = new AlertMessage();
+                            amB0.setAlertType(0);
+                            amB0.setSensor(4);
+                            AlertMessageQueue.add(amB0);
                         }
                     }
 
                     /** Generates an alert of type CriticalMax in BoatSpeed */
                     if (fields.getSpeedWaterReferenced() > criticalMaxBoatSpeed) {
-                        am.setAlertType(1);
-                        am.setSensor(4);
-                        AlertMessageQueue.add(am);
+                        AlertMessage amB1 = new AlertMessage();
+                        amB1.setAlertType(1);
+                        amB1.setSensor(4);
+                        AlertMessageQueue.add(amB1);
                     }
 
                     /** Generates an alert of type CriticalMin in BoatSpeed */
                     if (fields.getSpeedWaterReferenced() < criticalMinBoatSpeed) {
-                        am.setAlertType(2);
-                        am.setSensor(4);
-                        AlertMessageQueue.add(am);
+                        AlertMessage amB2 = new AlertMessage();
+                        amB2.setAlertType(2);
+                        amB2.setSensor(4);
+                        AlertMessageQueue.add(amB2);
                     }
 
                     /** Updates current values of BoatSpeed */
@@ -350,9 +360,10 @@ public class MessageDecoder implements Runnable {
              */
             long diffD = curTime - lastTimeD;
             if (diffD > timeOutTime) {
-                am.setAlertType(3);
-                am.setSensor(0);
-                AlertMessageQueue.add(am);
+                AlertMessage amD3 = new AlertMessage();
+                amD3.setAlertType(3);
+                amD3.setSensor(0);
+                AlertMessageQueue.add(amD3);
                 lastTimeD = System.currentTimeMillis();
             }
 
@@ -362,9 +373,10 @@ public class MessageDecoder implements Runnable {
              */
             long diffWS = curTime - lastTimeWS;
             if (diffWS > timeOutTime) {
-                am.setAlertType(3);
-                am.setSensor(1);
-                AlertMessageQueue.add(am);
+                AlertMessage amWS3 = new AlertMessage();
+                amWS3.setAlertType(3);
+                amWS3.setSensor(1);
+                AlertMessageQueue.add(amWS3);
                 lastTimeWS = System.currentTimeMillis();
             }
 
@@ -374,9 +386,10 @@ public class MessageDecoder implements Runnable {
              */
             long diffWA = curTime - lastTimeWA;
             if (diffWA > timeOutTime) {
-                am.setAlertType(3);
-                am.setSensor(2);
-                AlertMessageQueue.add(am);
+                AlertMessage amWA3 = new AlertMessage();
+                amWA3.setAlertType(3);
+                amWA3.setSensor(2);
+                AlertMessageQueue.add(amWA3);
                 lastTimeWA = System.currentTimeMillis();
             }
 
@@ -386,9 +399,10 @@ public class MessageDecoder implements Runnable {
              */
             long diffH = curTime - lastTimeH;
             if (diffH > timeOutTime) {
-                am.setAlertType(3);
-                am.setSensor(3);
-                AlertMessageQueue.add(am);
+                AlertMessage amH3 = new AlertMessage();
+                amH3.setAlertType(3);
+                amH3.setSensor(3);
+                AlertMessageQueue.add(amH3);
                 lastTimeH = System.currentTimeMillis();
             }
 
@@ -398,9 +412,10 @@ public class MessageDecoder implements Runnable {
              */
             long diffS = curTime - lastTimeS;
             if (diffS > timeOutTime) {
-                am.setAlertType(3);
-                am.setSensor(4);
-                AlertMessageQueue.add(am);
+                AlertMessage amB3 = new AlertMessage();
+                amB3.setAlertType(3);
+                amB3.setSensor(4);
+                AlertMessageQueue.add(amB3);
                 lastTimeS = System.currentTimeMillis();
             }
         }
