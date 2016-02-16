@@ -66,6 +66,7 @@ class Boot {
                 UncaughtExceptionHandler() {
                     public void uncaughtException(Thread t, Throwable e) {
                         System.out.println(t + " throws exception: " + e);
+			e.printStackTrace();
                         System.exit(1);
                     }
                 });

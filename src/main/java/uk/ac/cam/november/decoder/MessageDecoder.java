@@ -73,7 +73,6 @@ public class MessageDecoder implements Runnable {
         state.setHeading(0);
         state.setDeviation(0);
         state.setVariation(0);
-        // TODO(ml693): after testing, set latitude to 0
 	state.setLatitude(0);
 	state.setLongtitude(0);
 	state.setAltitude(0);
