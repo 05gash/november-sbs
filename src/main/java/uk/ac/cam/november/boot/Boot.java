@@ -3,21 +3,14 @@
 
 package uk.ac.cam.november.boot;
 
-import uk.ac.cam.november.boot.ScriptCreator;
 import uk.ac.cam.november.buttons.ButtonsListener;
 import uk.ac.cam.november.decoder.AlertHandler;
 import uk.ac.cam.november.decoder.MessageDecoder;
 import uk.ac.cam.november.input.CanBoatFacade;
 import uk.ac.cam.november.logging.LogConfig;
 import uk.ac.cam.november.messages.MessageFormatter;
-import uk.ac.cam.november.messages.SpeechSynthesis;
 import uk.ac.cam.november.simulation.Simulator;
 import uk.ac.cam.november.simulation.network.SimulatorServer;
-import java.nio.channels.FileChannel;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 class Boot {
 
@@ -27,14 +20,13 @@ class Boot {
 
         // Making sure that if one thread crashes,
         // then the whole JVM will shut down.
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.
-                UncaughtExceptionHandler() {
-                    public void uncaughtException(Thread t, Throwable e) {
-                        System.out.println(t + " throws exception: " + e);
-			e.printStackTrace();
-                        System.exit(1);
-                    }
-                });
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            public void uncaughtException(Thread t, Throwable e) {
+                System.out.println(t + " throws exception: " + e);
+                e.printStackTrace();
+                System.exit(1);
+            }
+        });
 
         boolean runSimServer = false;
 
@@ -66,7 +58,7 @@ class Boot {
         }
 
         LogConfig.setup();
-        ScriptCreator.writeScripts();
+        // ScriptCreator.writeScripts();
 
         // TODO(ml693): after message "BootingUp" is loudly said,
         // it takes a few seconds for the system to boot
@@ -89,18 +81,14 @@ class Boot {
             CanBoatFacade canboat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
             messageDec = new MessageDecoder(canboat.getPacketQueue());
         }
-        
         MessageFormatter.setDecoder(messageDec);
 
         Thread decoderThread = new Thread(messageDec, "Message-Decoder");
         decoderThread.start();
-        
+
         AlertHandler alertHandler = new AlertHandler(messageDec);
         Thread alertThread = new Thread(alertHandler, "Alert-Handler");
         alertThread.start();
-        
-        
-        
 
         for (;;) {
             Thread.sleep(A_LOT_OF_TIME);
