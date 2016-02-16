@@ -19,7 +19,7 @@ public class MessageLogOutputStream extends LogOutputStream{
         messageQueue.add(message);
     }
     
-    public EvictingQueue<Packet> getMessageQueue(){
+    protected EvictingQueue<Packet> getMessageQueue(){
         return messageQueue;
     }
 }
