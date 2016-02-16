@@ -1,2 +1,0 @@
-Feb 09, 2016 4:12:26 PM uk.ac.cam.november.messages.MessageFormatter pollStateDecoder
-SEVERE: MessageDecoder not set
