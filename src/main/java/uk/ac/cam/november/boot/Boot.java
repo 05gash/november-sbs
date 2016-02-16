@@ -18,8 +18,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 class Boot {
-
-    public static final int A_LOT_OF_TIME = 1000000000;
+    private static final Long A_LOT_OF_TIME = 10000000000l;
+    private static Simulator sim;
+    private static MessageDecoder messageDec;
+    private static SimulatorServer simServer;
+    private static CanBoatFacade canBoat;
 
     // usual file copy method
     public static void copyFile(File sourceFile, File destFile) throws IOException {
@@ -79,7 +82,7 @@ class Boot {
                     if (args[1].equalsIgnoreCase("client")) {
                         if (args.length == 3) {
                             // Launch the simulator client and return
-                            Simulator sim = new Simulator(args[2]);
+                            sim = new Simulator(args[2]);
                             sim.showUI();
                             sim.getThread().start();
                             return;
@@ -117,11 +120,12 @@ class Boot {
         MessageDecoder messageDec = null;
 
         if (runSimServer) {
-            SimulatorServer sim = new SimulatorServer();
-            messageDec = new MessageDecoder(sim.getMessageQueue());
+            simServer = new SimulatorServer();
+            messageDec = new MessageDecoder(simServer.getMessageQueue());
         } else {
-            CanBoatFacade canboat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
-            messageDec = new MessageDecoder(canboat.getPacketQueue());
+            canBoat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
+            canBoat.startCanBoat();
+            messageDec = new MessageDecoder(canBoat.getPacketQueue());
         }
 
         MessageFormatter.setDecoder(messageDec);

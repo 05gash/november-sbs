@@ -58,6 +58,7 @@ public class CanBoatFacade {
         canBoatExecutor.setWorkingDirectory(new File(canBoatExecutor.getWorkingDirectory().getCanonicalPath() + CANBOAT_DIRECTORY));
         canBoatExecutor.setStreamHandler(canPump);
         canBoatExecutor.execute(canBoatCommandLine, resultHandler);
+        System.out.println("Started CANboat");
     }
     
     /**
