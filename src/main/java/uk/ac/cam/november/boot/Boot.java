@@ -3,14 +3,14 @@
 
 package uk.ac.cam.november.boot;
 
-import uk.ac.cam.november.alerts.AlertGenerator;
 import uk.ac.cam.november.buttons.ButtonsListener;
+import uk.ac.cam.november.decoder.AlertHandler;
 import uk.ac.cam.november.decoder.MessageDecoder;
 import uk.ac.cam.november.input.CanBoatFacade;
 import uk.ac.cam.november.logging.LogConfig;
 import uk.ac.cam.november.messages.MessageFormatter;
-import uk.ac.cam.november.messages.SpeechSynthesis;
 import uk.ac.cam.november.simulation.Simulator;
+import uk.ac.cam.november.simulation.network.SimulatorServer;
 
 class Boot {
 
@@ -81,7 +81,6 @@ class Boot {
             CanBoatFacade canboat = new CanBoatFacade(CanBoatFacade.MOCKBOAT_OPTION);
             messageDec = new MessageDecoder(canboat.getPacketQueue());
         }
-
         MessageFormatter.setDecoder(messageDec);
 
         Thread decoderThread = new Thread(messageDec, "Message-Decoder");

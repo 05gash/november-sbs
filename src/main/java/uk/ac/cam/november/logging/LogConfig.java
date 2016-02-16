@@ -1,9 +1,9 @@
 package uk.ac.cam.november.logging;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import java.util.logging.XMLFormatter;
@@ -55,21 +55,24 @@ public class LogConfig {
             return; 
         }
         
-        
         fh.setFormatter(new SimpleFormatter());
         xfh.setFormatter(new XMLFormatter());
         
         LOGGER.addHandler(fh);
         LOGGER.addHandler(xfh);
         LOGGER.setLevel(Level.ALL);
+        
+        // Disable the default console handler on the root logger
+        // to prevent print looping from redirecting System.err
+        Logger rootLogger = Logger.getLogger("");
+        rootLogger.removeHandler(rootLogger.getHandlers()[0]);
+        
+        // Redirect System.out, System.err to double messages to logs. 
+        LoggerStream newOut = new LoggerStream(System.out, LOGGER, Level.INFO);
+        LoggerStream newErr = new LoggerStream(System.err, LOGGER, Level.SEVERE);
+        
+        System.setOut(new PrintStream(newOut));
+        System.setErr(new PrintStream(newErr));
     }
     
-    public static void main(String args[])
-    {
-        LogConfig.setup();
-        
-        Logger l = Logger.getLogger("uk.ac.cam.november.logging.LogConfig");
-        l.warning("Emergency Shostakovich ");
-        l.fine("done");
-    }
 }

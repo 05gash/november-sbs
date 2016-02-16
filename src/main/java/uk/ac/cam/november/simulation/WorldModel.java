@@ -213,12 +213,13 @@ public class WorldModel {
      *            The number of seconds to advance time by.
      */
     public void step(float dt) {
-        double ang = Math.toRadians(heading);
+        // correct for 'north' being 'east'
+        double ang = Math.toRadians(heading - 90);
         boatX += Math.cos(ang) * boatSpeed * (1 * dt);
         boatY += Math.sin(ang) * boatSpeed * (1 * dt);
         waterDepth = depthMap.getDepth(boatX, boatY);
-        
-        if(waterDepth < 5){
+
+        if (waterDepth < 5) {
             boatX -= Math.cos(ang) * boatSpeed * (1 * dt);
             boatY -= Math.sin(ang) * boatSpeed * (1 * dt);
             boatSpeed = 0;

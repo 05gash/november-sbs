@@ -1,10 +1,8 @@
 package uk.ac.cam.november.messages;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import uk.ac.cam.november.alerts.AlertMessage;
+import uk.ac.cam.november.boot.ShutDown;
 import uk.ac.cam.november.buttons.ButtonNames;
+import uk.ac.cam.november.decoder.AlertMessage;
 import uk.ac.cam.november.decoder.BoatState;
 import uk.ac.cam.november.decoder.MessageDecoder;
 
@@ -22,7 +20,7 @@ public class MessageFormatter {
     
     private static final int MESSAGE_PRIORITY = 1;
     private static final int ALERT_PRIORITY = 2;
-    private static Logger logger = Logger.getLogger("uk.ac.cam.november.messages.MessageFormatter");
+    private static final int SHUT_DOWN_PRIORITY = 3;
     
     private static MessageDecoder mDecoder = null;
     
@@ -41,6 +39,17 @@ public class MessageFormatter {
      */
     public static void handleButtonPress(String buttonName)
     {
+	// If the shut down button has been pressed,
+	// we will deal with it separately by turning the system off
+	if (buttonName.compareTo(ButtonNames.SHUT_DOWN) == 0) {
+		// Before shutting down, we will announce a shut down message loudly.
+		Message shutDownMessage = new Message("Turning the system completely off", SHUT_DOWN_PRIORITY);
+        MessageHandler.receiveMessage(shutDownMessage);
+		
+		// Excecuting an actual shut down operation;
+		ShutDown.shutDown();
+		return;
+	}
         
         //poll StateDecoder
         float sensorData = pollStateDecoder(buttonName);
@@ -52,34 +61,79 @@ public class MessageFormatter {
         Message m = new Message(formattedString, MESSAGE_PRIORITY);
         
         // call MessageHandler
+
+        System.out.println("Sending Message: '" + formattedString +"'");
         MessageHandler.receiveMessage(m);
     }
-
     
     public static void handleAlert(AlertMessage alert)
     {
+        int type = alert.getAlertType();
+        int sensor = alert.getSensor();
+
+        String formattedString = "Warning: "; 
+        String sensorName;
+            
+        switch (sensor)
+        {
+        case 0:
+            sensorName = "Water Depth";
+            break;
+        case 1:
+            sensorName = "Wind Speed";
+            break;
+        case 2:
+            sensorName = "Wind Angle";
+            break;
+        case 3:
+            sensorName = "Boat Heading";
+            break;
+        case 4:
+            sensorName = "Boat Speed";
+            break;
         
-        logger.log(Level.WARNING, "handlerAlert not implemented yet");
-        // TODO: poll StateDecoder
+        default:
+            // Should not reach here:
+            System.err.println("Invalid alert sensor type: " + sensor);
+            throw new IllegalArgumentException("Invalid alert sensor type: " + sensor);
+        }
         
-        // TODO: format the sensor data into a string;
+        switch (type)
+        {
+        case 0: //Critical Change
+            formattedString += "rapid change in " + sensorName;
+            break;
+        case 1: //Critical Max
+            formattedString += sensorName + " is high";
+            break;
+        case 2: //Critical Min
+            formattedString += sensorName + " is low";
+            break;
+        case 3: //Timeout 
+            formattedString += sensorName + " is unresponsive";
+            break;
+        
+        default:
+            // Should not reach here:
+            System.err.println("Invalid alert type: " + type);
+            throw new IllegalArgumentException("Invalid alert type: " + type);
+        }
         
         // assign priority and wrap in Message Object
-        // TODO: Come up with a sensible priority scheme.
-        Message m = new Message("Emergency Bartok", ALERT_PRIORITY);
+        Message m = new Message("formattedString", ALERT_PRIORITY);
         
         // call MessageHandler
+        System.out.println("Sending Alert Message: '" + formattedString +"'");
         MessageHandler.receiveMessage(m);
-        
-        
-    }
+}
+
 
     
     private static float pollStateDecoder(String buttonName)
     {
         if(mDecoder == null)
         {
-            logger.log(Level.SEVERE,"MessageDecoder not set");
+            System.err.println("MessageDecoder not set");
             throw new NullPointerException();
         }
         
@@ -90,6 +144,8 @@ public class MessageFormatter {
             return state.getSpeedWaterReferenced();
         case ButtonNames.COMPASS_HEADING:
             return state.getHeading();
+        case ButtonNames.NEAREST_PORT:
+            return state.getLatitude(); // Not used
         case ButtonNames.WATER_DEPTH:
             return state.getDepth();
         case ButtonNames.WIND_DIRECTION:
@@ -99,10 +155,24 @@ public class MessageFormatter {
             
         default:
             // Should not reach here
-            logger.log(Level.SEVERE, "Invalid button name: " + buttonName);
             System.err.println("Invalid button name: " + buttonName);
             throw new IllegalArgumentException("Invalid button name: " + buttonName);
         }
+    }
+    
+    private static String truncateFloat(float v, String buttonName)
+    {
+        int l = 1; 
+        
+        if( v > 10 || 
+            buttonName == ButtonNames.COMPASS_HEADING || 
+            buttonName == ButtonNames.WIND_DIRECTION  ||
+            (v - Math.floor(v) < 0.1) )
+        {
+            l = 0; 
+        }
+        String data = String.format("%."+ l  +"f", v);
+        return data;
     }
     
     /*
@@ -112,10 +182,13 @@ public class MessageFormatter {
      */
     private static String formatMessage(float dataValue, String buttonName)
     {
-        String data = String.format("%.2f", dataValue);
+        String data = truncateFloat(dataValue, buttonName);
         
         switch(buttonName)
         {
+        case ButtonNames.NEAREST_PORT:
+	    BoatState state = mDecoder.getState();
+            return data + " north";
         case ButtonNames.WATER_DEPTH:
             return data + " meters deep";
         case ButtonNames.WIND_SPEED:
@@ -129,13 +202,11 @@ public class MessageFormatter {
         
         default:
             // Should not reach here
-            logger.log(Level.SEVERE, "Formatting error: " + data + " " + buttonName);
             System.err.println("Formatting error: " + data + " " + buttonName);
             throw new IllegalArgumentException("Formatting error: " + data + " " + buttonName);
         }
         
     }
-    
-    
+
     
 }

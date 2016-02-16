@@ -5,7 +5,6 @@ import java.util.Queue;
 import com.google.common.collect.EvictingQueue;
 import com.google.common.collect.Queues;
 
-import uk.ac.cam.november.alerts.AlertMessage;
 import uk.ac.cam.november.packet.Fields;
 import uk.ac.cam.november.packet.Packet;
 
@@ -50,6 +49,7 @@ public class MessageDecoder implements Runnable {
     long lastTimeH;
     long lastTimeS;
     long curTime;
+
     long timeOutTime = 10000L;
 
     private Queue<Packet> MessageQueue;
@@ -74,6 +74,7 @@ public class MessageDecoder implements Runnable {
     @Override
     public void run() {
 
+        /** Initial values of the boat state are zeros */
         state.setDepth(0);
         state.setOffset(0);
         state.setWindSpeed(0);
@@ -99,6 +100,7 @@ public class MessageDecoder implements Runnable {
         lastTimeS = System.currentTimeMillis();
 
         while (true) {
+            /** Receive a packet from NMEA input */
             Packet packet = MessageQueue.poll();
 
             if (packet != null) {
