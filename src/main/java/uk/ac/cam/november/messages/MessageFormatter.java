@@ -240,7 +240,6 @@ public class MessageFormatter {
             System.err.println("MessageDecoder not set");
             throw new NullPointerException();
         }
-
         BoatState state = mDecoder.getState();
         switch(buttonName)
         {
@@ -256,7 +255,6 @@ public class MessageFormatter {
             return state.getWindAngle();
         case ButtonNames.WIND_SPEED:
             return state.getWindSpeed();
-
         default:
             // Should not reach here
             System.err.println("Invalid button name: " + buttonName);
@@ -272,7 +270,6 @@ public class MessageFormatter {
     private static String formatMessage(float dataValue, String buttonName)
     {
         String data = truncateFloat(dataValue, buttonName);
-
         switch(buttonName)
         {
         case ButtonNames.NEAREST_PORT:
@@ -294,13 +291,11 @@ public class MessageFormatter {
             return data + " degrees from north";
         case ButtonNames.BOAT_SPEED:
             return data + " meters per second";
-
         default:
             // Should not reach here
             System.err.println("Formatting error: " + data + " " + buttonName);
             throw new IllegalArgumentException("Formatting error: " + data + " " + buttonName);
         }
-
     } */
 
     public static void main(String args[])
