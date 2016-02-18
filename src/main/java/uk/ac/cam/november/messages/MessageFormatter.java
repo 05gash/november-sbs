@@ -57,7 +57,7 @@ public class MessageFormatter {
             return;
         }
 
-        String formattedString = formatString(buttonName); 
+        String formattedString = formatButtonPress(buttonName); 
 
         // assign priority and wrap in Message Object
         Message m = new Message(formattedString, MESSAGE_PRIORITY);
@@ -68,29 +68,29 @@ public class MessageFormatter {
         MessageHandler.receiveMessage(m);
     }
     
-    private static String formatString(String buttonName)
+    private static String formatButtonPress(String buttonName)
     {
         String formattedString;
         
         switch (buttonName)
         {
         case ButtonNames.BOAT_SPEED:
-            formattedString = formatBoatSpeed();
+            formattedString = formatBoatSpeedButton();
             break;
         case ButtonNames.COMPASS_HEADING:
-            formattedString = formatCompassHeading();
+            formattedString = formatCompassHeadingButton();
             break;
         case ButtonNames.NEAREST_PORT:
-            formattedString = formatNearestPort();
+            formattedString = formatNearestPortButton();
             break;
         case ButtonNames.WATER_DEPTH:
-            formattedString = formatWaterDepth();
+            formattedString = formatWaterDepthButton();
             break;
         case ButtonNames.WIND_DIRECTION:
-            formattedString = formatWindDir();
+            formattedString = formatWindDirButton();
             break;
         case ButtonNames.WIND_SPEED:
-            formattedString = formatWindSpeed();
+            formattedString = formatWindSpeedButton();
             break;
 
         default: 
@@ -103,7 +103,7 @@ public class MessageFormatter {
         return formattedString;
     }
 
-    private static String formatNearestPort() {
+    private static String formatNearestPortButton() {
         BoatState state = mDecoder.getState();
         LatLng myLoc = new LatLng(state.getLatitude(), state.getLongtitude());
         Port p = LocationUtil.nearestPort(myLoc);
@@ -114,28 +114,28 @@ public class MessageFormatter {
         return distString + " at " + bearingString + " degrees to " + p.name;
     }
 
-    private static String formatWindSpeed() {
+    private static String formatWindSpeedButton() {
         float speed = mDecoder.getState().getWindSpeed();
         String strSpd = truncateFloat(speed);
         
         return strSpd + " meters per second";
     }
 
-    private static String formatWindDir() {
+    private static String formatWindDirButton() {
         float dir = mDecoder.getState().getWindAngle();
         String strDir = String.format("%.0f", dir);
         
         return strDir + " degrees from head";
     }
 
-    private static String formatWaterDepth() {
+    private static String formatWaterDepthButton() {
         float depth = mDecoder.getState().getDepth();
         String strDpth = truncateFloat(depth);
         
         return strDpth + " meters deep";
     }
 
-    private static String formatBoatSpeed() {
+    private static String formatBoatSpeedButton() {
         
         float speed = mDecoder.getState().getSpeedWaterReferenced();
         String strSpd = truncateFloat(speed);
@@ -143,7 +143,7 @@ public class MessageFormatter {
         return strSpd + " meters per second";
     }
     
-    private static String formatCompassHeading() {
+    private static String formatCompassHeadingButton() {
         float heading = mDecoder.getState().getHeading();
         String strHdg = String.format("%.0f", heading);
         
@@ -344,7 +344,7 @@ public class MessageFormatter {
                 
             }
             
-            System.out.println(formatString(buttonName));
+            System.out.println(formatButtonPress(buttonName));
         }
     }
 
