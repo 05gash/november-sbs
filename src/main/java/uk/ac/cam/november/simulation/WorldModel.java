@@ -32,7 +32,7 @@ public class WorldModel {
     public WorldModel() {
         listeners = new ArrayList<StepListener>();
         try {
-            depthMap = new DepthMap(800, 600);
+            depthMap = new DepthMap(1.0, 1.0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -219,7 +219,7 @@ public class WorldModel {
         boatY += Math.sin(ang) * boatSpeed * (1 * dt);
         waterDepth = depthMap.getDepth(boatX, boatY);
 
-        if (waterDepth < 5) {
+        if (waterDepth < 2) {
             boatX -= Math.cos(ang) * boatSpeed * (1 * dt);
             boatY -= Math.sin(ang) * boatSpeed * (1 * dt);
             boatSpeed = 0;

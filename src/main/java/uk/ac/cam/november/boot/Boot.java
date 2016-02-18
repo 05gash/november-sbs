@@ -58,7 +58,7 @@ class Boot {
         }
 
         LogConfig.setup();
-        // ScriptCreator.writeScripts();
+        ScriptCreator.writeScripts();
 
         // TODO(ml693): after message "BootingUp" is loudly said,
         // it takes a few seconds for the system to boot

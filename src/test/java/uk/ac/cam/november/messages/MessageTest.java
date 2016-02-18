@@ -1,9 +1,7 @@
 package uk.ac.cam.november.messages;
 
-import java.io.IOException;
-
 public class MessageTest {
-    public static void main(String[] args) {
+    public void messagesShouldInterrupt() {
         try {
             Message m = new Message("Warning. Collision imminent. 12 seconds to live. Emergency Mozart.", 1);
             MessageHandler.receiveMessage(m);
@@ -37,6 +35,6 @@ public class MessageTest {
         } catch (InterruptedException e) {
             System.out.println("InterruptedException thrown");
         }
-
+        // pass always, since this is a subjective test
     }
 }

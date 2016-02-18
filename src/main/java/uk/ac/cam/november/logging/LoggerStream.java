@@ -78,24 +78,4 @@ public class LoggerStream extends OutputStream{
         return result;
     }
 
-
-    public static void main(String args[])
-    {
-
-        System.out.println(new Throwable().getStackTrace()[0]);
-        Logger l = Logger.getGlobal();
-        LoggerStream outLogStream = new LoggerStream(System.err, l, Level.INFO);
-        
-        System.setErr(new PrintStream(outLogStream));
-        
-        Logger rootLogger = Logger.getLogger("");
-        rootLogger.removeHandler(rootLogger.getHandlers()[0]);
-        
-        
-        System.err.println("Hello World");
-        
-    }
-
-
-    
 }
