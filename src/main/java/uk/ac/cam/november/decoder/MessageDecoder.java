@@ -32,7 +32,6 @@ public class MessageDecoder implements Runnable {
 
     /** Values describing critical state of the system */
     int criticalMinDepth = 20;
-    int criticalMaxDepth = 80;
     int criticalChangeDepth = 40;
     int criticalMaxWindSpeed = 75;
     int criticalChangeWindSpeed = 40;
@@ -149,14 +148,6 @@ public class MessageDecoder implements Runnable {
                                 amD0.setSensor(0);
                                 AlertMessageQueue.add(amD0);
                             }
-                        }
-    
-                        /** Generates an alert of type CriticalMax in Water Depth */
-                        if (fields.getDepth() > criticalMaxDepth) {
-                            AlertMessage amD1 = new AlertMessage();
-                            amD1.setAlertType(1);
-                            amD1.setSensor(0);
-                            AlertMessageQueue.add(amD1);
                         }
     
                         /** Generates an alert of type CriticalMin in Water Depth */
