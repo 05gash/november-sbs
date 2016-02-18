@@ -23,7 +23,10 @@ public class SimulatorUI extends JFrame {
     public boolean KEY_DOWN;
     public boolean KEY_LEFT;
     public boolean KEY_RIGHT;
-
+    
+    private double zoom = 3.0;
+    private RenderPanel renderPanel;
+    
     public SimulatorUI(Simulator sim) {
         super("Sailing by Sound Simulator");
         this.simulator = sim;
@@ -34,7 +37,7 @@ public class SimulatorUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        RenderPanel renderPanel = createRenderPanel();
+        renderPanel = createRenderPanel();
         InstrumentPanel instrumentPanel = createInstrumentPanel();
 
         add(renderPanel, BorderLayout.CENTER);
@@ -55,6 +58,20 @@ public class SimulatorUI extends JFrame {
     private InstrumentPanel createInstrumentPanel() {
         InstrumentPanel instrumentPanel = new InstrumentPanel(simulator.getWorldModel());
         return instrumentPanel;
+    }
+    
+    public void zoomIn(){
+        if(zoom < 10){
+            zoom *= 1.1;
+            renderPanel.setZoom(zoom);
+        }
+    }
+    
+    public void zoomOut(){
+        if(zoom > 0.5){
+            zoom /= 1.1;
+            renderPanel.setZoom(zoom);
+        }
     }
 
     /**

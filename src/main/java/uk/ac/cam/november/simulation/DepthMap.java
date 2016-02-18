@@ -20,7 +20,8 @@ public class DepthMap {
     static {
         BufferedImage tmp = null;
         try {
-            tmp = ImageIO.read(DepthMap.class.getResource("/ui/bonylake_depth.png"));
+            //tmp = ImageIO.read(DepthMap.class.getResource("/ui/bonylake_depth.png"));
+            tmp = ImageIO.read(DepthMap.class.getResource("/ui/world_depth.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

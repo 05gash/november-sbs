@@ -30,6 +30,12 @@ public class SimulatorKeyListener implements KeyListener {
         case KeyEvent.VK_D:
             ui.KEY_RIGHT = true;
             break;
+        case KeyEvent.VK_EQUALS:
+            ui.zoomIn();
+            break;
+        case KeyEvent.VK_MINUS:
+            ui.zoomOut();
+            break;
         }
     }
 
