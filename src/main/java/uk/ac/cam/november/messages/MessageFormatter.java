@@ -163,7 +163,7 @@ public class MessageFormatter {
     {
         int l = 1; 
 
-        if( v > 10 || (v - Math.floor(v) < 0.1) )
+        if( v > 10 || (Math.abs (v - Math.round(v) )) < 0.1 )
         {
             l = 0; 
         }
@@ -316,8 +316,8 @@ public class MessageFormatter {
             state.setWindAngle((float)Math.random() * 360);
             state.setWindSpeed((float)Math.random() * 20);
             state.setSpeedWaterReferenced((float)Math.random() * 30);
-            state.setLatitude((float) (Math.random() * 90));
-            state.setLongtitude((float) (Math.random() * 180));
+            state.setLatitude((float) (Math.random() * 180 - 90));
+            state.setLongtitude((float) (Math.random() * 360 - 180));
             int r = (int)(Math.random() * 6);
             
             String buttonName = "";
