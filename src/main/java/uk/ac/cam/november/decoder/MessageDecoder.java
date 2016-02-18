@@ -53,8 +53,8 @@ public class MessageDecoder implements Runnable {
     long lastTimeHAlert;
     long lastTimeSAlert;
 
-    long timeOutTime = 10000L; // 10s
-    long timeOutTimeAlert = 5000L;  // 5s
+    long timeOutTime = 30000L; // 30s
+    long timeOutTimeAlert = 10000L;  // 10s
 
     private Queue<Packet> MessageQueue;
     private Queue<AlertMessage> AlertMessageQueue;
@@ -126,46 +126,38 @@ public class MessageDecoder implements Runnable {
                      * received
                      */
                     lastTimeD = System.currentTimeMillis();
-                    
-                    if (lastTimeD - lastTimeDAlert > timeOutTimeAlert) {
-                        
+   
+                    /**
+                     * If it is the first message of this type, NO
+                     * criticalChange alert
+                     */
+                    if (!first_d) {
                         /**
-                         * If it is the first message of this type, NO
-                         * criticalChange alert
+                         * Generates an alert of type CriticalChange in Water
+                         * Depth, if the depth DROPS (but not when it increases).
                          */
-                     
-                        if (!first_d) {
-    
-                            /**
-                             * Generates an alert of type CriticalChange in Water
-                             * Depth
-                             */
-                            
-                            if (fields.getDepth() - state.getDepth() > criticalChangeDepth
-                                    | state.getDepth() - state.getDepth() > criticalChangeDepth) {
-                                AlertMessage amD0 = new AlertMessage();
-                                amD0.setAlertType(0);
-                                amD0.setSensor(0);
-                                AlertMessageQueue.add(amD0);
-                            }
+                        if (state.getDepth() - fields.getDepth() > criticalChangeDepth) {
+                            AlertMessage amD0 = new AlertMessage();
+                            amD0.setAlertType(0);
+                            amD0.setSensor(0);
+                            AlertMessageQueue.add(amD0);
                         }
-    
+                    }
+
+                    if (lastTimeD - lastTimeDAlert > timeOutTimeAlert) {
                         /** Generates an alert of type CriticalMin in Water Depth */
                         if (fields.getDepth() < criticalMinDepth) {
                             AlertMessage amD2 = new AlertMessage();
                             amD2.setAlertType(2);
                             amD2.setSensor(0);
                             AlertMessageQueue.add(amD2);
+                            lastTimeDAlert = System.currentTimeMillis();
                         }
-                    
-                        lastTimeDAlert = System.currentTimeMillis();
                     }
 
                     /** Updates current values of Water Depth and Offset */
                     state.setDepth(fields.getDepth());
                     state.setOffset(fields.getOffset());
-                    
-                    
 
                     first_d = false;
 
@@ -254,28 +246,24 @@ public class MessageDecoder implements Runnable {
                      * received
                      */
                     lastTimeH = System.currentTimeMillis();
-                    
-                    if (lastTimeH - lastTimeHAlert > timeOutTimeAlert) {
+
+		    /**
+                     * If it is the first message of this type, NO
+                     * criticalChange alert
+                     */
+                    if ((lastTimeH - lastTimeHAlert > timeOutTimeAlert) && !first_h) {
 
                         /**
-                         * If it is the first message of this type, NO
-                         * criticalChange alert
+                         * Generates an alert of type CriticalChange in Heading
                          */
-                        if (!first_h) {
-    
-                            /**
-                             * Generates an alert of type CriticalChange in Heading
-                             */
-                            if (fields.getHeading() - state.getHeading() > criticalChangeHeading
-                                    | state.getHeading() - fields.getHeading() > criticalChangeHeading) {
-                                AlertMessage amH0 = new AlertMessage();
-                                amH0.setAlertType(0);
-                                amH0.setSensor(3);
-                                AlertMessageQueue.add(amH0);
-                            }
+                        if (fields.getHeading() - state.getHeading() > criticalChangeHeading
+                                | state.getHeading() - fields.getHeading() > criticalChangeHeading) {
+                            AlertMessage amH0 = new AlertMessage();
+                            amH0.setAlertType(0);
+                            amH0.setSensor(3);
+                            AlertMessageQueue.add(amH0);
+                            lastTimeHAlert = System.currentTimeMillis();
                         }
-                        
-                        lastTimeHAlert = System.currentTimeMillis();
                     }
 
                     /**
@@ -303,15 +291,13 @@ public class MessageDecoder implements Runnable {
                      * received
                      */
                     lastTimeS = System.currentTimeMillis();
-                    
-                    if (lastTimeS - lastTimeSAlert > timeOutTimeAlert) {
+                   
+                    /**
+                     * If it is the first message of this type, NO
+                     * criticalChange alert
+                     */
+                    if (!first_s) {
 
-                        /**
-                         * If it is the first message of this type, NO
-                         * criticalChange alert
-                         */
-                        if (!first_s) {
-    
                             /**
                              * Generates an alert of type CriticalChange in
                              * BoatSpeed
@@ -324,17 +310,18 @@ public class MessageDecoder implements Runnable {
                                 amB0.setSensor(4);
                                 AlertMessageQueue.add(amB0);
                             }
-                            
-                            lastTimeSAlert = System.currentTimeMillis();
-                        }
-    
+
+                    }
+ 
+                    if (lastTimeS - lastTimeSAlert > timeOutTimeAlert) {
                         /** Generates an alert of type CriticalMax in BoatSpeed */
                         if (fields.getSpeedWaterReferenced() > criticalMaxBoatSpeed) {
                             AlertMessage amB1 = new AlertMessage();
                             amB1.setAlertType(1);
                             amB1.setSensor(4);
                             AlertMessageQueue.add(amB1);
-                        }
+                            lastTimeSAlert = System.currentTimeMillis();
+			}
                     
                     }
 
