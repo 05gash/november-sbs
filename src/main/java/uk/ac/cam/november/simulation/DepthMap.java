@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class DepthMap {
 
     public static final double MIN_DEPTH = 0.0;
-    public static final double MAX_DEPTH = 100.0;
+    public static final double MAX_DEPTH = 50.0;
 
     public static final BufferedImage depthMapImage;
     private double scalex;
@@ -20,16 +20,18 @@ public class DepthMap {
     static {
         BufferedImage tmp = null;
         try {
-            tmp = ImageIO.read(DepthMap.class.getResource("/ui/lake_depth_map.png"));
+            tmp = ImageIO.read(DepthMap.class.getResource("/ui/bonylake_depth.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         depthMapImage = tmp;
     }
 
-    public DepthMap(int w, int h) throws IOException {
-        scalex = (double) depthMapImage.getWidth() / (double) w;
-        scaley = (double) depthMapImage.getHeight() / (double) h;
+    public DepthMap(double scalex, double scaley) throws IOException {
+        this.scalex = scalex;
+        this.scaley = scaley;
+        double w = scalex * depthMapImage.getWidth();
+        double h = scaley * depthMapImage.getHeight();
         offsetx = w / 2;
         offsety = h / 2;
     }

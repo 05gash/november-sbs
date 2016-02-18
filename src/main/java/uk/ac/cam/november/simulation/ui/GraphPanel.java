@@ -65,7 +65,7 @@ public class GraphPanel extends JPanel {
         int lastPoint = 0;
         for (int i = start; i != end; i++) {
             double val = vals[i];
-            int vp = (int) (val);
+            int vp = (int) (2*val);
             if (drawMode == FILLED) {
                 gr.drawLine(x, vp, x, 0);
             } else if (drawMode == LINE) {
