@@ -231,73 +231,7 @@ public class MessageFormatter {
         System.out.println("Sending Alert Message: '" + formattedString +"'");
         MessageHandler.receiveMessage(m);
     }
-
-/*
-    private static float pollStateDecoder(String buttonName)
-    {
-        if(mDecoder == null)
-        {
-            System.err.println("MessageDecoder not set");
-            throw new NullPointerException();
-        }
-        BoatState state = mDecoder.getState();
-        switch(buttonName)
-        {
-        case ButtonNames.BOAT_SPEED:
-            return state.getSpeedWaterReferenced();
-        case ButtonNames.COMPASS_HEADING:
-            return state.getHeading();
-        case ButtonNames.NEAREST_PORT:
-            return 0f; // not used
-        case ButtonNames.WATER_DEPTH:
-            return state.getDepth();
-        case ButtonNames.WIND_DIRECTION:
-            return state.getWindAngle();
-        case ButtonNames.WIND_SPEED:
-            return state.getWindSpeed();
-        default:
-            // Should not reach here
-            System.err.println("Invalid button name: " + buttonName);
-            throw new IllegalArgumentException("Invalid button name: " + buttonName);
-        }
-    }
- */
-    /*
-     * Given a data value and the field that it corresponds with, this creates a formatted string
-     * that can be read by the MessageHandler
-     * 
-     *
-    private static String formatMessage(float dataValue, String buttonName)
-    {
-        String data = truncateFloat(dataValue, buttonName);
-        switch(buttonName)
-        {
-        case ButtonNames.NEAREST_PORT:
-            BoatState state = mDecoder.getState();
-            LatLng myLoc = new LatLng(state.getLatitude(), state.getLongtitude());
-            Port p = LocationUtil.nearestPort(myLoc);
-            double dist = LocationUtil.distance(myLoc, p.location);
-            double bearing = LocationUtil.initialBearing(myLoc, p.location);
-            String distString = formatDistance(dist);
-            String bearingString = truncateFloat((float)bearing, buttonName);
-            return distString + " at " + bearingString + " degrees to " + p.name;
-        case ButtonNames.WATER_DEPTH:
-            return data + " meters deep";
-        case ButtonNames.WIND_SPEED:
-            return data + " meters per second";
-        case ButtonNames.WIND_DIRECTION:
-            return data + " degrees from head";
-        case ButtonNames.COMPASS_HEADING:
-            return data + " degrees from north";
-        case ButtonNames.BOAT_SPEED:
-            return data + " meters per second";
-        default:
-            // Should not reach here
-            System.err.println("Formatting error: " + data + " " + buttonName);
-            throw new IllegalArgumentException("Formatting error: " + data + " " + buttonName);
-        }
-    } */
-
+    
     public static void main(String args[])
     {
         mDecoder = new MessageDecoder(new LinkedList<Packet>());
