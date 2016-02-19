@@ -19,7 +19,7 @@ public class RenderPanel extends JPanel {
     private BufferedImage lakeImage;
     private Color backgroundColor;
     
-    private double zoom = 1.0;
+    private double zoom = 2.0;
 
     public RenderPanel(WorldModel wm) {
         this.worldModel = wm;

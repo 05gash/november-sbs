@@ -24,7 +24,7 @@ public class SimulatorUI extends JFrame {
     public boolean KEY_LEFT;
     public boolean KEY_RIGHT;
     
-    private double zoom = 3.0;
+    private double zoom = 2.0;
     private RenderPanel renderPanel;
     
     public SimulatorUI(Simulator sim) {
@@ -38,6 +38,7 @@ public class SimulatorUI extends JFrame {
         setLayout(new BorderLayout());
 
         renderPanel = createRenderPanel();
+        renderPanel.setZoom(zoom);
         InstrumentPanel instrumentPanel = createInstrumentPanel();
 
         add(renderPanel, BorderLayout.CENTER);

@@ -108,8 +108,8 @@ public class BoatDataOutputter {
      */
     private void outputGPSPacket() throws IOException {
         WorldModel worldModel = simulator.getWorldModel();
-        float lat = -worldModel.getBoatY()/1000f;
-        float lon = worldModel.getBoatX()/1000f;
+        float lat = -worldModel.getBoatY()/10f;
+        float lon = worldModel.getBoatX()/10f;
         Packet m = DataGenerator.generateGPSPacket(lat, lon, 0);
         simulator.queueMessage(m);
     }
