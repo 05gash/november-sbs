@@ -27,30 +27,25 @@ public class Simulator {
      * Constructs the simulator. Creates the
      * {@link uk.ac.cam.november.simulation.ui.SimulatorUI SimulatorUI} user
      * interface but does not show it.
+     * @throws IOException 
      */
-    public Simulator(String serverAddress) {
+    public Simulator(String serverAddress) throws IOException {
         worldModel = new WorldModel();
         dataOutput = new BoatDataOutputter(this);
         ui = new SimulatorUI(this);
-
-        try {
-            netClient = new SimulatorClient(serverAddress);
-        } catch (IOException e) {
-            System.err.println("Failed to open connection to simulator server");
-            System.err.println("ERROR: " + e.getMessage());
-            System.exit(1);
-        }
+        netClient = new SimulatorClient(serverAddress);
+        
 
         runThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 long oTime = System.currentTimeMillis();
                 while (true) {
-                    long nTime = System.currentTimeMillis();
-                    step((nTime - oTime) / 1000f);
-
-                    oTime = nTime;
                     try {
+                        long nTime = System.currentTimeMillis();
+                        step((nTime - oTime) / 1000f);
+
+                        oTime = nTime;
                         Thread.sleep(20);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -73,8 +68,9 @@ public class Simulator {
      * 
      * @param dt
      *            Number of seconds to advance time by
+     * @throws IOException 
      */
-    public void step(float dt) {
+    public void step(float dt) throws IOException {
 
         if (ui.KEY_UP) {
             worldModel.setBoatSpeed(worldModel.getBoatSpeed() + 0.5f);
@@ -93,10 +89,7 @@ public class Simulator {
         try{
             dataOutput.update();
         }catch(IOException e){
-            System.err.println("Failed to write data packet to socket");
-            System.err.println("ERROR: " + e.getMessage());
-            netClient.close();
-            System.exit(1);
+            throw new IOException("Simulator Failed to write packet to socket");
         }
         ui.revalidate();
         ui.repaint();
