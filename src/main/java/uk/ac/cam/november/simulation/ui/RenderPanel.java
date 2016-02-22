@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -17,6 +18,8 @@ public class RenderPanel extends JPanel {
     private WorldModel worldModel;
     private BufferedImage lakeImage;
     private Color backgroundColor;
+    
+    private double zoom = 2.0;
 
     public RenderPanel(WorldModel wm) {
         this.worldModel = wm;
@@ -30,17 +33,26 @@ public class RenderPanel extends JPanel {
 
         int[] mask = DepthMap.depthMapImage.getRGB(0, 0, width, height, null, 0, width);
         int[] pixels = lakeImage.getRGB(0, 0, width, height, null, 0, width);
+
+        Random rand = new Random();
+
         for (int i = 0; i < pixels.length; i++) {
-            int alpha = mask[i] << 24; // move the green channel to alpha
-            if (alpha == 0xff000000) {
-                pixels[i] = alpha | 0x425d00; // dark green
-            } else {
-                pixels[i] = alpha | 0x00009F; // dark blue
+            int alpha = mask[i] & 0xff; // use the green channel as 'grayscale'
+            if (alpha == 255) { // dark green
+                pixels[i] = (alpha << 24) | (0x425d00 + (rand.nextInt(30) << 8));
+            } else if (alpha > 244) { // sand
+                pixels[i] = ((10 * alpha - 2285) << 24) | 0xFFF0C2;
+            } else { // dark blue
+                pixels[i] = (alpha << 24) | 0x00009F;
             }
         }
         lakeImage.setRGB(0, 0, width, height, pixels, 0, width);
     }
 
+    public void setZoom(double z){
+        zoom = z;
+    }
+    
     @Override
     public void paint(Graphics g) {
         Graphics2D gr = (Graphics2D) g;
@@ -54,7 +66,7 @@ public class RenderPanel extends JPanel {
         // Draw the lake
         AffineTransform lakeMatrix = new AffineTransform();
         lakeMatrix.translate(w / 2, h / 2);
-        lakeMatrix.scale(3, 3);
+        lakeMatrix.scale(zoom, zoom);
         lakeMatrix.translate(-lakeImage.getWidth() / 2, -lakeImage.getHeight() / 2);
         lakeMatrix.translate(-worldModel.getBoatX(), -worldModel.getBoatY());
         gr.drawImage(lakeImage, lakeMatrix, null);
@@ -63,7 +75,7 @@ public class RenderPanel extends JPanel {
         BufferedImage boatImg = SimulatorUI.boatImage;
         AffineTransform boatMatrix = new AffineTransform();
         boatMatrix.translate(w / 2, h / 2);
-        boatMatrix.scale(0.5, 0.5);
+        boatMatrix.scale(0.25, 0.25);
         boatMatrix.translate(-boatImg.getWidth() / 2, -boatImg.getHeight() / 2);
         boatMatrix.rotate(Math.toRadians(worldModel.getHeading()), boatImg.getWidth() / 2, boatImg.getHeight() / 2);
         gr.drawImage(SimulatorUI.boatImage, boatMatrix, null);

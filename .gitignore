@@ -1,10 +1,11 @@
 *~
 /target
+/temp
 .classpath
 .project
 .settings
 src/main/java/pi4j
 *.jar
 *.class
-log.txt*
-xml_log.txt*
+*log.txt*
+*xml_log.txt*

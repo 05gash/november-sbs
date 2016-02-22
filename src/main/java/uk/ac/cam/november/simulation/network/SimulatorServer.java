@@ -29,7 +29,7 @@ public class SimulatorServer {
         } catch (IOException e) {
             System.err.println("Failed to bind port!");
             System.err.println("ERROR: " + e.getMessage());
-            System.exit(1);
+            throw new RuntimeException("Failed to start server.");
         }
 
         Thread socketThread = new Thread(new Runnable() {

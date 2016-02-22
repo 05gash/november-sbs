@@ -34,7 +34,14 @@ public class Simulator {
         dataOutput = new BoatDataOutputter(this);
         ui = new SimulatorUI(this);
         netClient = new SimulatorClient(serverAddress);
-        
+
+        try {
+            netClient = new SimulatorClient(serverAddress);
+        } catch (IOException e) {
+            System.err.println("Failed to open connection to simulator server");
+            System.err.println("ERROR: " + e.getMessage());
+            throw new RuntimeException("Failed to connecto to the server.");
+        }
 
         runThread = new Thread(new Runnable() {
             @Override
@@ -43,7 +50,6 @@ public class Simulator {
                 while (true) {
                     try {
                         long nTime = System.currentTimeMillis();
-                        step((nTime - oTime) / 1000f);
 
                         oTime = nTime;
                         Thread.sleep(20);
@@ -89,6 +95,7 @@ public class Simulator {
         try{
             dataOutput.update();
         }catch(IOException e){
+            netClient.close();
             throw new IOException("Simulator Failed to write packet to socket");
         }
         ui.revalidate();
