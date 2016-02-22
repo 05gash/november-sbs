@@ -5,6 +5,12 @@ import java.io.FileWriter;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+/**
+ * Module used on startup that generates important temporary files.
+ * This class stores hardcoded information about the few small scripts
+ * used for speech synthesis. Files are generated inside the the temp/
+ * directory. 
+ */
 public class ScriptCreator {
 
     private static String directoryName = "temp";
@@ -12,7 +18,10 @@ public class ScriptCreator {
     private static String[] scriptContents = {
         "pico2wave -w \"$1\" \"$2\" ; aplay \"$1\" \n",
         "killall \"$1\" \n"};
-        
+    
+    /**
+     * Create all script files.
+     */
     public static void writeScripts() throws IOException {
         int scriptCount = scriptName.length;
         File directory = new File(directoryName);
