@@ -37,6 +37,13 @@ public class AlertMessage {
         this.alertType = alertType;
     }
 
+    AlertMessage(final int alertTypeInput, final int sensorInput) {
+        alertType = alertTypeInput;
+        sensor = sensorInput;
+    }
+
+    AlertMessage() {}  // TODO(ml693): remove this constructor and any calls to it
+
     public int getSensor() {
         return sensor;
     }

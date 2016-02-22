@@ -5,9 +5,22 @@
 
 package uk.ac.cam.november.boot;
 
+import java.lang.InterruptedException;
+
 public class ShutDown {
 
+        private static final Long SHUTDOWN_MESSAGE_TIME = 3000L; // 3 seconds
+
 	public static synchronized void shutDown() {
+                // As the message of system going to be shut down had been
+                // anounced before, we will give some time for that
+                // message to finish.
+                try {
+                    Thread.sleep(SHUTDOWN_MESSAGE_TIME);
+                } catch (InterruptedException exception) {
+                    exception.printStackTrace();
+                }
+
 		Runtime rt = Runtime.getRuntime();
 		String[] cmd = {"sudo", "shutdown", "-h", "now"};
 		try {
