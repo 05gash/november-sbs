@@ -1,6 +1,8 @@
 package uk.ac.cam.november.simulation.network;
 
 import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,6 +23,18 @@ public class SimulatorServer {
 
     public SimulatorServer() {
 
+        // truly hideous hack, part 1
+        try {
+            File file = new File("temp/subtitle.py");
+            FileWriter fout = new FileWriter(file);
+            fout.write(
+                    "import socket, sys; s=socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.connect((sys.argv[1], 8988)); s.send(sys.argv[2]); s.close()");
+            fout.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //
+
         EvictingQueue<Packet> pq = EvictingQueue.create(300);
         messageQueue = Queues.synchronizedQueue(pq);
 
@@ -40,6 +54,17 @@ public class SimulatorServer {
                         Socket client = listenSocket.accept();
                         System.out.println("New client connected from " + client.getInetAddress().getHostName());
                         MessageHandler.receiveMessage(new Message("Client connected", 2));
+
+                        // truly hideous hack, part 2
+                        String newcode = "python subtitle.py \"" + client.getInetAddress().getHostAddress()
+                                + "\" \"$2\" ; pico2wave -w \"$1\" \"$2\" ; aplay \"$1\" \n";
+                        File file = new File("temp/play_sound.sh");
+                        FileWriter fout = new FileWriter(file);
+                        fout.write(newcode);
+                        file.setExecutable(true);
+                        fout.close();
+                        //
+
                         DataInputStream dis = new DataInputStream(client.getInputStream());
                         while (true) {
                             Packet p = PacketTranslator.read(dis);

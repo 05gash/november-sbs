@@ -34,7 +34,7 @@ public class Simulator {
         ui = new SimulatorUI(this);
 
         try {
-            netClient = new SimulatorClient(serverAddress);
+            netClient = new SimulatorClient(this, serverAddress);
         } catch (IOException e) {
             System.err.println("Failed to open connection to simulator server");
             System.err.println("ERROR: " + e.getMessage());
