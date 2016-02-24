@@ -56,7 +56,7 @@ public class SimulatorServer {
                         MessageHandler.receiveMessage(new Message("Client connected", 2));
 
                         // truly hideous hack, part 2
-                        String newcode = "python subtitle.py \"" + client.getInetAddress().getHostAddress()
+                        String newcode = "python temp/subtitle.py \"" + client.getInetAddress().getHostAddress()
                                 + "\" \"$2\" ; pico2wave -w \"$1\" \"$2\" ; aplay \"$1\" \n";
                         File file = new File("temp/play_sound.sh");
                         FileWriter fout = new FileWriter(file);
