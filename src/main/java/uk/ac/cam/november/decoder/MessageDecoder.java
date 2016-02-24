@@ -43,7 +43,7 @@ public class MessageDecoder implements Runnable {
        DataStatus(final String dataNameInput, final int sensorInput, final float maxChangeLimitInput,
                   final float minDataValueInput, final float maxDataValueInput)
     */
-    private final DataStatus waterDepthState = new DataStatus(ButtonNames.WATER_DEPTH, 0, 40.0f, 20.0f, INFINITY);
+    private final DataStatus waterDepthState = new DataStatus(ButtonNames.WATER_DEPTH, 0, 40.0f, 5.0f, INFINITY);
     private final DataStatus windSpeedState = new DataStatus(ButtonNames.WIND_SPEED, 1, 40.0f, -INFINITY, 75.0f);
     // Changed critical wind angle change from 40 to 50, to avoid collision with critical boat change.
     // (Because when the boat turns, the wind angle also automatically turns)

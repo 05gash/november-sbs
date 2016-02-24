@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 public class DepthMap {
 
     public static final double MIN_DEPTH = 0.0;
-    public static final double MAX_DEPTH = 50.0;
+    public static final double MAX_DEPTH = 100.0;
 
     public static final BufferedImage depthMapImage;
     private double scalex;
