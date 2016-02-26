@@ -1,9 +1,12 @@
 package uk.ac.cam.november.messages;
 
 /**
- * A simple class that represents messages from the central system,
+ * This class represents messages from the central system,
  * formatted in a way that can be used by {@link MessageHandler} facilities.
  * Its objects are immutable and very simple.
+ * 
+ * @author Alan Tang
+ * 
 */
 public class Message {
 

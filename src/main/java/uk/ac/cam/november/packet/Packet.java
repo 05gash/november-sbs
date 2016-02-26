@@ -1,6 +1,13 @@
 package uk.ac.cam.november.packet;
 import java.util.Date;
 
+/**
+ * This is a generic Packet class, which initializes attributes of a packet.
+ * A packet is a message coming from sensors to the decoder.
+ * This method initializes some appropriate get/set methods for the class.
+ * 
+ */
+
 public class Packet { 
     private Date timestamp;
     private int prio;
@@ -50,7 +57,9 @@ public class Packet {
     
     @Override
     public String toString(){
-        return timestamp + " Description: " + description + " Prio: " + prio + " dst: " + dst + " src: " + src + " pgn " + pgn + " fields:" + fields.getSID();
+        return timestamp + " Description: " + description + 
+                " Prio: " + prio + " dst: " + dst + " src: " + src + 
+                " pgn " + pgn + " fields:" + fields.getSID();
     }
     
     public String getDescription() {

@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 /**
  * A stream that redirects any output to also go to a specified logger, with one log message
  * printed after each new line character. The log messages are all set with a specified level.
+ * 
  * @author Alan Tang
  *
  */

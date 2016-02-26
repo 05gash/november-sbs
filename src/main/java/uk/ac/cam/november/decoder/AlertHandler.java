@@ -4,6 +4,14 @@ import java.util.Queue;
 
 import uk.ac.cam.november.messages.MessageFormatter;
 
+/**
+ * This class takes the AlertMessageQueue, pulls an alert from the queue, and
+ * passes it to the Message Formatter, which handles the alert
+ * 
+ * @author
+ *
+ */
+
 public class AlertHandler implements Runnable {
 
     private MessageDecoder mdecoder;

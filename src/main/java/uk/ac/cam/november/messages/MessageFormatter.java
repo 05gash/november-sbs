@@ -13,13 +13,12 @@ import uk.ac.cam.november.location.Port;
 import uk.ac.cam.november.packet.Packet;
 
 /**
- * 
- * @author Alan Tang
- * 
  * The purpose of this class is to respond to determine which button was pressed,
  * poll the StateDecoder for data information
  * format a message corresponding to the button pressed,
  * and assign a priority to the message before sending it to the MessageHandler class
+ *
+ * @author Alan Tang
  *
  */
 public class MessageFormatter {
@@ -45,25 +44,23 @@ public class MessageFormatter {
 	 */
 	public static void handleButtonPress(String buttonName)
 	{
-		// If the shut down button has been pressed,
-		// we will deal with it separately by turning the system off
+	    /** If the shut down button has been pressed, the system will announce
+	     * a shutdown message, and then it will turn off */
 		if (buttonName.compareTo(ButtonNames.SHUT_DOWN) == 0) {
-			// Before shutting down, we will announce a shut down message loudly.
 			Message shutDownMessage = new Message("Turning the system completely off", SHUT_DOWN_PRIORITY);
 			MessageHandler.receiveMessage(shutDownMessage);
 
-			// Excecuting an actual shut down operation;
+			/** Executing on actual shutdown operation */
 			ShutDown.shutDown();
 			return;
 		}
 
 		String formattedString = formatButtonPress(buttonName); 
 
-		// assign priority and wrap in Message Object
+		/** Assign priority and wrap in Message Object */
 		Message m = new Message(formattedString, MESSAGE_PRIORITY);
-
-		// call MessageHandler
-
+		
+		/** Calls MessageHandler */
 		System.out.println("Sending Message: '" + formattedString +"'");
 		MessageHandler.receiveMessage(m);
 	}
@@ -74,21 +71,33 @@ public class MessageFormatter {
 
 		switch (buttonName)
 		{
+		
+		/** BoatSpeed */
 		case ButtonNames.BOAT_SPEED:
 			formattedString = formatBoatSpeedButton();
 			break;
+			
+		/** Heading */
 		case ButtonNames.COMPASS_HEADING:
 			formattedString = formatCompassHeadingButton();
 			break;
+			
+		/** NearestPort */
 		case ButtonNames.NEAREST_PORT:
 			formattedString = formatNearestPortButton();
 			break;
+			
+		/** WaterDepth */
 		case ButtonNames.WATER_DEPTH:
 			formattedString = formatWaterDepthButton();
 			break;
+			
+		/** WindDirection */
 		case ButtonNames.WIND_DIRECTION:
 			formattedString = formatWindDirButton();
 			break;
+			
+		/** WindSpeed */
 		case ButtonNames.WIND_SPEED:
 			formattedString = formatWindSpeedButton();
 			break;
@@ -195,18 +204,28 @@ public class MessageFormatter {
 
 		switch (sensor)
 		{
+		
+		/** WaterDepth */
 		case 0:
 			formattedString += formatDepthAlert(alert);
 			break;
+		
+		/** WindSpeed */
 		case 1:
 			formattedString += formatWindSpeedAlert(alert);
 			break;
+			
+		/** WindDirection */
 		case 2:
 			formattedString += formatWindDirectionAlert(alert);
 			break;
+			
+		/** Heading */
 		case 3:
 			formattedString += formatHeadingAlert(alert);
 			break;
+			
+		/** BoatSpeed */
 		case 4:
 			formattedString += formatBoatSpeedAlert(alert);
 			break;
@@ -226,16 +245,24 @@ public class MessageFormatter {
 		String formattedString = "";
 		switch (alert.getAlertType())
 		{
-		case 0: //Critical Change
+		
+		/** CriticalChange */
+		case 0:
 			formattedString += "rapid change in water depth";
 			break;
-		case 1: //Critical Max (not implemented in decoder)
+		
+		/** CriticalMax (not implemented in Decoder) */
+		case 1:
 			formattedString += "entering deep water?";
 			break;
-		case 2: //Critical Min 
+		
+		/** CriticalMin */
+		case 2:
 			formattedString += "entering shallow water";
 			break;
-		case 3: //Timeout
+			
+		/** TimeOut */
+		case 3:
 			formattedString += "wate depth sensor is unresponsive";
 			break;
 
@@ -251,16 +278,24 @@ public class MessageFormatter {
 		String formattedString = "";
 		switch (alert.getAlertType())
 		{
-		case 0: //Critical Change
+		
+		/** CriticalChange */
+		case 0:
 			formattedString += "rapid change in wind speed";
 			break;
-		case 1: //Critical Max
+		
+		/** CriticalMax */
+		case 1:
 			formattedString += "high winds";
 			break;
-		case 2: //Critical Min (not implemented in decoder)
+			
+		/** CriticalMin (not implemented in Decoder) */
+		case 2:
 			formattedString += "wind speed is low?";
 			break;
-		case 3: //Timeout
+			
+		/** TimeOut */
+		case 3:
 			formattedString += "wind speed sensor is unresponsive";
 			break;
 
@@ -276,16 +311,23 @@ public class MessageFormatter {
 		String formattedString = "";
 		switch (alert.getAlertType())
 		{
-		case 0: //Critical Change
+		/** CriticalChange */
+		case 0:
 			formattedString += "rapid change in wind direction";
 			break;
-		case 1: //Critical Max (not implemented)
+		
+		/** CriticalMax (not implemented in Decoder) */
+		case 1:
 			formattedString += "wind direction is high?";
 			break;
-		case 2: //Critical Min (not implemented in decoder)
+		
+		/** CriticalMin (not implemented in Decoder) */
+		case 2:
 			formattedString += "wind direction is low?";
 			break;
-		case 3: //Timeout
+			
+		/** TimeOut */
+		case 3:
 			formattedString += "wind direction sensor is unresponsive";
 			break;
 
@@ -302,16 +344,24 @@ public class MessageFormatter {
 		String formattedString = "";
 		switch (alert.getAlertType())
 		{
-		case 0: //Critical Change
+		
+		/** CriticalChange */
+		case 0:
 			formattedString += "rapid change in boat heading";
 			break;
-		case 1: //Critical Max (not implemented)
+		
+		/** CriticalMax (not implemented in Decoder) */
+		case 1:
 			formattedString += "boat heading is high?";
 			break;
-		case 2: //Critical Min (not implemented in decoder)
+		
+		/** CriticalMin (not implemented in Decoder) */
+		case 2:
 			formattedString += "boat heading is low?";
 			break;
-		case 3: //Timeout
+		
+		/** TimeOut */
+		case 3:
 			formattedString += "boat heading sensor is unresponsive";
 			break;
 
@@ -327,16 +377,24 @@ public class MessageFormatter {
 		String formattedString = "";
 		switch (alert.getAlertType())
 		{
-		case 0: //Critical Change
+		
+		/** CriticalChange */
+		case 0:
 			formattedString += "rapid change in boat speed";
 			break;
-		case 1: //Critical Max
+		
+		/** CriticalMax */
+		case 1:
 			formattedString += "traveling very fast";
 			break;
-		case 2: //Critical Min (not implemented in decoder)
+		
+		/** CriticalMin (not implemented in Decoder) */
+		case 2:
 			formattedString += "traveling very slow";
 			break;
-		case 3: //Timeout
+			
+		/** TimeOut */
+		case 3:
 			formattedString += "boat speed sensor is unresponsive";
 			break;
 

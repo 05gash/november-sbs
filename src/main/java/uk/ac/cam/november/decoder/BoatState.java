@@ -2,7 +2,8 @@ package uk.ac.cam.november.decoder;
 
 /**
  * This class defines a Boat State. It's attributes come from sensors: 
- * Water Depth sensor, Wind Data sensor, Boat Heading sensor, and Boat Speed sensor
+ * Water Depth sensor, Wind Data sensor, Boat Heading sensor, and Boat Speed sensor.
+ * For every type of data, the class initializes appropriate get/set methods.
  * 
  * @author Marie Menshova
  *

@@ -1,9 +1,11 @@
-
-// This is a file that contains the name of every button.
-// Classes relying on button names should import them from 
-// this file rather than to use custom names.
-
 package uk.ac.cam.november.buttons;
+
+/**
+ * This class contains the names of all the six buttons for the device.
+ * Classes dependent on button should import their names from this class.
+ *
+ * @author
+ */
 
 public class ButtonNames {
 
