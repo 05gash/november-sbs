@@ -86,7 +86,6 @@ public class MessageDecoder implements Runnable {
         state.setHeading(0);
         state.setDeviation(0);
         state.setVariation(0);
-
         state.setLatitude(0);
         state.setLongtitude(0);
         state.setAltitude(0);
@@ -166,7 +165,6 @@ public class MessageDecoder implements Runnable {
                     state.setOffset(fields.getOffset());
                     
                     
-
                     first_d = false;
 
                     break;
@@ -302,6 +300,7 @@ public class MessageDecoder implements Runnable {
                      * Initializes the last time since BoatSpeed packet was
                      * received
                      */
+                    
                     lastTimeS = System.currentTimeMillis();
                     
                     if (lastTimeS - lastTimeSAlert > timeOutTimeAlert) {
