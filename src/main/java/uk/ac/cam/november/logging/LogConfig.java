@@ -8,22 +8,28 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import java.util.logging.XMLFormatter;
 
+/**
+ * This class configures the logging for this program, setting the output 
+ * files and format. It applies settings to the logger with the string
+ * "uk.ac.cam.november", so all logs beginning with that prefix will inherit 
+ * the properties.
+ * 
+ * @author Alan Tang
+ * 
+ */
+
 public class LogConfig {
     
     private static Logger LOGGER = Logger.getLogger("uk.ac.cam.november");
     private static final String LOG_FILE = "log.txt";
     private static final String XML_LOG_FILE = "xml_log.txt";
     
-    /**
-     * Configures the logging for this program, setting the output files and format. It applies settings to the logger with the string
-     * "uk.ac.cam.november", so all logs beginning with that prefix will inherit the properties.
-     */
     public static void setup()
     {
         FileHandler fh  = null;
         FileHandler xfh = null;
         
-        // initialize fh
+        /** Initializes File Handler */
         try {
             fh = new FileHandler(LOG_FILE,true);
                 
@@ -39,7 +45,7 @@ public class LogConfig {
             return; 
         }
        
-        //initialize xfh
+        /** Initializes XFile Handler */
         try {
             xfh = new FileHandler(XML_LOG_FILE,true);
                 
@@ -62,12 +68,12 @@ public class LogConfig {
         LOGGER.addHandler(xfh);
         LOGGER.setLevel(Level.ALL);
         
-        // Disable the default console handler on the root logger
-        // to prevent print looping from redirecting System.err
+        /** Disable the default console handler on the root logger 
+         * to prevent print looping from redirecting System.err */
         Logger rootLogger = Logger.getLogger("");
         rootLogger.removeHandler(rootLogger.getHandlers()[0]);
         
-        // Redirect System.out, System.err to double messages to logs. 
+        /** Redirect System.out, System.err to double messages to logs */
         LoggerStream newOut = new LoggerStream(System.out, LOGGER, Level.INFO);
         LoggerStream newErr = new LoggerStream(System.err, LOGGER, Level.SEVERE);
         

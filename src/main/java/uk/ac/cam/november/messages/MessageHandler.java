@@ -2,6 +2,9 @@ package uk.ac.cam.november.messages;
 
 /**
  * Handles {@link Message}s and considers them for text output.
+ * 
+ * @author Alan Tang
+ * 
  */
 public class MessageHandler {
 
@@ -26,6 +29,7 @@ public class MessageHandler {
         // reason for synchronized: if we ever decide that multiple
         // threads will call this method, we need to ensure
         // consistency
+        
         if (!SpeechSynthesis.anythingPlaying()) {
             currMessage = null;
         }

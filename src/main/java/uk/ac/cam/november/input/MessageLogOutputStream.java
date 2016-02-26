@@ -8,6 +8,12 @@ import com.google.gson.GsonBuilder;
 
 import uk.ac.cam.november.packet.Packet;
 
+/**
+ * This class initializes a queue of packets that are coming from CanBoat.
+ *
+ * @author George Ash
+ */
+
 public class MessageLogOutputStream extends LogOutputStream{
     
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd-HH:mm:ss.SSSSS").create();

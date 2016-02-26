@@ -14,6 +14,12 @@ import com.google.common.collect.Queues;
 
 import uk.ac.cam.november.packet.Packet;
 
+/**
+ * This class communicates with CanBoat and receives messages from sensors.
+ *
+ * @author George Ash
+ */
+
 public class CanBoatFacade {
 
     private CommandLine canBoatCommandLine;
