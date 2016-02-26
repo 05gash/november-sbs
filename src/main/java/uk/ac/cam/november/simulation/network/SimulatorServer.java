@@ -1,6 +1,7 @@
 package uk.ac.cam.november.simulation.network;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -11,11 +12,15 @@ import com.google.common.collect.Queues;
 
 import uk.ac.cam.november.messages.Message;
 import uk.ac.cam.november.messages.MessageHandler;
+import uk.ac.cam.november.messages.SpeechListener;
+import uk.ac.cam.november.messages.SpeechSynthesis;
 import uk.ac.cam.november.packet.Packet;
 
-public class SimulatorServer {
+public class SimulatorServer implements SpeechListener {
 
     private ServerSocket listenSocket;
+    private Socket client;
+    private DataOutputStream dos;
 
     private Queue<Packet> messageQueue;
 
@@ -23,6 +28,8 @@ public class SimulatorServer {
 
         EvictingQueue<Packet> pq = EvictingQueue.create(300);
         messageQueue = Queues.synchronizedQueue(pq);
+
+        SpeechSynthesis.addSpeechListener(this);
 
         try {
             listenSocket = new ServerSocket(8989);
@@ -37,9 +44,12 @@ public class SimulatorServer {
             public void run() {
                 while (true) {
                     try {
-                        Socket client = listenSocket.accept();
+                        client = listenSocket.accept();
+                        dos = new DataOutputStream(client.getOutputStream());
+
                         System.out.println("New client connected from " + client.getInetAddress().getHostName());
                         MessageHandler.receiveMessage(new Message("Client connected", 2));
+
                         DataInputStream dis = new DataInputStream(client.getInputStream());
                         while (true) {
                             Packet p = PacketTranslator.read(dis);
@@ -50,6 +60,7 @@ public class SimulatorServer {
                             }
                         }
                         client.close();
+                        client = null;
                         System.out.println("Client disconnected.");
                         MessageHandler.receiveMessage(new Message("Client disconnected", 2));
                     } catch (IOException e) {
@@ -85,6 +96,23 @@ public class SimulatorServer {
     public void queueMessage(Packet p) {
         System.out.println("Queueing a " + p.getDescription() + " packet at " + p.getTimestamp());
         messageQueue.add(p);
+    }
+
+    @Override
+    public void onSpeechStarted(String message) {
+        if (client != null) {
+            SubtitlePacket sp = new SubtitlePacket(message);
+            try {
+                sp.write(dos);
+            } catch (IOException e) {
+                e.printStackTrace();
+                try {
+                    client.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
     }
 
 }

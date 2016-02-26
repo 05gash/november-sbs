@@ -1,6 +1,7 @@
 package uk.ac.cam.november.messages;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * The module that handles audio output.
@@ -23,6 +24,8 @@ public class SpeechSynthesis {
     private static String stopdir =
         "temp/stop_sound.sh";
 
+    private static ArrayList<SpeechListener> listeners = new ArrayList<SpeechListener>();
+
     // METHODS
 
     /**
@@ -34,6 +37,14 @@ public class SpeechSynthesis {
      * @param   text    {@code String} to be played
      */
     public static void play(String text) {
+        // Notify all listeners
+        for(SpeechListener sl : listeners){
+            new Thread(){
+                @Override public void run(){
+                    sl.onSpeechStarted(text);
+                }
+            }.start();
+        }
         try {
             curr_speech =
                 (new ProcessBuilder(playdir, wavdir, text)).start();
@@ -75,6 +86,16 @@ public class SpeechSynthesis {
      public static boolean anythingPlaying() {
         return curr_speech != null && curr_speech.isAlive();
      }
+ 
+    public static void addSpeechListener(SpeechListener sl){
+        if(!listeners.contains(sl)){
+            listeners.add(sl);
+        }
+    }
+
+    public static void removeSpeechListener(SpeechListener sl){
+    listeners.remove(sl);
+    }
 }
 
 
