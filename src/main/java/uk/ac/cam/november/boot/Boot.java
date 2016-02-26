@@ -15,6 +15,7 @@ import uk.ac.cam.november.simulation.network.SimulatorServer;
  * message decoder, and the alert handler. The main method of the class 
  * is activated on boot.
  *
+ * @author
  */
 
 class Boot {
