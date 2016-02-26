@@ -24,328 +24,342 @@ import uk.ac.cam.november.packet.Packet;
  */
 public class MessageFormatter {
 
-    private static final int MESSAGE_PRIORITY = 1;
-    private static final int ALERT_PRIORITY = 2;
-    private static final int SHUT_DOWN_PRIORITY = 3;
+	private static final int MESSAGE_PRIORITY = 1;
+	private static final int ALERT_PRIORITY = 2;
+	private static final int SHUT_DOWN_PRIORITY = 3;
 
-    private static MessageDecoder mDecoder = null;
+	private static MessageDecoder mDecoder = null;
 
-    public static void setDecoder(MessageDecoder decoder)
-    {
-        mDecoder = decoder;
-    }
+	public static void setDecoder(MessageDecoder decoder)
+	{
+		mDecoder = decoder;
+	}
 
-    // Prevents instantiation
-    private MessageFormatter() {}
+	// Prevents instantiation
+	private MessageFormatter() {}
 
-    /**
-     * Gets data which corresponds with input button, formats it, and sends it to the Messagehandler
-     * 
-     * @param buttonName The name of the button that was pressed.
-     */
-    public static void handleButtonPress(String buttonName)
-    {
-        // If the shut down button has been pressed,
-        // we will deal with it separately by turning the system off
-        if (buttonName.compareTo(ButtonNames.SHUT_DOWN) == 0) {
-            // Before shutting down, we will announce a shut down message loudly.
-            Message shutDownMessage = new Message("Turning the system completely off", SHUT_DOWN_PRIORITY);
-            MessageHandler.receiveMessage(shutDownMessage);
+	/**
+	 * Gets data which corresponds with input button, formats it, and sends it to the Messagehandler
+	 * 
+	 * @param buttonName The name of the button that was pressed.
+	 */
+	public static void handleButtonPress(String buttonName)
+	{
+		// If the shut down button has been pressed,
+		// we will deal with it separately by turning the system off
+		if (buttonName.compareTo(ButtonNames.SHUT_DOWN) == 0) {
+			// Before shutting down, we will announce a shut down message loudly.
+			Message shutDownMessage = new Message("Turning the system completely off", SHUT_DOWN_PRIORITY);
+			MessageHandler.receiveMessage(shutDownMessage);
 
-            // Excecuting an actual shut down operation;
-            ShutDown.shutDown();
-            return;
-        }
+			// Excecuting an actual shut down operation;
+			ShutDown.shutDown();
+			return;
+		}
 
-        String formattedString = formatButtonPress(buttonName); 
+		String formattedString = formatButtonPress(buttonName); 
 
-        // assign priority and wrap in Message Object
-        Message m = new Message(formattedString, MESSAGE_PRIORITY);
+		// assign priority and wrap in Message Object
+		Message m = new Message(formattedString, MESSAGE_PRIORITY);
 
-        // call MessageHandler
+		// call MessageHandler
 
-        System.out.println("Sending Message: '" + formattedString +"'");
-        MessageHandler.receiveMessage(m);
-    }
-    
-    private static String formatButtonPress(String buttonName)
-    {
-        String formattedString;
-        
-        switch (buttonName)
-        {
-        case ButtonNames.BOAT_SPEED:
-            formattedString = formatBoatSpeedButton();
-            break;
-        case ButtonNames.COMPASS_HEADING:
-            formattedString = formatCompassHeadingButton();
-            break;
-        case ButtonNames.NEAREST_PORT:
-            formattedString = formatNearestPortButton();
-            break;
-        case ButtonNames.WATER_DEPTH:
-            formattedString = formatWaterDepthButton();
-            break;
-        case ButtonNames.WIND_DIRECTION:
-            formattedString = formatWindDirButton();
-            break;
-        case ButtonNames.WIND_SPEED:
-            formattedString = formatWindSpeedButton();
-            break;
+		System.out.println("Sending Message: '" + formattedString +"'");
+		MessageHandler.receiveMessage(m);
+	}
 
-        default: 
-            // Should not reach here
-            System.err.println("Invalid button name: " + buttonName);
-            throw new IllegalArgumentException("Invalid button name: " + buttonName);
+	private static String formatButtonPress(String buttonName)
+	{
+		String formattedString;
 
-        }
-        
-        return formattedString;
-    }
+		switch (buttonName)
+		{
+		case ButtonNames.BOAT_SPEED:
+			formattedString = formatBoatSpeedButton();
+			break;
+		case ButtonNames.COMPASS_HEADING:
+			formattedString = formatCompassHeadingButton();
+			break;
+		case ButtonNames.NEAREST_PORT:
+			formattedString = formatNearestPortButton();
+			break;
+		case ButtonNames.WATER_DEPTH:
+			formattedString = formatWaterDepthButton();
+			break;
+		case ButtonNames.WIND_DIRECTION:
+			formattedString = formatWindDirButton();
+			break;
+		case ButtonNames.WIND_SPEED:
+			formattedString = formatWindSpeedButton();
+			break;
 
-    private static String formatNearestPortButton() {
-        BoatState state = mDecoder.getState();
-        LatLng myLoc = new LatLng(state.getLatitude(), state.getLongtitude());
-        Port p = LocationUtil.nearestPort(myLoc);
-        double dist = LocationUtil.distance(myLoc, p.location);
-        double bearing = LocationUtil.initialBearing(myLoc, p.location);
-        String distString = formatDistance(dist);
-        String bearingString = truncateFloat((float)bearing);
-        return distString + " at " + bearingString + " degrees to " + p.name;
-    }
+		default: 
+			// Should not reach here
+			System.err.println("Invalid button name: " + buttonName);
+			throw new IllegalArgumentException("Invalid button name: " + buttonName);
 
-    private static String formatWindSpeedButton() {
-        float speed = mDecoder.getState().getWindSpeed();
-        String strSpd = truncateFloat(speed);
-        
-        return strSpd + " meters per second";
-    }
+		}
 
-    private static String formatWindDirButton() {
-        float dir = mDecoder.getState().getWindAngle();
-        String strDir = String.format("%.0f", dir);
-        
-        return strDir + " degrees from head";
-    }
+		return formattedString;
+	}
 
-    private static String formatWaterDepthButton() {
-        float depth = mDecoder.getState().getDepth();
-        String strDpth = truncateFloat(depth);
-        
-        return strDpth + " meters deep";
-    }
+	private static String formatNearestPortButton() {
+		BoatState state = mDecoder.getState();
+		LatLng myLoc = new LatLng(state.getLatitude(), state.getLongtitude());
+		Port p = LocationUtil.nearestPort(myLoc);
+		double dist = LocationUtil.distance(myLoc, p.location);
+		double bearing = LocationUtil.initialBearing(myLoc, p.location);
+		String distString = formatDistance(dist);
+		String bearingString = truncateFloat((float)bearing);
+		return distString + " at " + bearingString + " degrees to " + p.name;
+	}
 
-    private static String formatBoatSpeedButton() {
-        
-        float speed = mDecoder.getState().getSpeedWaterReferenced();
-        String strSpd = truncateFloat(speed);
-        
-        return strSpd + " meters per second";
-    }
-    
-    private static String formatCompassHeadingButton() {
-        float heading = mDecoder.getState().getHeading();
-        String strHdg = String.format("%.0f", heading);
-        
-        return strHdg + " degrees from north";
-    }
+	private static String formatWindSpeedButton() {
+		float speed = mDecoder.getState().getWindSpeed();
+		String strSpd = truncateFloat(speed);
 
-    public static void handleAlert(AlertMessage alert)
-    {
-        int type = alert.getAlertType();
-        int sensor = alert.getSensor();
+		return strSpd + " meters per second";
+	}
 
-        String formattedString = "Warning: "; 
-        String sensorName;
+	private static String formatWindDirButton() {
+		float dir = mDecoder.getState().getWindAngle();
+		String strDir = String.format("%.0f", dir);
 
-        switch (sensor)
-        {
-        case 0:
-            sensorName = "Water Depth";
-            break;
-        case 1:
-            sensorName = "Wind Speed";
-            break;
-        case 2:
-            sensorName = "Wind Angle";
-            break;
-        case 3:
-            sensorName = "Boat Heading";
-            break;
-        case 4:
-            sensorName = "Boat Speed";
-            break;
+		return strDir + " degrees from head";
+	}
 
-        default:
-            // Should not reach here:
-            System.err.println("Invalid alert sensor type: " + sensor);
-            throw new IllegalArgumentException("Invalid alert sensor type: " + sensor);
-        }
+	private static String formatWaterDepthButton() {
+		float depth = mDecoder.getState().getDepth();
+		String strDpth = truncateFloat(depth);
 
-        switch (type)
-        {
-        case 0: //Critical Change
-            formattedString += "rapid change in " + sensorName;
-            break;
-        case 1: //Critical Max
-            formattedString += sensorName + " is high";
-            break;
-        case 2: //Critical Min
-            formattedString += sensorName + " is low";
-            break;
-        case 3: //Timeout 
-            formattedString += sensorName + " is unresponsive";
-            break;
+		return strDpth + " meters deep";
+	}
 
-        default:
-            // Should not reach here:
-            System.err.println("Invalid alert type: " + type);
-            throw new IllegalArgumentException("Invalid alert type: " + type);
-        }
+	private static String formatBoatSpeedButton() {
 
-        // assign priority and wrap in Message Object
-        Message m = new Message(formattedString, ALERT_PRIORITY);
+		float speed = mDecoder.getState().getSpeedWaterReferenced();
+		String strSpd = truncateFloat(speed);
 
-        // call MessageHandler
-        System.out.println("Sending Alert Message: '" + formattedString +"'");
-        MessageHandler.receiveMessage(m);
-    }
+		return strSpd + " meters per second";
+	}
 
-    private static String formatDistance(double distance){
-        String unit = "m";
-        if(distance > 1000){
-            distance /= 1000;
-            unit = "km";
-        }
-        return truncateFloat((float)distance) + unit;
-    }
+	private static String formatCompassHeadingButton() {
+		float heading = mDecoder.getState().getHeading();
+		String strHdg = String.format("%.0f", heading);
 
-    private static String truncateFloat(float v)
-    {
-        int l = 1; 
+		return strHdg + " degrees from north";
+	}
 
-        if( v > 10 || (v - Math.floor(v) < 0.1) )
-        {
-            l = 0; 
-        }
-        String data = String.format("%."+ l  +"f", v);
-        return data;
-    }
+	private static String formatDistance(double distance){
+		String unit = "m";
+		if(distance > 1000){
+			distance /= 1000;
+			unit = "km";
+		}
+		return truncateFloat((float)distance) + unit;
+	}
 
-/*
-    private static float pollStateDecoder(String buttonName)
-    {
-        if(mDecoder == null)
-        {
-            System.err.println("MessageDecoder not set");
-            throw new NullPointerException();
-        }
+	private static String truncateFloat(float v)
+	{
+		int l = 1; 
 
-        BoatState state = mDecoder.getState();
-        switch(buttonName)
-        {
-        case ButtonNames.BOAT_SPEED:
-            return state.getSpeedWaterReferenced();
-        case ButtonNames.COMPASS_HEADING:
-            return state.getHeading();
-        case ButtonNames.NEAREST_PORT:
-            return 0f; // not used
-        case ButtonNames.WATER_DEPTH:
-            return state.getDepth();
-        case ButtonNames.WIND_DIRECTION:
-            return state.getWindAngle();
-        case ButtonNames.WIND_SPEED:
-            return state.getWindSpeed();
+		if( v > 10 || (Math.abs (v - Math.round(v) )) < 0.1 )
+		{
+			l = 0; 
+		}
+		String data = String.format("%."+ l  +"f", v);
+		return data;
+	}
 
-        default:
-            // Should not reach here
-            System.err.println("Invalid button name: " + buttonName);
-            throw new IllegalArgumentException("Invalid button name: " + buttonName);
-        }
-    }
- */
-    /*
-     * Given a data value and the field that it corresponds with, this creates a formatted string
-     * that can be read by the MessageHandler
-     * 
-     *
-    private static String formatMessage(float dataValue, String buttonName)
-    {
-        String data = truncateFloat(dataValue, buttonName);
+	public static void handleAlert(AlertMessage alert)
+	{
+		int type = alert.getAlertType();
+		int sensor = alert.getSensor();
 
-        switch(buttonName)
-        {
-        case ButtonNames.NEAREST_PORT:
-            BoatState state = mDecoder.getState();
-            LatLng myLoc = new LatLng(state.getLatitude(), state.getLongtitude());
-            Port p = LocationUtil.nearestPort(myLoc);
-            double dist = LocationUtil.distance(myLoc, p.location);
-            double bearing = LocationUtil.initialBearing(myLoc, p.location);
-            String distString = formatDistance(dist);
-            String bearingString = truncateFloat((float)bearing, buttonName);
-            return distString + " at " + bearingString + " degrees to " + p.name;
-        case ButtonNames.WATER_DEPTH:
-            return data + " meters deep";
-        case ButtonNames.WIND_SPEED:
-            return data + " meters per second";
-        case ButtonNames.WIND_DIRECTION:
-            return data + " degrees from head";
-        case ButtonNames.COMPASS_HEADING:
-            return data + " degrees from north";
-        case ButtonNames.BOAT_SPEED:
-            return data + " meters per second";
+		String formattedString = formatAlert(alert);
 
-        default:
-            // Should not reach here
-            System.err.println("Formatting error: " + data + " " + buttonName);
-            throw new IllegalArgumentException("Formatting error: " + data + " " + buttonName);
-        }
+		// assign priority and wrap in Message Object
+		Message m = new Message(formattedString, ALERT_PRIORITY);
 
-    } */
+		// call MessageHandler
+		System.out.println("Sending Alert Message: '" + formattedString +"'");
+		MessageHandler.receiveMessage(m);
+	}
 
-    public static void main(String args[])
-    {
-        mDecoder = new MessageDecoder(new LinkedList<Packet>());
-        BoatState state = mDecoder.getState();
-        
-        for(int i = 0; i < 20; i ++)
-        {
-           
-            state.setDepth((float)Math.random() * 100);
-            state.setHeading((float)Math.random() * 360);
-            state.setWindAngle((float)Math.random() * 360);
-            state.setWindSpeed((float)Math.random() * 20);
-            state.setSpeedWaterReferenced((float)Math.random() * 30);
-            state.setLatitude((float) (Math.random() * 90));
-            state.setLongtitude((float) (Math.random() * 180));
-            int r = (int)(Math.random() * 6);
-            
-            String buttonName = "";
-            switch(r)
-            {
-            case 0:
-                buttonName = ButtonNames.BOAT_SPEED;
-                break;
-            case 1:
-                buttonName = ButtonNames.COMPASS_HEADING;
-                break;
-            case 2:
-                buttonName = ButtonNames.NEAREST_PORT;
-                break;
-            case 3:
-                buttonName = ButtonNames.WATER_DEPTH;
-                break;
-            case 4:
-                buttonName = ButtonNames.WIND_DIRECTION;
-                break;
-            case 5: 
-                buttonName = ButtonNames.WIND_SPEED;
-                break;
-                
-            }
-            
-            System.out.println(formatButtonPress(buttonName));
-        }
-    }
+	private static String formatAlert(AlertMessage alert)
+	{
+		int type = alert.getAlertType();
+		int sensor = alert.getSensor();
+
+		String formattedString = "Warning: ";
+
+		switch (sensor)
+		{
+		case 0:
+			formattedString += formatDepthAlert(alert);
+			break;
+		case 1:
+			formattedString += formatWindSpeedAlert(alert);
+			break;
+		case 2:
+			formattedString += formatWindDirectionAlert(alert);
+			break;
+		case 3:
+			formattedString += formatHeadingAlert(alert);
+			break;
+		case 4:
+			formattedString += formatBoatSpeedAlert(alert);
+			break;
+
+		default:
+			// Should not reach here:
+				System.err.println("Invalid alert sensor type: " + sensor);
+		throw new IllegalArgumentException("Invalid alert sensor type: " + sensor);
+		}
+
+		return formattedString;
+	}
+
+
+
+	private static String formatDepthAlert(AlertMessage alert) {
+		String formattedString = "";
+		switch (alert.getAlertType())
+		{
+		case 0: //Critical Change
+			formattedString += "rapid change in water depth";
+			break;
+		case 1: //Critical Max (not implemented in decoder)
+			formattedString += "entering deep water?";
+			break;
+		case 2: //Critical Min 
+			formattedString += "entering shallow water";
+			break;
+		case 3: //Timeout
+			formattedString += "wate depth sensor is unresponsive";
+			break;
+
+		default:
+			// Should not reach here:
+			System.err.println("Invalid alert type: " + alert.getAlertType());
+			throw new IllegalArgumentException("Invalid alert type: " + alert.getAlertType());
+		}
+		return formattedString;
+	}
+
+	private static String formatWindSpeedAlert(AlertMessage alert) {
+		String formattedString = "";
+		switch (alert.getAlertType())
+		{
+		case 0: //Critical Change
+			formattedString += "rapid change in wind speed";
+			break;
+		case 1: //Critical Max
+			formattedString += "high winds";
+			break;
+		case 2: //Critical Min (not implemented in decoder)
+			formattedString += "wind speed is low?";
+			break;
+		case 3: //Timeout
+			formattedString += "wind speed sensor is unresponsive";
+			break;
+
+		default:
+			// Should not reach here:
+			System.err.println("Invalid alert type: " + alert.getAlertType());
+			throw new IllegalArgumentException("Invalid alert type: " + alert.getAlertType());
+		}
+		return formattedString;
+	}
+
+	private static String formatWindDirectionAlert(AlertMessage alert) {
+		String formattedString = "";
+		switch (alert.getAlertType())
+		{
+		case 0: //Critical Change
+			formattedString += "rapid change in wind direction";
+			break;
+		case 1: //Critical Max (not implemented)
+			formattedString += "wind direction is high?";
+			break;
+		case 2: //Critical Min (not implemented in decoder)
+			formattedString += "wind direction is low?";
+			break;
+		case 3: //Timeout
+			formattedString += "wind direction sensor is unresponsive";
+			break;
+
+		default:
+			// Should not reach here:
+			System.err.println("Invalid alert type: " + alert.getAlertType());
+			throw new IllegalArgumentException("Invalid alert type: " + alert.getAlertType());
+		}
+		return formattedString;
+	}
+
+
+	private static String formatHeadingAlert(AlertMessage alert) {
+		String formattedString = "";
+		switch (alert.getAlertType())
+		{
+		case 0: //Critical Change
+			formattedString += "rapid change in boat heading";
+			break;
+		case 1: //Critical Max (not implemented)
+			formattedString += "boat heading is high?";
+			break;
+		case 2: //Critical Min (not implemented in decoder)
+			formattedString += "boat heading is low?";
+			break;
+		case 3: //Timeout
+			formattedString += "boat heading sensor is unresponsive";
+			break;
+
+		default:
+			// Should not reach here:
+			System.err.println("Invalid alert type: " + alert.getAlertType());
+			throw new IllegalArgumentException("Invalid alert type: " + alert.getAlertType());
+		}
+		return formattedString;
+	}
+
+	private static String formatBoatSpeedAlert(AlertMessage alert) {
+		String formattedString = "";
+		switch (alert.getAlertType())
+		{
+		case 0: //Critical Change
+			formattedString += "rapid change in boat speed";
+			break;
+		case 1: //Critical Max
+			formattedString += "traveling very fast";
+			break;
+		case 2: //Critical Min (not implemented in decoder)
+			formattedString += "traveling very slow";
+			break;
+		case 3: //Timeout
+			formattedString += "boat speed sensor is unresponsive";
+			break;
+
+		default:
+			// Should not reach here:
+			System.err.println("Invalid alert type: " + alert.getAlertType());
+			throw new IllegalArgumentException("Invalid alert type: " + alert.getAlertType());
+		}
+		return formattedString;
+	}
+
+	public static void main(String args[])
+	{
+
+		for(int i = 0; i < 20; i ++)
+		{
+
+			AlertMessage al = new AlertMessage();
+			al.setAlertType((int)(Math.random()*4));
+			al.setSensor((int)(Math.random()*5));
+
+			System.out.println(formatAlert(al));
+		}
+	}
 
 }

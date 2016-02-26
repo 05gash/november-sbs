@@ -18,6 +18,8 @@ public class RenderPanel extends JPanel {
     private WorldModel worldModel;
     private BufferedImage lakeImage;
     private Color backgroundColor;
+    
+    private double zoom = 2.0;
 
     public RenderPanel(WorldModel wm) {
         this.worldModel = wm;
@@ -47,6 +49,10 @@ public class RenderPanel extends JPanel {
         lakeImage.setRGB(0, 0, width, height, pixels, 0, width);
     }
 
+    public void setZoom(double z){
+        zoom = z;
+    }
+    
     @Override
     public void paint(Graphics g) {
         Graphics2D gr = (Graphics2D) g;
@@ -60,7 +66,7 @@ public class RenderPanel extends JPanel {
         // Draw the lake
         AffineTransform lakeMatrix = new AffineTransform();
         lakeMatrix.translate(w / 2, h / 2);
-        lakeMatrix.scale(2, 2);
+        lakeMatrix.scale(zoom, zoom);
         lakeMatrix.translate(-lakeImage.getWidth() / 2, -lakeImage.getHeight() / 2);
         lakeMatrix.translate(-worldModel.getBoatX(), -worldModel.getBoatY());
         gr.drawImage(lakeImage, lakeMatrix, null);
