@@ -1,10 +1,3 @@
-// Each instance of this class (with corresponding constructing arguments) will be created
-// for every piece of data that we wish to output.
-// Note that some devices (such as wind sensor) actually record more
-// than one type of data (wind speed and wind direction).
-// In this case we will use one instance PER ONE DATA TYPE.
-// (So there will be two instances for wind sensor created).
-
 package uk.ac.cam.november.decoder;
 
 import java.lang.Math;
@@ -12,21 +5,28 @@ import java.util.Queue;
 
 import uk.ac.cam.november.buttons.ButtonNames;
 
+/**
+ * This is handles any piece of data that the system wishes to output.
+ * We use ONE instance per ONE data type because some devices record more
+ * information than the others, e.g. Wind Sensor, which generates Wind Angle
+ * and Wind Speed. So, there will be two instances generated for Wind Data.
+ *
+ * @author
+ */
+
 class DataStatus {
 
-    // If no packets were received for a device
-    // for this amount of time, an alert will be generated
+    /** If no more packets were received for this time, generate an alert*/
     private static final Long TIME_OUT_ALERT = 60000L;  // 1 minute
 
-    // Time interval to generate consecutive alert messages
-    // when device has too high or too low data (e.g. high windspeed, 
-    // low waterdepth). The first time alert will be generated
-    // immediatelly, and then subsequent messages will follow using this timestamp.
+    /** Initializes a time interval between generating alerts or types MaxValue, MinValue.
+     * The first alert is generated immediately, and subsequent messages will use
+     * this timestamp */
     private static final Long DATA_OUT_OF_RANGE_TIMESTAMP = 15000L;  // 10 seconds
 
-    // Time interval to generate consecutive alert messages
-    // when device's data changes too rapidly (e.g. water depth is
-    // getting lower very quickly)
+    /** Initializes a time interval between generating alerts or types CriticalChange.
+     * The first alert is generated immediately, and subsequent messages will use
+     * this timestamp */
     private static final Long RAPID_DATA_CHANGE_TIMESTAMP = 4000L; // 3 seconds
 
     private final String dataName;
@@ -36,15 +36,14 @@ class DataStatus {
     // If we have more time, refactor the AlertMessage class as well.
     private final int sensor;
 
-    // These are thresholds for generating alert
-    // messages whenever actual data is
-    // too low, too high, or changes too rapidly.
+    /** These are thresholds for generating alerts of types: 
+     * CriticalChange, MinValue, and MaxValue */
     private final float maxChangeLimit;
     private final float minDataValue;
     private final float maxDataValue; 
 
 
-    // Timestamps when the last time these alerts were generated
+    /** Timestamps for the last time since last alert of a certain type */
     private Long lastTimeoutAlert;
     private Long lastRapidChangeAlert;
     private Long lastOutOfRangeAlert;

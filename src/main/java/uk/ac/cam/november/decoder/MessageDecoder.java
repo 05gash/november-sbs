@@ -136,11 +136,7 @@ public class MessageDecoder implements Runnable {
                      
                         if (!first_d) {
     
-                            /**
-                             * Generates an alert of type CriticalChange in Water
-                             * Depth
-                             */
-                            
+                            /** Generates an alert of type CriticalChange in Water Depth */                           
                             if (fields.getDepth() - state.getDepth() > criticalChangeDepth
                                     | state.getDepth() - state.getDepth() > criticalChangeDepth) {
                                 AlertMessage amD0 = new AlertMessage();
@@ -164,10 +160,10 @@ public class MessageDecoder implements Runnable {
                     /** Updates current values of Water Depth and Offset */
                     state.setDepth(fields.getDepth());
                     state.setOffset(fields.getOffset());
-                    
-                    
 
                     first_d = false;
+                    
+                    lastTimeDAlert = System.currentTimeMillis();
 
                     break;
 
