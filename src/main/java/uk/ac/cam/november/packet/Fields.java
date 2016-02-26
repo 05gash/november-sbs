@@ -2,14 +2,18 @@ package uk.ac.cam.november.packet;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Fields {
+/**
+ * This is a generic Fields class - take note some fields may be null because of the
+ * way GSON handles deserialization The container message should give
+ * information on which fields are filled in, for example a message with
+ * description Heading Data will have fields Heading, Deviation and
+ * 
+ * @author George Ash
+ * 
+ */
 
-    /**
-     * Generic Fields class - take note some fields may be null because of the
-     * way GSON handles deserialization The container message should give
-     * information on which fields are filled in, for example a message with
-     * description Heading Data will have fields Heading, Deviation and
-     */
+public class Fields {
+    
     private int SID;
     private float Depth;
     private float Offset;
@@ -24,13 +28,9 @@ public class Fields {
     private float Deviation;
     private float Variation;
     private String Reference;
-
-
-    // 3 fields for GPS coordinates
     private float Latitude;
     private float Longtitude;
     private float Altitude;
-
 
 
     public int getSID() {
