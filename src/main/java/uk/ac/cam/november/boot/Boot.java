@@ -1,6 +1,3 @@
-// This is the main class of the whole system.
-// The method "main" of this class will be activated on boot.
-
 package uk.ac.cam.november.boot;
 
 import uk.ac.cam.november.buttons.ButtonsListener;
@@ -12,14 +9,21 @@ import uk.ac.cam.november.messages.MessageFormatter;
 import uk.ac.cam.november.simulation.Simulator;
 import uk.ac.cam.november.simulation.network.SimulatorServer;
 
+/**
+ * This is the main class for the whole system. The class listens to the 
+ * buttons being pressed and starts running the simulator of data, the 
+ * message decoder, and the alert handler. The main method of the class 
+ * is activated on boot.
+ *
+ */
+
 class Boot {
 
     public static final int A_LOT_OF_TIME = 1000000000;
 
     public static void main(final String[] args) throws Exception {
 
-        // Making sure that if one thread crashes,
-        // then the whole JVM will shut down.
+        /** If one thread crashes, the whole JVM will shut down */
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
             public void uncaughtException(Thread t, Throwable e) {
                 System.out.println(t + " throws exception: " + e);
@@ -35,7 +39,8 @@ class Boot {
                 if (args.length > 1) {
                     if (args[1].equalsIgnoreCase("client")) {
                         if (args.length == 3) {
-                            // Launch the simulator client and return
+                            
+                            /** Launch the simulator client and return */
                             Simulator sim = new Simulator(args[2]);
                             sim.showUI();
                             sim.getThread().start();
@@ -59,13 +64,8 @@ class Boot {
 
         LogConfig.setup();
         ScriptCreator.writeScripts();
-
-        // TODO(ml693): after message "BootingUp" is loudly said,
-        // it takes a few seconds for the system to boot
-        // The system not instantly starts reacting to the buttons.
-        // Need to figure out why the system is so slow.
-
-        // Creating a class that will listen to the buttons being clicked.
+        
+        /** Listens to buttons */
         try {
             new ButtonsListener();
         } catch (UnsatisfiedLinkError e) {
@@ -74,6 +74,7 @@ class Boot {
         }
         MessageDecoder messageDec = null;
 
+        /** Initializes a Simulator Server and a MessageDecoder */
         if (runSimServer) {
             SimulatorServer sim = new SimulatorServer();
             messageDec = new MessageDecoder(sim.getMessageQueue());
@@ -83,9 +84,11 @@ class Boot {
         }
         MessageFormatter.setDecoder(messageDec);
 
+        /** Starts running the Message Decoder */
         Thread decoderThread = new Thread(messageDec, "Message-Decoder");
         decoderThread.start();
 
+        /** Starts running the Alert System */
         AlertHandler alertHandler = new AlertHandler(messageDec);
         Thread alertThread = new Thread(alertHandler, "Alert-Handler");
         alertThread.start();
