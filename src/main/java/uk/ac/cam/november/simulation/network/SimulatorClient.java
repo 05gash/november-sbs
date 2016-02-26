@@ -1,11 +1,9 @@
 package uk.ac.cam.november.simulation.network;
 
-import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 import uk.ac.cam.november.packet.Packet;
@@ -14,7 +12,6 @@ import uk.ac.cam.november.simulation.ui.SimulatorUI;
 public class SimulatorClient {
 
     private Socket socket;
-
     private DataOutputStream dos;
 
     public SimulatorClient(SimulatorUI ui, String addr) throws IOException {
@@ -22,22 +19,26 @@ public class SimulatorClient {
 
         socket = new Socket(serverAddress, 8989);
 
-        final ServerSocket ss = new ServerSocket(8988);
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    try {
-                        Socket s = ss.accept();
-                        BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line);
+                try {
+                    DataInputStream dis = new DataInputStream(socket.getInputStream());
+                    while (true) {
+                        int packetid = dis.readByte();
+
+                        if (packetid == SubtitlePacket.PACKET_ID) {
+                            SubtitlePacket sp = new SubtitlePacket(dis);
+                            ui.showSubtitle(sp.getSubtitle());
+                        } else {
+                            throw new IOException("Unknown packet type received: (" + packetid + ")");
                         }
-                        ui.showSubtitle(sb.toString());
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    try {
+                        socket.close();
+                    } catch (IOException e1) {
                     }
                 }
             }
