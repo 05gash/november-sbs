@@ -39,15 +39,16 @@ class Boot {
             if (args[0].equalsIgnoreCase("simulator")) {
                 if (args.length > 1) {
                     if (args[1].equalsIgnoreCase("client")) {
-                        if (args.length == 3) {
-                            
+                        if (args.length == 3 || args.length == 5) {
+                            final float latitude = (args.length == 5) ? Integer.parseInt(args[3]) : 0;
+			    final float longtitude = (args.length == 5) ? Integer.parseInt(args[4]) : 0;
                             /** Launch the simulator client and return */
-                            Simulator sim = new Simulator(args[2]);
+                            Simulator sim = new Simulator(args[2], latitude, longtitude);
                             sim.showUI();
                             sim.getThread().start();
                             return;
                         } else {
-                            System.err.println("Usage: sbs simulator client <server_address>");
+                            System.err.println("Usage: sbs simulator client <server_address> [optional - latitude] [optional - longtitude]");
                             System.exit(1);
                         }
                     } else {

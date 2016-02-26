@@ -28,8 +28,8 @@ public class Simulator {
      * {@link uk.ac.cam.november.simulation.ui.SimulatorUI SimulatorUI} user
      * interface but does not show it.
      */
-    public Simulator(String serverAddress) {
-        worldModel = new WorldModel();
+    public Simulator(String serverAddress, final float initialLatitude, final float initialLongtitude) {
+        worldModel = new WorldModel(initialLatitude, initialLongtitude);
         dataOutput = new BoatDataOutputter(this);
         ui = new SimulatorUI(this);
 

@@ -38,6 +38,13 @@ public class WorldModel {
         }
     }
 
+    public WorldModel(final float boatXInput, final float boatYInput) {
+        this();
+        boatX = boatXInput;
+        boatY = boatYInput;
+    }
+
+
     /**
      * Register a class to be called back when the simulation steps.
      * 
