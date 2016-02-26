@@ -351,6 +351,7 @@ public class MessageDecoder implements Runnable {
 
                 default:
                     // "CANNOT DECODE A MESSAGE!"
+                    System.err.println("Unknown PGN: " + packetID);
                     break;
                 }
 
