@@ -24,12 +24,16 @@ public class LogConfig {
     private static final String LOG_FILE = "log.txt";
     private static final String XML_LOG_FILE = "xml_log.txt";
     
+    /**
+     * Applies configuration to loggers in this project and redirects System.out and System.err to 
+     * print to loggers in addition to their original console outputs. 
+     */
     public static void setup()
     {
         FileHandler fh  = null;
         FileHandler xfh = null;
         
-        /** Initializes File Handler */
+        /* Initializes File Handler */
         try {
             fh = new FileHandler(LOG_FILE,true);
                 
@@ -45,7 +49,7 @@ public class LogConfig {
             return; 
         }
        
-        /** Initializes XFile Handler */
+        /* Initializes XML File Handler */
         try {
             xfh = new FileHandler(XML_LOG_FILE,true);
                 
@@ -68,12 +72,12 @@ public class LogConfig {
         LOGGER.addHandler(xfh);
         LOGGER.setLevel(Level.ALL);
         
-        /** Disable the default console handler on the root logger 
+        /* Disable the default console handler on the root logger 
          * to prevent print looping from redirecting System.err */
         Logger rootLogger = Logger.getLogger("");
         rootLogger.removeHandler(rootLogger.getHandlers()[0]);
         
-        /** Redirect System.out, System.err to double messages to logs */
+        /* Redirect System.out, System.err to double messages to logs */
         LoggerStream newOut = new LoggerStream(System.out, LOGGER, Level.INFO);
         LoggerStream newErr = new LoggerStream(System.err, LOGGER, Level.SEVERE);
         
