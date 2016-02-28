@@ -38,7 +38,7 @@ public class MessageDecoder implements Runnable {
     int criticalChangeWindAngle = 40;
     int criticalChangeHeading = 40;
     int criticalMinBoatSpeed = 4;
-    int criticalMaxBoatSpeed = 20;
+    int criticalMaxBoatSpeed = 25;
     int criticalChangeSpeed = 10;
 
     long lastTimeD;
