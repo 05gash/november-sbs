@@ -10,10 +10,9 @@ import uk.ac.cam.november.simulation.Simulator;
 import uk.ac.cam.november.simulation.network.SimulatorServer;
 
 /**
- * This is the main class for the whole system. The class listens to the 
- * buttons being pressed and starts running the simulator of data, the 
- * message decoder, and the alert handler. The main method of the class 
- * is activated on boot.
+ * This is the main class for the whole system. The class listens to the buttons
+ * being pressed and starts running the simulator of data, the message decoder,
+ * and the alert handler. The main method of the class is activated on boot.
  *
  * @author
  */
@@ -25,7 +24,6 @@ class Boot {
     private static boolean suppliedCoordinatesCorrect(final float latitude, final float longtitude) {
         return (latitude >= -89.0 && latitude <= 89.0 && longtitude >= -179.0 && longtitude <= 179.0);
     }
-
 
     public static void main(final String[] args) throws Exception {
 
@@ -45,12 +43,14 @@ class Boot {
                 if (args.length > 1) {
                     if (args[1].equalsIgnoreCase("client")) {
                         if (args.length == 3 || args.length == 5) {
-                            // If latitude and longtitude arguments have been supplied,
-                            // we will start boat on the location specified by those arguments.
+                            // If latitude and longtitude arguments have been
+                            // supplied,
+                            // we will start boat on the location specified by
+                            // those arguments.
                             // Otherwise, the boat will start on (0, 0).
                             final boolean coordinatesSupplied = args.length == 5 ? true : false;
                             final float latitude = coordinatesSupplied ? Float.parseFloat(args[3]) : 0;
-			    final float longtitude = coordinatesSupplied ? Float.parseFloat(args[4]) : 0;
+                            final float longtitude = coordinatesSupplied ? Float.parseFloat(args[4]) : 0;
                             if (suppliedCoordinatesCorrect(latitude, longtitude)) {
                                 /** Launch the simulator client and return */
                                 Simulator sim = new Simulator(args[2], latitude, longtitude);
@@ -58,29 +58,30 @@ class Boot {
                                 sim.getThread().start();
                                 return;
                             } else {
-                                System.err.println("Coordinates out of range: (-90.0, 90.0) for latitude, (-180.0, 180.0) for longtitude");
+                                System.err.println(
+                                        "Coordinates out of range: (-90.0, 90.0) for latitude, (-180.0, 180.0) for longtitude");
                                 System.exit(1);
                             }
                         } else {
-                            System.err.println("Usage: sbs simulator client <server_address> [optional - latitude] [optional - longtitude]");
+                            System.err.println("Usage: sbs simulator client <server_address> [latitude] [longitude]");
                             System.exit(1);
                         }
                     } else {
-                        System.err.println("Usage: sbs simulator [client <server_address>]");
+                        System.err.println("Usage: sbs simulator [client <server_address> [latitude] [longitude]]");
                         System.exit(1);
                     }
                 } else {
                     runSimServer = true;
                 }
             } else {
-                System.err.println("Usage: sbs [simulator [client <server_address>]]");
+                System.err.println("Usage: sbs [simulator [client <server_address> [latitude] [longitude]]]");
                 System.exit(1);
             }
         }
 
         LogConfig.setup();
         ScriptCreator.writeScripts();
-        
+
         /** Listens to buttons */
         try {
             new ButtonsListener();
