@@ -49,7 +49,7 @@ public class MessageDecoder implements Runnable {
     // (Because when the boat turns, the wind angle also automatically turns)
     private final DataStatus windAngleState = new DataStatus(ButtonNames.WIND_DIRECTION, 2, 100.0f, -INFINITY, INFINITY);
     private final DataStatus boatHeadingState = new DataStatus(ButtonNames.COMPASS_HEADING, 3, 40.0f, -INFINITY, INFINITY);                  
-    private final DataStatus boatSpeedState = new DataStatus(ButtonNames.BOAT_SPEED, 4, 5.0f, -INFINITY, 18.0f);
+    private final DataStatus boatSpeedState = new DataStatus(ButtonNames.BOAT_SPEED, 4, 3.5f, -INFINITY, 22.0f);
 
     public MessageDecoder(Queue<Packet> messageQueue) {
         this.MessageQueue = messageQueue;

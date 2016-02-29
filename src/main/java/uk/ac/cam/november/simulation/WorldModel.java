@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class WorldModel {
 
-    public static final float MAX_BOAT_SPEED = 30;
+    public static final float MAX_BOAT_SPEED = 45;
     public static final float MAX_WIND_SPEED = 100;
     public static final float MAX_WATER_DEPTH = 250;
 

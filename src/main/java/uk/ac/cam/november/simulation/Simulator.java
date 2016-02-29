@@ -78,13 +78,17 @@ public class Simulator {
     
     private static final float HEADING_ACCELERATION = 0.015f;
     private static final float SPEED_ACCELERATION = 0.0007f;
-    private static final float SPEED_DECELARATION = 0.10f;
+    private static final float SPEED_DECELARATION = 0.18f;
     private static final float NO_CHANGE = 0.0f;
     // if none of the left / right buttons are clicked,
     // we will slow down the heading quickly based
     // on SLOW_DOWN_RATE.
     private static final float SLOW_DOWN_RATE = 0.7f; // should be less than 1.0
-    
+   
+    private static final float MAXIMUM_HEADING_CHANGE = 5.0f;   
+    private static final float MAXIMUM_SPEED_CHANGE = 0.15f;
+
+
     private float headingChange = NO_CHANGE;
     private float speedChangeForwards = NO_CHANGE;
 
@@ -100,6 +104,9 @@ public class Simulator {
         if (ui.KEY_DOWN) {
             worldModel.setBoatSpeed(worldModel.getBoatSpeed() - SPEED_DECELARATION);
             speedChangeForwards = NO_CHANGE;
+        }
+        if (speedChangeForwards >= MAXIMUM_SPEED_CHANGE) {
+            speedChangeForwards = MAXIMUM_SPEED_CHANGE;
         }
 
         // Dealing with how quickly the boat
@@ -121,6 +128,12 @@ public class Simulator {
             if (headingChange >= -slowDown && headingChange <= slowDown) {
                 headingChange = NO_CHANGE;
             }
+        }
+        if (headingChange >= MAXIMUM_HEADING_CHANGE) {
+            headingChange = MAXIMUM_HEADING_CHANGE;
+        }
+        if (headingChange <= -MAXIMUM_HEADING_CHANGE) {
+            headingChange = -MAXIMUM_HEADING_CHANGE;
         }
         worldModel.setHeading(worldModel.getHeading() + headingChange);
          
