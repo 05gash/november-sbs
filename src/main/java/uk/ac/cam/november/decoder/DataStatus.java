@@ -22,12 +22,12 @@ class DataStatus {
     /** Initializes a time interval between generating alerts or types MaxValue, MinValue.
      * The first alert is generated immediately, and subsequent messages will use
      * this timestamp */
-    private static final Long DATA_OUT_OF_RANGE_TIMESTAMP = 15000L;  // 10 seconds
+    private static final Long DATA_OUT_OF_RANGE_TIMESTAMP = 12000L;  // 12 seconds
 
     /** Initializes a time interval between generating alerts or types CriticalChange.
      * The first alert is generated immediately, and subsequent messages will use
      * this timestamp */
-    private static final Long RAPID_DATA_CHANGE_TIMESTAMP = 4000L; // 3 seconds
+    private static final Long RAPID_DATA_CHANGE_TIMESTAMP = 4000L; // 4 seconds
 
     private final String dataName;
     // Sensor type is just used to make it compatible with AlertMessage class.

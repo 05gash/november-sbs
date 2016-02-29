@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
 
 import uk.ac.cam.november.simulation.Simulator;
 
@@ -23,10 +25,11 @@ public class SimulatorUI extends JFrame {
     public boolean KEY_DOWN;
     public boolean KEY_LEFT;
     public boolean KEY_RIGHT;
-    
+
     private double zoom = 2.0;
     private RenderPanel renderPanel;
-    
+    private SubtitlePanel subtitlePanel;
+
     public SimulatorUI(Simulator sim) {
         super("Sailing by Sound Simulator");
         this.simulator = sim;
@@ -37,11 +40,17 @@ public class SimulatorUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        JPanel renderOverlay = new JPanel();
+        renderOverlay.setLayout(new OverlayLayout(renderOverlay));
         renderPanel = createRenderPanel();
         renderPanel.setZoom(zoom);
+        subtitlePanel = new SubtitlePanel();
+        renderOverlay.add(subtitlePanel, BorderLayout.CENTER);
+        renderOverlay.add(renderPanel, BorderLayout.CENTER);
+
         InstrumentPanel instrumentPanel = createInstrumentPanel();
 
-        add(renderPanel, BorderLayout.CENTER);
+        add(renderOverlay, BorderLayout.CENTER);
         add(instrumentPanel, BorderLayout.EAST);
 
         revalidate();
@@ -60,19 +69,23 @@ public class SimulatorUI extends JFrame {
         InstrumentPanel instrumentPanel = new InstrumentPanel(simulator.getWorldModel());
         return instrumentPanel;
     }
-    
-    public void zoomIn(){
-        if(zoom < 10){
+
+    public void zoomIn() {
+        if (zoom < 10) {
             zoom *= 1.1;
             renderPanel.setZoom(zoom);
         }
     }
-    
-    public void zoomOut(){
-        if(zoom > 0.5){
+
+    public void zoomOut() {
+        if (zoom > 0.5) {
             zoom /= 1.1;
             renderPanel.setZoom(zoom);
         }
+    }
+
+    public void showSubtitle(String s) {
+        subtitlePanel.showSubtitle(s);
     }
 
     /**
