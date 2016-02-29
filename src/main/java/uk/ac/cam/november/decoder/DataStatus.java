@@ -22,16 +22,16 @@ class DataStatus {
     /** Initializes a time interval between generating alerts or types MaxValue, MinValue.
      * The first alert is generated immediately, and subsequent messages will use
      * this timestamp */
-    private static final Long DATA_OUT_OF_RANGE_TIMESTAMP = 12000L;  // 12 seconds
+    private static final Long DATA_OUT_OF_RANGE_TIMESTAMP = 15000L;  // 15 seconds
 
     /** Initializes a time interval between generating alerts or types CriticalChange.
      * The first alert is generated immediately, and subsequent messages will use
      * this timestamp */
-    private static final Long RAPID_DATA_CHANGE_TIMESTAMP = 4000L; // 4 seconds
+    private static final Long RAPID_DATA_CHANGE_TIMESTAMP = 7000L; // 7 seconds
 
     private final String dataName;
     // Sensor type is just used to make it compatible with AlertMessage class.
-    // TODO(ml693): this is still stupid implementation. String dataName uniquely
+    // TODO(ml693): this is still a stupid implementation. String dataName uniquely
     // identifies sensor and is more readable than int sensor.
     // If we have more time, refactor the AlertMessage class as well.
     private final int sensor;

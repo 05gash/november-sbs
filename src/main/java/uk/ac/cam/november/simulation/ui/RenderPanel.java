@@ -41,7 +41,7 @@ public class RenderPanel extends JPanel {
             if (alpha == 255) { // dark green
                 pixels[i] = (alpha << 24) | (0x425d00 + (rand.nextInt(30) << 8));
             } else if (alpha > 244) { // sand
-                pixels[i] = ((10 * alpha - 2285) << 24) | 0xFFF0C2;
+                pixels[i] = ((10 * alpha - 2285) << 24) | 0x2D9FCC;
             } else { // dark blue
                 pixels[i] = (alpha << 24) | 0x00009F;
             }
