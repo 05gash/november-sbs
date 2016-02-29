@@ -13,14 +13,14 @@ public class SimulatorTest {
     
     @Test
     public void simulatorUIDefaultsToHidden() throws Exception {
-        Simulator sim = new Simulator(null);
+        Simulator sim = new Simulator(null, 0, 0);
         SimulatorUI simUI = getSimulatorUI(sim);
         assertFalse(simUI.isVisible());
     }
     
     @Test
     public void simulatorUIIsShown() throws Exception {
-        Simulator sim = new Simulator(null);
+        Simulator sim = new Simulator(null, 0, 0);
         sim.showUI();
         SimulatorUI simUI = getSimulatorUI(sim);
         assertTrue(simUI.isVisible());
