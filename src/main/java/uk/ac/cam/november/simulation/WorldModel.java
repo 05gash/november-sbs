@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class WorldModel {
 
-    public static final float MAX_BOAT_SPEED = 25;
+    public static final float MAX_BOAT_SPEED = 45;
     public static final float MAX_WIND_SPEED = 100;
     public static final float MAX_WATER_DEPTH = 250;
 
@@ -29,13 +29,16 @@ public class WorldModel {
 
     private ArrayList<StepListener> listeners;
 
-    public WorldModel() {
+    public WorldModel(final float latitude, final float longtitude) {
         listeners = new ArrayList<StepListener>();
         try {
             depthMap = new DepthMap(1.0, 1.0);
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(1);
         }
+        boatX = (float) (Math.sin(Math.toRadians(longtitude / 2)) * (depthMap.getMapWidth() / 2));
+        boatY = (float) (Math.sin(Math.toRadians(-latitude)) * (depthMap.getMapHeight() / 2));
     }
 
     /**

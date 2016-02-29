@@ -28,8 +28,8 @@ public class Simulator {
      * {@link uk.ac.cam.november.simulation.ui.SimulatorUI SimulatorUI} user
      * interface but does not show it.
      */
-    public Simulator(String serverAddress) {
-        worldModel = new WorldModel();
+    public Simulator(String serverAddress, final float initialLatitude, final float initialLongtitude) {
+        worldModel = new WorldModel(initialLatitude, initialLongtitude);
         dataOutput = new BoatDataOutputter(this);
         ui = new SimulatorUI(this);
 
@@ -74,21 +74,69 @@ public class Simulator {
      * @param dt
      *            Number of seconds to advance time by
      */
-    public void step(float dt) {
 
+    
+    private static final float HEADING_ACCELERATION = 0.015f;
+    private static final float SPEED_ACCELERATION = 0.0007f;
+    private static final float SPEED_DECELARATION = 0.18f;
+    private static final float NO_CHANGE = 0.0f;
+    // if none of the left / right buttons are clicked,
+    // we will slow down the heading quickly based
+    // on SLOW_DOWN_RATE.
+    private static final float SLOW_DOWN_RATE = 0.7f; // should be less than 1.0
+   
+    private static final float MAXIMUM_HEADING_CHANGE = 5.0f;   
+    private static final float MAXIMUM_SPEED_CHANGE = 0.15f;
+
+
+    private float headingChange = NO_CHANGE;
+    private float speedChangeForwards = NO_CHANGE;
+
+    public void step(float dt) {        
+        // Dealing with how quickly the boat 
+        // should move forwards
         if (ui.KEY_UP) {
-            worldModel.setBoatSpeed(worldModel.getBoatSpeed() + 0.5f);
+            worldModel.setBoatSpeed(worldModel.getBoatSpeed() + speedChangeForwards);
+            speedChangeForwards += SPEED_ACCELERATION;
+        } else {
+            speedChangeForwards = NO_CHANGE;
         }
         if (ui.KEY_DOWN) {
-            worldModel.setBoatSpeed(worldModel.getBoatSpeed() - 0.5f);
+            worldModel.setBoatSpeed(worldModel.getBoatSpeed() - SPEED_DECELARATION);
+            speedChangeForwards = NO_CHANGE;
         }
-        if (ui.KEY_LEFT) {
-            worldModel.setHeading(worldModel.getHeading() - 1.5f);
-        }
-        if (ui.KEY_RIGHT) {
-            worldModel.setHeading(worldModel.getHeading() + 1.5f);
+        if (speedChangeForwards >= MAXIMUM_SPEED_CHANGE) {
+            speedChangeForwards = MAXIMUM_SPEED_CHANGE;
         }
 
+        // Dealing with how quickly the boat
+        // should rotate left / right
+        if (ui.KEY_LEFT && !ui.KEY_RIGHT) {
+            headingChange -= HEADING_ACCELERATION;
+        }
+        if (!ui.KEY_LEFT && ui.KEY_RIGHT) {
+            headingChange += HEADING_ACCELERATION;
+        }
+        if (!ui.KEY_LEFT && !ui.KEY_RIGHT) {
+            final float slowDown = HEADING_ACCELERATION * SLOW_DOWN_RATE;
+            if (headingChange > slowDown) {
+                headingChange -= slowDown;
+            }
+            if (headingChange < -slowDown) {
+                headingChange += slowDown;
+            }
+            if (headingChange >= -slowDown && headingChange <= slowDown) {
+                headingChange = NO_CHANGE;
+            }
+        }
+        if (headingChange >= MAXIMUM_HEADING_CHANGE) {
+            headingChange = MAXIMUM_HEADING_CHANGE;
+        }
+        if (headingChange <= -MAXIMUM_HEADING_CHANGE) {
+            headingChange = -MAXIMUM_HEADING_CHANGE;
+        }
+        worldModel.setHeading(worldModel.getHeading() + headingChange);
+         
         worldModel.step(dt);
         try{
             dataOutput.update();

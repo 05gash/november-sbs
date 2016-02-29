@@ -69,13 +69,13 @@ public class MessageDecoder implements Runnable {
        DataStatus(final String dataNameInput, final int sensorInput, final float maxChangeLimitInput,
                   final float minDataValueInput, final float maxDataValueInput)
     */
-    private final DataStatus waterDepthState = new DataStatus(ButtonNames.WATER_DEPTH, 0, 40.0f, 20.0f, INFINITY);
+    private final DataStatus waterDepthState = new DataStatus(ButtonNames.WATER_DEPTH, 0, 20.0f, 40.0f, INFINITY);
     private final DataStatus windSpeedState = new DataStatus(ButtonNames.WIND_SPEED, 1, 40.0f, -INFINITY, 75.0f);
     // Changed critical wind angle change from 40 to 50, to avoid collision with critical boat change.
     // (Because when the boat turns, the wind angle also automatically turns)
-    private final DataStatus windAngleState = new DataStatus(ButtonNames.WIND_DIRECTION, 2, 50.0f, -INFINITY, INFINITY);
+    private final DataStatus windAngleState = new DataStatus(ButtonNames.WIND_DIRECTION, 2, 100.0f, -INFINITY, INFINITY);
     private final DataStatus boatHeadingState = new DataStatus(ButtonNames.COMPASS_HEADING, 3, 40.0f, -INFINITY, INFINITY);                  
-    private final DataStatus boatSpeedState = new DataStatus(ButtonNames.BOAT_SPEED, 4, 10.0f, -INFINITY, 40.0f);
+    private final DataStatus boatSpeedState = new DataStatus(ButtonNames.BOAT_SPEED, 4, 3.5f, -INFINITY, 22.0f);
 
     public MessageDecoder(Queue<Packet> messageQueue) {
         this.MessageQueue = messageQueue;
