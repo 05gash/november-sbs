@@ -22,6 +22,11 @@ class Boot {
 
     public static final int A_LOT_OF_TIME = 1000000000;
 
+    private static boolean suppliedCoordinatesCorrect(final float latitude, final float longtitude) {
+        return (latitude >= -89.0 && latitude <= 89.0 && longtitude >= -179.0 && longtitude <= 179.0);
+    }
+
+
     public static void main(final String[] args) throws Exception {
 
         /** If one thread crashes, the whole JVM will shut down */
@@ -40,13 +45,22 @@ class Boot {
                 if (args.length > 1) {
                     if (args[1].equalsIgnoreCase("client")) {
                         if (args.length == 3 || args.length == 5) {
-                            final float latitude = (args.length == 5) ? Integer.parseInt(args[3]) : 0;
-			    final float longtitude = (args.length == 5) ? Integer.parseInt(args[4]) : 0;
-                            /** Launch the simulator client and return */
-                            Simulator sim = new Simulator(args[2], latitude, longtitude);
-                            sim.showUI();
-                            sim.getThread().start();
-                            return;
+                            // If latitude and longtitude arguments have been supplied,
+                            // we will start boat on the location specified by those arguments.
+                            // Otherwise, the boat will start on (0, 0).
+                            final boolean coordinatesSupplied = args.length == 5 ? true : false;
+                            final float latitude = coordinatesSupplied ? Float.parseFloat(args[3]) : 0;
+			    final float longtitude = coordinatesSupplied ? Float.parseFloat(args[4]) : 0;
+                            if (suppliedCoordinatesCorrect(latitude, longtitude)) {
+                                /** Launch the simulator client and return */
+                                Simulator sim = new Simulator(args[2], latitude, longtitude);
+                                sim.showUI();
+                                sim.getThread().start();
+                                return;
+                            } else {
+                                System.err.println("Coordinates out of range: (-90.0, 90.0) for latitude, (-180.0, 180.0) for longtitude");
+                                System.exit(1);
+                            }
                         } else {
                             System.err.println("Usage: sbs simulator client <server_address> [optional - latitude] [optional - longtitude]");
                             System.exit(1);
