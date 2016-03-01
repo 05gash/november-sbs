@@ -102,14 +102,16 @@ public class BoatDataOutputter {
         simulator.queueMessage(m);
     }
 
+    private static final float HALF_CIRCLE = 180.0f;
+    private static final float FULL_CIRCLE = 360.f;
     /**
      * Create and output a gnss-position-data packet, containing a
      * representation of the current boat location from the world model.
      */
     private void outputGPSPacket() throws IOException {
         WorldModel worldModel = simulator.getWorldModel();
-        float lat = -worldModel.getBoatY()/10f;
-        float lon = worldModel.getBoatX()/10f;
+        float lat = (-worldModel.getBoatY() / WorldModel.depthMapHeight()) * HALF_CIRCLE;
+        float lon = (worldModel.getBoatX() / WorldModel.depthMapWidth()) * FULL_CIRCLE;
         Packet m = DataGenerator.generateGPSPacket(lat, lon, 0);
         simulator.queueMessage(m);
     }

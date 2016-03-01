@@ -71,14 +71,14 @@ public class SimulatorUI extends JFrame {
     }
 
     public void zoomIn() {
-        if (zoom < 10) {
+        if (zoom < 16) {
             zoom *= 1.1;
             renderPanel.setZoom(zoom);
         }
     }
 
     public void zoomOut() {
-        if (zoom > 0.5) {
+        if (zoom > 0.2) {
             zoom /= 1.1;
             renderPanel.setZoom(zoom);
         }

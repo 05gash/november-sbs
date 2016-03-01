@@ -52,6 +52,32 @@ public class RenderPanel extends JPanel {
     public void setZoom(double z){
         zoom = z;
     }
+
+    private final int MAX_SUBIMAGE_WIDTH = 3600;
+    private final int MAX_SUBIMAGE_HEIGHT = 1800;
+
+    private BufferedImage constructLakeSubimage(final BufferedImage lakeImage) {
+        // Dealing with edge cases when boat is
+        // close to the map border
+        int xStart = lakeImage.getWidth() / 2 + ((int) worldModel.getBoatX()) - MAX_SUBIMAGE_WIDTH / 2;
+        if (xStart < 0) {
+            xStart = 0;
+        }       
+        int yStart = lakeImage.getHeight() / 2 + ((int) worldModel.getBoatY()) - MAX_SUBIMAGE_HEIGHT / 2;
+        if (yStart < 0) {
+            yStart = 0;
+        }
+        int width = lakeImage.getWidth() - xStart;
+        if (width > MAX_SUBIMAGE_WIDTH) {
+            width = MAX_SUBIMAGE_WIDTH;
+        }
+        int height = lakeImage.getHeight() - yStart;
+        if (height > MAX_SUBIMAGE_HEIGHT) {
+            height = MAX_SUBIMAGE_HEIGHT;
+        }
+
+        return lakeImage.getSubimage(xStart, yStart, width, height); 
+    }
     
     @Override
     public void paint(Graphics g) {
@@ -64,18 +90,27 @@ public class RenderPanel extends JPanel {
         gr.fillRect(0, 0, w, h);
 
         // Draw the lake
-        AffineTransform lakeMatrix = new AffineTransform();
-        lakeMatrix.translate(w / 2, h / 2);
-        lakeMatrix.scale(zoom, zoom);
-        lakeMatrix.translate(-lakeImage.getWidth() / 2, -lakeImage.getHeight() / 2);
-        lakeMatrix.translate(-worldModel.getBoatX(), -worldModel.getBoatY());
-        gr.drawImage(lakeImage, lakeMatrix, null);
+        if (zoom > 2.0) {
+            final BufferedImage lakeSubimage = constructLakeSubimage(lakeImage);
+            AffineTransform lakeMatrix = new AffineTransform();
+            lakeMatrix.translate(w / 2, h / 2);
+            lakeMatrix.scale(zoom, zoom);
+            lakeMatrix.translate(-lakeSubimage.getWidth() / 2, -lakeSubimage.getHeight() / 2);
+            gr.drawImage(lakeSubimage, lakeMatrix, null);
+        } else {
+            AffineTransform lakeMatrix = new AffineTransform();
+            lakeMatrix.translate(w / 2, h / 2);
+            lakeMatrix.scale(zoom, zoom);
+            lakeMatrix.translate(-lakeImage.getWidth() / 2, -lakeImage.getHeight() / 2);
+            lakeMatrix.translate(-worldModel.getBoatX(), -worldModel.getBoatY());
+            gr.drawImage(lakeImage, lakeMatrix, null);
+        }
 
         // Draw the boat
         BufferedImage boatImg = SimulatorUI.boatImage;
         AffineTransform boatMatrix = new AffineTransform();
         boatMatrix.translate(w / 2, h / 2);
-        boatMatrix.scale(0.25, 0.25);
+        boatMatrix.scale(Math.sqrt(zoom) * 0.10, Math.sqrt(zoom) * 0.10);
         boatMatrix.translate(-boatImg.getWidth() / 2, -boatImg.getHeight() / 2);
         boatMatrix.rotate(Math.toRadians(worldModel.getHeading()), boatImg.getWidth() / 2, boatImg.getHeight() / 2);
         gr.drawImage(SimulatorUI.boatImage, boatMatrix, null);

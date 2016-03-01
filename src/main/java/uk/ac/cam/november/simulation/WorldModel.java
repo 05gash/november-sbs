@@ -25,9 +25,11 @@ public class WorldModel {
     private float boatX;
     private float boatY;
 
-    private DepthMap depthMap;
+    private static DepthMap depthMap;
 
     private ArrayList<StepListener> listeners;
+
+    private static final float NINETY_DEGREES = 90.0f;
 
     public WorldModel(final float latitude, final float longtitude) {
         listeners = new ArrayList<StepListener>();
@@ -37,8 +39,16 @@ public class WorldModel {
             e.printStackTrace();
             System.exit(1);
         }
-        boatX = (float) (Math.sin(Math.toRadians(longtitude / 2)) * (depthMap.getMapWidth() / 2));
-        boatY = (float) (Math.sin(Math.toRadians(-latitude)) * (depthMap.getMapHeight() / 2));
+        boatX = (float) (longtitude / (2.0 * NINETY_DEGREES)) * (depthMap.getMapWidth() / 2);
+        boatY = (float) (-latitude / NINETY_DEGREES) * (depthMap.getMapHeight() / 2);
+    }
+
+    public static int depthMapWidth() {
+        return depthMap.getMapWidth();
+    }
+
+    public static int depthMapHeight() {
+        return depthMap.getMapHeight();
     }
 
     /**

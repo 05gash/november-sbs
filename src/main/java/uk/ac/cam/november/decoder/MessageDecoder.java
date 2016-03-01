@@ -31,32 +31,6 @@ import uk.ac.cam.november.packet.Packet;
 
 public class MessageDecoder implements Runnable {
 
-    /** Values describing critical state of the system */
-    int criticalMinDepth = 20;
-    int criticalChangeDepth = 40;
-    int criticalMaxWindSpeed = 75;
-    int criticalChangeWindSpeed = 40;
-    int criticalChangeWindAngle = 40;
-    int criticalChangeHeading = 40;
-    int criticalMinBoatSpeed = 4;
-    int criticalMaxBoatSpeed = 25;
-    int criticalChangeSpeed = 10;
-
-    long lastTimeD;
-    long lastTimeWS;
-    long lastTimeWA;
-    long lastTimeH;
-    long lastTimeS;
-    long curTime;
-    long lastTimeDAlert;
-    long lastTimeWSAlert;
-    long lastTimeWAAlert;
-    long lastTimeHAlert;
-    long lastTimeSAlert;
-
-    long timeOutTime = 10000L; // 10s
-    long timeOutTimeAlert = 5000L;  // 5s
-
     private Queue<Packet> MessageQueue;
     private Queue<AlertMessage> AlertMessageQueue;
 
@@ -69,7 +43,7 @@ public class MessageDecoder implements Runnable {
        DataStatus(final String dataNameInput, final int sensorInput, final float maxChangeLimitInput,
                   final float minDataValueInput, final float maxDataValueInput)
     */
-    private final DataStatus waterDepthState = new DataStatus(ButtonNames.WATER_DEPTH, 0, 20.0f, 40.0f, INFINITY);
+    private final DataStatus waterDepthState = new DataStatus(ButtonNames.WATER_DEPTH, 0, 20.0f, 25.0f, INFINITY);
     private final DataStatus windSpeedState = new DataStatus(ButtonNames.WIND_SPEED, 1, 40.0f, -INFINITY, 75.0f);
     // Changed critical wind angle change from 40 to 50, to avoid collision with critical boat change.
     // (Because when the boat turns, the wind angle also automatically turns)
