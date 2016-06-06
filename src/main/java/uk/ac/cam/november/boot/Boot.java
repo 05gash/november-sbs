@@ -87,6 +87,7 @@ class Boot {
         } catch (UnsatisfiedLinkError e) {
             System.err.println("Failed to load Pi4J library.");
             System.err.println("Most likely you're not on a RaspberryPi.");
+            return;
         }
         MessageDecoder messageDec = null;
 
