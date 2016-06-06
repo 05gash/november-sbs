@@ -22,37 +22,36 @@ unit.
 
 ##### TO START THE SIMULATION
 
-1. Connect to RaspPi using SSH. Follow this link for complete instructions on how to connect a 
-RaspPi to you computer (http://superuser.com/questions/1030331/how-to-connect-two-locally-linked-computers-to-wifi-using-ipv4-addressing)
+1. Connect to RaspPi using SSH. Follow this link for complete instructions on how to connect a RaspPi to you computer (http://superuser.com/questions/1030331/how-to-connect-two-locally-linked-computers-to-wifi-using-ipv4-addressing)
 
 2. Change directory to git/november-sbs
-```shell
-$ cd ../git/november-sbs
-```
-		
+    ```shell
+    $ cd ../git/november-sbs
+    ```
+
 3. Use Maven to build
-```shell
-$ mvn install
-```
-This command performs compilation, and if the compilation is done correctly, you will see a message of success on your screen. Any error messages might be due to a compilation error or might appear if you are in the wrong directory.
+    ```shell
+    $ mvn install
+    ```
+    This command performs compilation, and if the compilation is done correctly, you will see a message of success on your screen. Any error messages might be due to a compilation error or might appear if you are in the wrong directory.
 
 4. Change directory to target
-```shell
-$ cd target
-```
+    ```shell
+    $ cd target
+    ```
 
 5. Launch the simulator server
-```shell
-$ sudo java -jar sbs-1.00-SNAPSHOT-jar-with-dependencies.jar simulator
-```
-This command will start the server on RaspPi. The file sbs-1.00-SNAPSHOT-jar-with-dependencies.jar will be
-present in the directory after compilation.
+    ```shell
+    $ sudo java -jar sbs-1.00-SNAPSHOT-jar-with-dependencies.jar simulator
+    ```
+    This command will start the server on RaspPi. The file sbs-1.00-SNAPSHOT-jar-with-dependencies.jar will be present in the directory after compilation.
 
 6. Repeat steps 1-4 on client machine
 
 7. Run the simulator client
-```
-$ sudo java -jar sbs-1.00-SNAPSHOT-jar-with-dependencies.jar simulator client raspberrypi.local
-```
+    ```
+    $ sudo java -jar sbs-1.00-SNAPSHOT-jar-with-dependencies.jar simulator client     raspberrypi.local
+    ```
 
 8. Now, the simulator will start. Navigate the boat with the following keys: A (turn left), D (turn right), W (speed up), D (slow down).
+

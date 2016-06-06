@@ -169,6 +169,12 @@ public class MessageDecoder implements Runnable {
                         break;
                 }
 
+            }else{
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
