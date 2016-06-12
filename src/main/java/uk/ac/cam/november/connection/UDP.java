@@ -7,7 +7,9 @@ import java.net.DatagramPacket;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.Queue;
 
-// This class reveices all broadcasted messages as UDP packtes.
+import net.sf.marineapi.nmea.parser.SentenceParser;
+import net.sf.marineapi.nmea.sentence.Sentence;
+// This class receives all broadcasted messages as UDP packets.
 
 public class UDP {
 
@@ -15,7 +17,7 @@ public class UDP {
     final private static int MAX_NMEA_SENTENCE_SIZE = 1024;  // Set to higher than max
 
     final private static byte[] BUFFER = new byte[MAX_NMEA_SENTENCE_SIZE];                                             
-    final private static Queue<String> SENTENCE_QUEUE = new ConcurrentLinkedQueue<String>();
+    final private static Queue<Sentence> SENTENCE_QUEUE = new ConcurrentLinkedQueue<Sentence>();
     
     public void receivePackets() {
         // Implemented as a thread as most likely packets
@@ -28,8 +30,12 @@ public class UDP {
                         DatagramPacket packet;
                         packet = new DatagramPacket(BUFFER, BUFFER.length);
                         socket.receive(packet);
-                        String sentence = new String(packet.getData());
-                        SENTENCE_QUEUE.add(sentence);
+                        try {
+                            Sentence sentence = new SentenceParser(new String(packet.getData()));
+                            SENTENCE_QUEUE.add(sentence);
+                        } catch (IllegalArgumentException exception) {
+                            exception.printStackTrace();    
+                        }
                     }
                     catch (IOException exception) {
                         exception.printStackTrace();
@@ -42,7 +48,7 @@ public class UDP {
         thread.start();
     }
 
-    static public Queue<String> getQueue() {
+    static public Queue<Sentence> getQueue() {
         return SENTENCE_QUEUE;
     }
                             
