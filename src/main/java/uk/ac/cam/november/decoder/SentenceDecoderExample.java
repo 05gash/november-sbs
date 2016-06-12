@@ -35,7 +35,7 @@ public class SentenceDecoderExample {
 		// 2) Creating a sentence filter
 		final SentenceFilter sentenceFilter = new SentenceFilter();
 		// test example
-		sentenceFilter.letSentenceThrough("GLL");
+		sentenceFilter.letSentenceThrough("AP");
 		sentenceFilter.setIncommingQueue(sentenceQueue);
 		final Queue<Sentence> filteredQueue = sentenceFilter.getFilteredSentences();
 

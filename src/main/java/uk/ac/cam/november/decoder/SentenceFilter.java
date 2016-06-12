@@ -5,6 +5,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import net.sf.marineapi.nmea.sentence.Sentence;
+import net.sf.marineapi.nmea.sentence.TalkerId;
 
 // This class is used to create a priority system for
 // decoding various data from different devices.
@@ -21,7 +22,7 @@ class SentenceFilter {
     
     private final ConcurrentLinkedQueue<Sentence> incommingSentences = null;
     private final ConcurrentLinkedQueue<Sentence> outgoingSentences = new ConcurrentLinkedQueue<Sentence>();
-    private final ConcurrentHashMap<String, Boolean> letThrough = new ConcurrentHashMap<String, Boolean>();
+    private final ConcurrentHashMap<TalkerId, Boolean> letThrough = new ConcurrentHashMap<TalkerId, Boolean>();
 
     public SentenceFilter() {
         Thread filter = new Thread() {
@@ -40,12 +41,12 @@ class SentenceFilter {
         incommingSentences = incommingQueue;
     } 
     
-    public void addSentence(final String sentenceId) {
-        letThrough.put(sentenceId, Boolean.TRUE);    
+    public void addSentence(final String talkerId) {
+        letThrough.put(TalkerId.valueOf(talkerId), Boolean.TRUE);    
     }    
 
-    public void blockSentence(final String sentenceId) {
-        letThrough.put(sentenceId, Boolean.FALSE);    
+    public void blockSentence(final String talkerId) {
+        letThrough.put(TalkerId.valueOf(talkerId), Boolean.FALSE);    
     }
 
     public Queue<Sentence> getFilteredSentences() {
@@ -62,8 +63,8 @@ class SentenceFilter {
                 } 
             }
             final Sentence sentence = incommingSentences.poll();
-            final String sentenceId = sentence.getSentenceId();
-            final Boolean let = letThrough.get(sentenceId);
+            final TalkerId talkerId = sentence.talkerId();
+            final Boolean let = letThrough.get(talkerId);
             if (let != null && let.booleanValue()) {
                 outgoingSentences.add(sentence);
             }
